@@ -15,17 +15,17 @@ abstract class RestInterface
     protected $method = '';
 
     /**
-     * Endpoint
+     * Collection
      * The collection requested in the URI
      * @var string
      */
-    protected $endpoint = '';
+    protected $collection = '';
 
     /**
-     * Verb
+     * Resource
      * The resource requested in the URI
      */
-    protected $verb = '';
+    protected $resource = '';
 
     /**
      * Args
@@ -47,9 +47,9 @@ abstract class RestInterface
         header("Content-Type: application/json");
 
         $this->args = explode('/', rtrim($request, '/'));
-        $this->endpoint = array_shift($this->args);
+        $this->collection = array_shift($this->args);
         if (array_key_exists(0, $this->args) && !is_numeric($this->args[0])) {
-            $this->verb = array_shift($this->args);
+            $this->resource = array_shift($this->args);
         }
 
         $this->method = $_SERVER['REQUEST_METHOD'];
@@ -83,11 +83,11 @@ abstract class RestInterface
 
     public function processAPI()
     {
-        if ((int)method_exists($this, $this->endpoint) > 0) {
-            return $this->_response($this->{$this->endpoint}($this->args));
+        if ((int)method_exists($this, $this->collection) > 0) {
+            return $this->_response($this->{$this->collection}($this->args));
         }
 
-        return $this->_response("No Endpoint: $this->endpoint", 404);
+        return $this->_response("No Endpoint: $this->collection", 404);
     }
 
     private function _response($data, $status = 200)
