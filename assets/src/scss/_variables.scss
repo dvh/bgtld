@@ -1,0 +1,83 @@
+/*
+ * Scaffolding
+ */
+
+$text-color:					#333!default;
+$brand-primary:					blue!default;
+$brand-secondary:				red!default;
+$link-color:					$brand-primary!default;
+
+/*
+ * Typography
+ */
+
+$font-size-base:				16px!default;
+$line-height-base:				1.5!default;
+$line-height-computed:			floor($font-size-base * $line-height-base)!default;
+$font-family-sans-serif:		'Open Sans', 'Arial' !default;
+
+$font-size-h1:					24px!default;
+$font-size-h2:					20px!default;
+$font-size-h3:					16px!default;
+$font-size-h4:					16px!default;
+$font-size-h5:					16px!default;
+$font-size-h6:					16px!default;
+
+$headings-font-family:			inherit!default;
+$headings-font-weight:			700!default;
+$headings-line-height:			1.25!default;
+
+
+/*
+ * Components
+ */
+
+$border-radius-base:			3px!default;
+
+
+/*
+ * Tables
+ */
+
+$table-border-color:			transparent!default;
+
+
+/*
+ * Buttons
+ */
+
+$btn-font-weight:				500!default;
+$btn-default-color:				$text-color!default;
+$btn-default-bg:				#fff!default;
+$btn-default-border:			$text-color!default;
+$btn-primary-color:				#fff!default;
+$btn-primary-bg:				$brand-secondary!default;
+$btn-primary-border:			transparent!default;
+$btn-link-disabled-color:		#999!default;
+
+
+/*
+ * Forms
+ */
+
+$input-color:					$text-color!default;
+$input-border:					#d5d5d5!default;
+$input-border-focus:			$text-color!default;
+$legend-color:					$text-color!default;
+$legend-border-color:			#d5d5d5!default;
+
+
+/*
+ * Pagination
+ */
+
+$pagination-color:				$brand-primary!default;
+$pagination-border:				$brand-primary!default;
+$pagination-hover-color:		$text-color!default;
+$pagination-hover-border:		$text-color!default;
+$pagination-active-color:		#fff!default;
+$pagination-active-bg:			$brand-primary!default;
+$pagination-active-border:		transparent!default;
+$pagination-disabled-color:		#ccc!default;
+$pagination-disabled-border:	#ccc!default;
+
