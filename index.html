@@ -27,7 +27,7 @@
 </head>
 <body>
 <div class="sidebar js-sidebar">
-    <canvas class="building-map js-building-map" width="280" height="200"></canvas>
+    <canvas class="building-map js-building-map" height="200"></canvas>
     <div class="building-details js-building-details">
         
     </div>
@@ -46,7 +46,6 @@
                 <li><button class="filters-choice filters-choice-parent js-show-children" data-target=".js-filters-year">met een bouwjaar ...</button></li>
                 <li><button class="filters-choice filters-choice-parent js-show-children" data-target=".js-filters-woz">met een WOZ-waarde van ...</button></li>
                 <li><button class="filters-choice filters-choice-parent js-show-children" data-target=".js-filters-used">wat ... gebruikt wordt</button></li>
-                <li><button class="filters-choice filters-choice-parent js-show-children" data-target=".js-filters-housing">wat gebruikt wordt door ...</button></li>
             </ul>
         </div>
         <div class="filters-list filters-list-children js-filters-year">
@@ -79,25 +78,54 @@
                 <li><button class="filters-choice js-set-choice" data-category="used" data-text="wat in gebruik is" data-value="1">wel</button></li>
             </ul>
         </div>
-        <div class="filters-list filters-list-children js-filters-housing">
-            <button class="filters-choice filters-choice-choosen js-add-filter"><i class="icon-left-open"></i> gebruikt wordt door ...</button>
-            <input type="text" />
-        </div>
     </div>
 </div>
 <div class="js-loader loader"></div>
 <script class="js-building-template" type="x-tmpl-mustache">
     <div class="building-info">
+        <p>
+            <strong>Adres</strong><br/>
+            {{ straatnaam }} {{ huisnummer }}<br/>
+            {{ postcode }}, {{ stad }}
+        </p>
+
         <dl>
             <dt>Bouwjaar</dt>
             <dd>{{ bouwjaar }}</dd>
             <dt>Status</dt>
             <dd>{{ status }}</dd>
-            <dt>Erfdienstbaarheid</dt>
+            <dt>Erfdienstbaarheid <a href="#"><i class="icon-link-ext"></i></a></dt>
             <dd>{{ erfdienstbaarheid }}</dd>
-            <dt>Cultureelerfgoed</dt>
+            <dt>Cultureelerfgoed <a href="#"><i class="icon-link-ext"></i></a></dt>
             <dd>{{ cultureelerfgoed }}</dd>
         </dl>
+
+        {{#woz}}
+        <dl>
+            <dt>WOZ-waarde <a href="#"><i class="icon-link-ext"></i></a></dt>
+            <dd>€ {{ waarde }},-</dd>
+            <dt>Type <a href="#"><i class="icon-link-ext"></i></a></dt>
+            <dd>{{ type }}</dd>
+        </dl>
+        {{/woz}}
+
+        {{#vestigingen}}
+            {{ naam }}
+        {{/vestigingen}}
+
+        <ul class="list">
+            <li><i class="icon-woon"></i> Woning <span class="meta">({{ verblijfsobjecten.woon }})</span></li>
+            <li><i class="icon-winkel"></i> Winkel <span class="meta">({{ verblijfsobjecten.winkel }})</span></li>
+            <li><i class="icon-cel"></i> Cel <span class="meta">({{ verblijfsobjecten.cel }})</span></li>
+            <li><i class="icon-kantoor"></i> Kantoor <span class="meta">({{ verblijfsobjecten.kantoor }})</span></li>
+            <li><i class="icon-gezondheidszorg"></i> Zorginstelling <span class="meta">({{ verblijfsobjecten.gezondheidszorg }})</span></li>
+            <li><i class="icon-sport"></i> Sport <span class="meta">({{ verblijfsobjecten.sport }})</span></li>
+            <li><i class="icon-logies"></i> Logies <span class="meta">({{ verblijfsobjecten.logies }})</span></li>
+            <li><i class="icon-industrie"></i> Industrie <span class="meta">({{ verblijfsobjecten.industrie }})</span></li>
+            <li><i class="icon-bijeenkomst"></i> Bijeenkomst <span class="meta">({{ verblijfsobjecten.bijeenkomst }})</span></li>
+            <li><i class="icon-onderwijs"></i> Onderwijs <span class="meta">({{ verblijfsobjecten.onderwijs }})</span></li>
+            <li><i class="icon-overige"></i> Overig <span class="meta">({{ verblijfsobjecten.overige }})</span></li>
+        </ul>
     </div>
 </script>
 </body>

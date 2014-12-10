@@ -1,5 +1,3 @@
-
-
 var building = [];
 
 $(document).on('ready', function() {
@@ -107,9 +105,12 @@ $(document).on('ready', function() {
 			self.detailTemplate = $('.js-building-template').eq(0).html();
 			Mustache.parse(self.detailTemplate);
 
+			var $canvas = $('.js-building-map');
 			var c = $('.js-building-map').get(0);
+			c.width = 380;
 
 			self.ctx = c.getContext('2d');
+			self.ctx.scale(0.75,1);
 		},
 
 		showDetails: function(object) {
@@ -124,18 +125,19 @@ $(document).on('ready', function() {
 
 		drawBuilding: function(geometry) {
 			var self = this;
-
 			var ctx = self.ctx;
 
-			ctx.clearRect(0, 0, 280, 200);
+			ctx.clearRect(0, 0, 380, 200);
 
 			var bounds = [0, 0, 0, 0];
 
-			ctx.fillStyle = '#f00';
+			ctx.fillStyle = '#333';
 			ctx.beginPath();
 
-			for(var i = 0; i < geometry.length; i++) {
-				var point = geometry[i];
+			var buildingCoordinates = JSON.parse(JSON.stringify(geometry));;
+
+			for(var i = 0; i < buildingCoordinates.length; i++) {
+				var point = buildingCoordinates[i];
 
 				if(!bounds[0] || point[0] < bounds[0]) {
 					bounds[0] = point[0];
@@ -163,17 +165,17 @@ $(document).on('ready', function() {
 			if(ratio < 1) {
 				// vertical building
 				var scale = 180 / distanceY;
-				var appendX = (280 - distanceX * scale) / 2;
+				var appendX = (380 - distanceX * scale) / 2 + 70;
 				var appendY = 10;
 			} else {
 				// horizontal building
-				var scale = 260 / distanceX;
-				var appendX = 10;
+				var scale = 360 / distanceX;
+				var appendX = 80;
 				var appendY = (200 - distanceY * scale) / 2;
 			}
 
-			for(var i = 0; i < geometry.length; i++) {
-				var point = geometry[i];
+			for(var i = 0; i < buildingCoordinates.length; i++) {
+				var point = buildingCoordinates[i];
 
 				point[0] = (point[0] - bounds[0]) * scale;
 				point[1] = (point[1] - bounds[1]) * scale;
@@ -184,11 +186,14 @@ $(document).on('ready', function() {
 					ctx.lineTo(appendX + point[1], appendY + point[0]);
 				}
 			}
+
 			ctx.closePath();
 			ctx.fill();
 			ctx.scale(1,-1);
       		ctx.translate(0,-200);
 			ctx.restore();
+
+			var building = L.polygon(geometry).addTo(maps.map);
 		}
 	}
 
@@ -213,8 +218,10 @@ $(document).on('ready', function() {
 
 			self.map = L.map('map', {
 				zoomControl:false
-			}).setView([52.23, 5.6], 7);	
-			L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			}).setView([52.23, 5.6], 8);	
+			var zoomControl = new L.Control.Zoom({ position: 'bottomleft'} );
+            zoomControl.addTo(self.map);
+			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 			    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 			    maxZoom: 18,
 			    boxZoom: false
@@ -256,7 +263,7 @@ $(document).on('ready', function() {
 			self.markers = new L.MarkerClusterGroup({
 				spiderfyOnMaxZoom: false,
 				showCoverageOnHover: false,
-				disableClusteringAtZoom: 17
+				disableClusteringAtZoom: 1
 			});
 
 			for(var i = self.amountOfMarkers;i; i--){
@@ -268,6 +275,12 @@ $(document).on('ready', function() {
 			}
 
 			self.markers.on('click', function(e) {
+				setTimeout(function() {
+					self.map.invalidateSize();
+					self.map.panTo(e.latlng);
+					self.map.setZoom(17);
+				}, 300);
+
 				$.ajax({
 					url: self.apiUrls.detailUrl + e.layer.options.id,
 					dataType: 'json',

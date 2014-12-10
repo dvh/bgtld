@@ -1,12 +1,16 @@
 .sidebar {
 	position: fixed;
 	top: 0;
-	right: -320px;
+	right: -800px;
 	bottom: 0;
-	width: 300px;
+	width: 400px;
 	background: #ffffff;
 	z-index: 101;
 	padding: 10px;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
 	@include transition(right 0.3s linear);
 
@@ -16,7 +20,8 @@
 }
 
 	.building-map {
-		width: 280px;
+		width: 380px;
 		height: 200px;
 		background: #ccc;
+		box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
 	}

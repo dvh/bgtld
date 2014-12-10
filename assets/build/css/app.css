@@ -7158,6 +7158,12 @@ body {
   height: 100%;
 }
 
+/* line 7, ../../src/scss/theme/base/_toplevel.scss */
+.meta {
+  font-size: 14px;
+  color: #666;
+}
+
 /* line 5, ../../src/scss/theme/modules/_btn.scss */
 .btn-text {
   background: none;
@@ -7170,38 +7176,67 @@ body {
   box-shadow: none;
 }
 
+/* line 1, ../../src/scss/theme/modules/_list.scss */
+.list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+/* line 6, ../../src/scss/theme/modules/_list.scss */
+.list li {
+  padding: 2px 0;
+}
+
+/* line 11, ../../src/scss/theme/modules/_list.scss */
+dl {
+  font-size: 14px;
+}
+/* line 14, ../../src/scss/theme/modules/_list.scss */
+dl dt {
+  float: left;
+}
+/* line 18, ../../src/scss/theme/modules/_list.scss */
+dl dd {
+  margin: 0 0 0 170px;
+}
+
 /* line 1, ../../src/scss/theme/modules/_sidebar.scss */
 .sidebar {
   position: fixed;
   top: 0;
-  right: -320px;
+  right: -800px;
   bottom: 0;
-  width: 300px;
+  width: 400px;
   background: #ffffff;
   z-index: 101;
   padding: 10px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   -webkit-transition: right 0.3s linear;
   -o-transition: right 0.3s linear;
   transition: right 0.3s linear;
 }
-/* line 13, ../../src/scss/theme/modules/_sidebar.scss */
+/* line 17, ../../src/scss/theme/modules/_sidebar.scss */
 .sidebar.is-active {
   right: 0;
 }
 
-/* line 18, ../../src/scss/theme/modules/_sidebar.scss */
+/* line 22, ../../src/scss/theme/modules/_sidebar.scss */
 .building-map {
-  width: 280px;
+  width: 380px;
   height: 200px;
   background: #ccc;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 /* line 1, ../../src/scss/theme/modules/_map.scss */
 .js-map {
   height: 100%;
-  -webkit-transition: width 0.3s linear;
-  -o-transition: width 0.3s linear;
-  transition: width 0.3s linear;
+  -webkit-transition: width 0.3s linear, margin-right 0.3s linear;
+  -o-transition: width 0.3s linear, margin-right 0.3s linear;
+  transition: width 0.3s linear, margin-right 0.3s linear;
 }
 /* line 6, ../../src/scss/theme/modules/_map.scss */
 .js-map:before {
@@ -7219,7 +7254,7 @@ body {
 }
 /* line 17, ../../src/scss/theme/modules/_map.scss */
 .sidebar.is-active + .js-map {
-  margin-right: 300px;
+  margin-right: 400px;
 }
 
 /* line 1, ../../src/scss/theme/modules/_filter.scss */
@@ -7309,7 +7344,7 @@ body {
   transform: translateX(-50%) translateY(-50%);
   width: 90%;
   max-width: 600px;
-  height: 500px;
+  height: 370px;
   overflow: hidden;
 }
 

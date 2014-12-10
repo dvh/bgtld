@@ -1,7 +1,7 @@
 .js-map {
 	height: 100%;
 
-	@include transition(width 0.3s linear);
+	@include transition(width 0.3s linear, margin-right 0.3s linear);
 
 	&:before {
 		position: absolute;
@@ -15,6 +15,6 @@
 	}
 
 	.sidebar.is-active + & {
-		margin-right: 300px;
+		margin-right: 400px;
 	}
 }
