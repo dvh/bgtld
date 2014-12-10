@@ -1,0 +1,1185 @@
+{
+  "id":1,
+  "lng":44.121258,
+  "lat":20.19992,
+  "bouwjaar":"2003",
+  "status":"pand in gebruik",
+  "erfdienstbaarheid":"Ja",
+  "cultureelerfgoed":"Ja",
+  "vestigingen":[
+    {
+      "id":1,
+      "naam":"Kemmer-Gerlach"
+    },
+    {
+      "id":2,
+      "naam":"Wunsch, Lockman and Homenick"
+    },
+    {
+      "id":3,
+      "naam":"Hammes, Toy and Johns"
+    },
+    {
+      "id":4,
+      "naam":"Schuster, Moore and Schuppe"
+    },
+    {
+      "id":5,
+      "naam":"Robel Group"
+    },
+    {
+      "id":6,
+      "naam":"Ernser LLC"
+    },
+    {
+      "id":7,
+      "naam":"Sawayn, Hintz and Rosenbaum"
+    },
+    {
+      "id":8,
+      "naam":"Bartoletti, Hermiston and Schultz"
+    },
+    {
+      "id":9,
+      "naam":"Parisian, Schamberger and Gutmann"
+    }],
+  "verblijfsobjecten":[
+    {
+      "id":1,
+      "gebruiksdoel":"winkel",
+      "oppervlakte":158,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"82940",
+      "huisnummer":"26688",
+      "straatnaam":"Gwendolyn Islands",
+      "stad":"Kingfurt",
+      "lng":74.15149,
+      "lat":21.808335,
+      "woz":[
+        {
+          "kwaliteit":8,
+          "voorzieningen":1,
+          "onderhoudstoestand":7
+        }]
+    },
+    {
+      "id":2,
+      "gebruiksdoel":"winkel",
+      "oppervlakte":126,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"42306",
+      "huisnummer":"1527",
+      "straatnaam":"Dicki Ford",
+      "stad":"Port Henrimouth",
+      "lng":-50.547531,
+      "lat":-55.770445,
+      "woz":[
+        {
+          "kwaliteit":4,
+          "voorzieningen":2,
+          "onderhoudstoestand":7
+        }]
+    },
+    {
+      "id":3,
+      "gebruiksdoel":"cel",
+      "oppervlakte":149,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"40112",
+      "huisnummer":"9039",
+      "straatnaam":"Graham Well",
+      "stad":"North Miraclemouth",
+      "lng":151.850329,
+      "lat":45.226977,
+      "woz":[
+        {
+          "kwaliteit":8,
+          "voorzieningen":9,
+          "onderhoudstoestand":9
+        }]
+    },
+    {
+      "id":4,
+      "gebruiksdoel":"gezondheidszorg",
+      "oppervlakte":61,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"20316-0726",
+      "huisnummer":"2927",
+      "straatnaam":"Labadie Ways",
+      "stad":"Kuhnmouth",
+      "lng":-155.567575,
+      "lat":-62.309885,
+      "woz":[
+        {
+          "kwaliteit":2,
+          "voorzieningen":1,
+          "onderhoudstoestand":0
+        }]
+    },
+    {
+      "id":5,
+      "gebruiksdoel":"cel",
+      "oppervlakte":143,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"00991-7571",
+      "huisnummer":"305",
+      "straatnaam":"Jonas Mill",
+      "stad":"Beattyside",
+      "lng":116.843865,
+      "lat":-42.485211,
+      "woz":[
+        {
+          "kwaliteit":8,
+          "voorzieningen":0,
+          "onderhoudstoestand":7
+        }]
+    },
+    {
+      "id":6,
+      "gebruiksdoel":"sport",
+      "oppervlakte":93,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"06189-8764",
+      "huisnummer":"08937",
+      "straatnaam":"Wyman Flat",
+      "stad":"Gaetanochester",
+      "lng":-62.734822,
+      "lat":10.068702,
+      "woz":[
+        {
+          "kwaliteit":7,
+          "voorzieningen":9,
+          "onderhoudstoestand":8
+        }]
+    },
+    {
+      "id":7,
+      "gebruiksdoel":"gezondheidszorg",
+      "oppervlakte":160,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"82767-5053",
+      "huisnummer":"51517",
+      "straatnaam":"Murazik Parkways",
+      "stad":"South Kieranport",
+      "lng":97.238954,
+      "lat":3.975732,
+      "woz":[
+        {
+          "kwaliteit":5,
+          "voorzieningen":7,
+          "onderhoudstoestand":1
+        }]
+    },
+    {
+      "id":8,
+      "gebruiksdoel":"woon",
+      "oppervlakte":92,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"99287",
+      "huisnummer":"88678",
+      "straatnaam":"Wunsch Common",
+      "stad":"Port Mona",
+      "lng":-48.533574,
+      "lat":21.121623,
+      "woz":[
+        {
+          "kwaliteit":1,
+          "voorzieningen":1,
+          "onderhoudstoestand":5
+        }]
+    },
+    {
+      "id":9,
+      "gebruiksdoel":"logies",
+      "oppervlakte":127,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"20973",
+      "huisnummer":"189",
+      "straatnaam":"Veum Causeway",
+      "stad":"West Hendersonmouth",
+      "lng":-43.442227,
+      "lat":51.53889,
+      "woz":[
+        {
+          "kwaliteit":4,
+          "voorzieningen":9,
+          "onderhoudstoestand":4
+        }]
+    },
+    {
+      "id":10,
+      "gebruiksdoel":"woon",
+      "oppervlakte":140,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"01214-0457",
+      "huisnummer":"413",
+      "straatnaam":"Mueller Junctions",
+      "stad":"Lake Elainamouth",
+      "lng":45.092959,
+      "lat":-7.763805,
+      "woz":[
+        {
+          "kwaliteit":2,
+          "voorzieningen":5,
+          "onderhoudstoestand":9
+        }]
+    },
+    {
+      "id":11,
+      "gebruiksdoel":"gezondheidszorg",
+      "oppervlakte":146,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"19597",
+      "huisnummer":"153",
+      "straatnaam":"Janis Rest",
+      "stad":"Muellerport",
+      "lng":145.27375,
+      "lat":-25.154757,
+      "woz":[
+        {
+          "kwaliteit":8,
+          "voorzieningen":1,
+          "onderhoudstoestand":0
+        }]
+    },
+    {
+      "id":12,
+      "gebruiksdoel":"onderwijs",
+      "oppervlakte":123,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"34984",
+      "huisnummer":"24016",
+      "straatnaam":"Brown Place",
+      "stad":"Kubport",
+      "lng":-107.077638,
+      "lat":11.569094,
+      "woz":[
+        {
+          "kwaliteit":8,
+          "voorzieningen":9,
+          "onderhoudstoestand":8
+        }]
+    },
+    {
+      "id":13,
+      "gebruiksdoel":"onderwijs",
+      "oppervlakte":70,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"79637",
+      "huisnummer":"52192",
+      "straatnaam":"Delphia Village",
+      "stad":"Port Mattie",
+      "lng":15.838084,
+      "lat":-55.744701,
+      "woz":[
+        {
+          "kwaliteit":5,
+          "voorzieningen":5,
+          "onderhoudstoestand":0
+        }]
+    },
+    {
+      "id":14,
+      "gebruiksdoel":"woon",
+      "oppervlakte":144,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"05125-4659",
+      "huisnummer":"9510",
+      "straatnaam":"Braun River",
+      "stad":"Borerfort",
+      "lng":41.64536,
+      "lat":-73.420698,
+      "woz":[
+        {
+          "kwaliteit":1,
+          "voorzieningen":6,
+          "onderhoudstoestand":2
+        }]
+    },
+    {
+      "id":15,
+      "gebruiksdoel":"logies",
+      "oppervlakte":133,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"01490",
+      "huisnummer":"474",
+      "straatnaam":"Harris Corners",
+      "stad":"North Shadhaven",
+      "lng":104.874087,
+      "lat":72.112458,
+      "woz":[
+        {
+          "kwaliteit":2,
+          "voorzieningen":2,
+          "onderhoudstoestand":2
+        }]
+    },
+    {
+      "id":16,
+      "gebruiksdoel":"bijeenkomst",
+      "oppervlakte":101,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"46055-9005",
+      "huisnummer":"00986",
+      "straatnaam":"Finn Lake",
+      "stad":"Anthonyfort",
+      "lng":68.97522,
+      "lat":-24.088781,
+      "woz":[
+        {
+          "kwaliteit":6,
+          "voorzieningen":7,
+          "onderhoudstoestand":8
+        }]
+    },
+    {
+      "id":17,
+      "gebruiksdoel":"cel",
+      "oppervlakte":166,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"15999-7691",
+      "huisnummer":"638",
+      "straatnaam":"Bud Loop",
+      "stad":"Jaredfurt",
+      "lng":-151.488536,
+      "lat":82.070961,
+      "woz":[
+        {
+          "kwaliteit":4,
+          "voorzieningen":5,
+          "onderhoudstoestand":6
+        }]
+    },
+    {
+      "id":18,
+      "gebruiksdoel":"industrie",
+      "oppervlakte":99,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"79178-6719",
+      "huisnummer":"910",
+      "straatnaam":"Reagan Parkways",
+      "stad":"East Israelton",
+      "lng":-138.601189,
+      "lat":29.812004,
+      "woz":[
+        {
+          "kwaliteit":8,
+          "voorzieningen":9,
+          "onderhoudstoestand":5
+        }]
+    },
+    {
+      "id":19,
+      "gebruiksdoel":"overig",
+      "oppervlakte":92,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"87154",
+      "huisnummer":"2313",
+      "straatnaam":"Grady Lodge",
+      "stad":"Handmouth",
+      "lng":167.89083,
+      "lat":75.790035,
+      "woz":[
+        {
+          "kwaliteit":2,
+          "voorzieningen":2,
+          "onderhoudstoestand":6
+        }]
+    },
+    {
+      "id":20,
+      "gebruiksdoel":"kantoor",
+      "oppervlakte":53,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"77598",
+      "huisnummer":"710",
+      "straatnaam":"Johnpaul Meadow",
+      "stad":"Rayfort",
+      "lng":-145.232088,
+      "lat":-75.55718,
+      "woz":[
+        {
+          "kwaliteit":8,
+          "voorzieningen":3,
+          "onderhoudstoestand":3
+        }]
+    },
+    {
+      "id":21,
+      "gebruiksdoel":"bijeenkomst",
+      "oppervlakte":53,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"12109-8101",
+      "huisnummer":"233",
+      "straatnaam":"Kira Points",
+      "stad":"Metzland",
+      "lng":-117.48599,
+      "lat":-75.725918,
+      "woz":[
+        {
+          "kwaliteit":5,
+          "voorzieningen":4,
+          "onderhoudstoestand":3
+        }]
+    },
+    {
+      "id":22,
+      "gebruiksdoel":"woon",
+      "oppervlakte":130,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"63924-0177",
+      "huisnummer":"7229",
+      "straatnaam":"Satterfield Throughway",
+      "stad":"New Rickyview",
+      "lng":-55.007045,
+      "lat":43.885958,
+      "woz":[
+        {
+          "kwaliteit":6,
+          "voorzieningen":4,
+          "onderhoudstoestand":7
+        }]
+    },
+    {
+      "id":23,
+      "gebruiksdoel":"cel",
+      "oppervlakte":113,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"54649",
+      "huisnummer":"1904",
+      "straatnaam":"Scottie Squares",
+      "stad":"North Stephania",
+      "lng":92.103484,
+      "lat":78.606683,
+      "woz":[
+        {
+          "kwaliteit":6,
+          "voorzieningen":9,
+          "onderhoudstoestand":0
+        }]
+    },
+    {
+      "id":24,
+      "gebruiksdoel":"winkel",
+      "oppervlakte":84,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"60801-0246",
+      "huisnummer":"413",
+      "straatnaam":"Hettinger Trail",
+      "stad":"South Abbie",
+      "lng":-154.189738,
+      "lat":48.057794,
+      "woz":[
+        {
+          "kwaliteit":9,
+          "voorzieningen":1,
+          "onderhoudstoestand":0
+        }]
+    },
+    {
+      "id":25,
+      "gebruiksdoel":"woon",
+      "oppervlakte":132,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"36286-0218",
+      "huisnummer":"48641",
+      "straatnaam":"Elmo Ville",
+      "stad":"New Scottie",
+      "lng":175.748509,
+      "lat":19.487739,
+      "woz":[
+        {
+          "kwaliteit":2,
+          "voorzieningen":3,
+          "onderhoudstoestand":4
+        }]
+    },
+    {
+      "id":26,
+      "gebruiksdoel":"woon",
+      "oppervlakte":80,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"47821",
+      "huisnummer":"11307",
+      "straatnaam":"Coby Locks",
+      "stad":"Jillianbury",
+      "lng":59.809924,
+      "lat":30.71047,
+      "woz":[
+        {
+          "kwaliteit":4,
+          "voorzieningen":1,
+          "onderhoudstoestand":1
+        }]
+    },
+    {
+      "id":27,
+      "gebruiksdoel":"bijeenkomst",
+      "oppervlakte":72,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"34084-0299",
+      "huisnummer":"082",
+      "straatnaam":"Jerad Turnpike",
+      "stad":"New Celestine",
+      "lng":84.259367,
+      "lat":-1.140377,
+      "woz":[
+        {
+          "kwaliteit":6,
+          "voorzieningen":7,
+          "onderhoudstoestand":8
+        }]
+    },
+    {
+      "id":28,
+      "gebruiksdoel":"gezondheidszorg",
+      "oppervlakte":89,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"45458-2558",
+      "huisnummer":"912",
+      "straatnaam":"Myrna Terrace",
+      "stad":"Ilianaport",
+      "lng":51.822404,
+      "lat":-77.806893,
+      "woz":[
+        {
+          "kwaliteit":8,
+          "voorzieningen":9,
+          "onderhoudstoestand":4
+        }]
+    },
+    {
+      "id":29,
+      "gebruiksdoel":"overig",
+      "oppervlakte":136,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"05920",
+      "huisnummer":"94504",
+      "straatnaam":"Heidenreich Shoals",
+      "stad":"Wisokyborough",
+      "lng":-135.167566,
+      "lat":-0.891599,
+      "woz":[
+        {
+          "kwaliteit":9,
+          "voorzieningen":7,
+          "onderhoudstoestand":1
+        }]
+    },
+    {
+      "id":30,
+      "gebruiksdoel":"winkel",
+      "oppervlakte":116,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"64781",
+      "huisnummer":"554",
+      "straatnaam":"Mante Motorway",
+      "stad":"Harveyside",
+      "lng":-97.072946,
+      "lat":76.269308,
+      "woz":[
+        {
+          "kwaliteit":2,
+          "voorzieningen":4,
+          "onderhoudstoestand":1
+        }]
+    },
+    {
+      "id":31,
+      "gebruiksdoel":"industrie",
+      "oppervlakte":55,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"72625-9557",
+      "huisnummer":"2856",
+      "straatnaam":"Randi Crossroad",
+      "stad":"North Blanche",
+      "lng":141.022312,
+      "lat":1.632637,
+      "woz":[
+        {
+          "kwaliteit":4,
+          "voorzieningen":9,
+          "onderhoudstoestand":4
+        }]
+    },
+    {
+      "id":32,
+      "gebruiksdoel":"logies",
+      "oppervlakte":134,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"42187",
+      "huisnummer":"62078",
+      "straatnaam":"Towne Mall",
+      "stad":"Margarettashire",
+      "lng":96.376149,
+      "lat":37.141054,
+      "woz":[
+        {
+          "kwaliteit":1,
+          "voorzieningen":0,
+          "onderhoudstoestand":5
+        }]
+    },
+    {
+      "id":33,
+      "gebruiksdoel":"cel",
+      "oppervlakte":106,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"23373",
+      "huisnummer":"37645",
+      "straatnaam":"Lesch Island",
+      "stad":"Percivalfurt",
+      "lng":-57.170197,
+      "lat":60.114323,
+      "woz":[
+        {
+          "kwaliteit":3,
+          "voorzieningen":8,
+          "onderhoudstoestand":8
+        }]
+    },
+    {
+      "id":34,
+      "gebruiksdoel":"onderwijs",
+      "oppervlakte":101,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"44147-2660",
+      "huisnummer":"4154",
+      "straatnaam":"Cummerata Knoll",
+      "stad":"Gwendolynhaven",
+      "lng":178.284608,
+      "lat":-6.71978,
+      "woz":[
+        {
+          "kwaliteit":4,
+          "voorzieningen":9,
+          "onderhoudstoestand":0
+        }]
+    },
+    {
+      "id":35,
+      "gebruiksdoel":"sport",
+      "oppervlakte":120,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"19071-5696",
+      "huisnummer":"0391",
+      "straatnaam":"Adolphus Haven",
+      "stad":"Croninview",
+      "lng":-161.816823,
+      "lat":-65.812413,
+      "woz":[
+        {
+          "kwaliteit":1,
+          "voorzieningen":2,
+          "onderhoudstoestand":1
+        }]
+    },
+    {
+      "id":36,
+      "gebruiksdoel":"overig",
+      "oppervlakte":177,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"61064",
+      "huisnummer":"251",
+      "straatnaam":"Leonie Hollow",
+      "stad":"Maraside",
+      "lng":-33.222263,
+      "lat":-28.807114,
+      "woz":[
+        {
+          "kwaliteit":3,
+          "voorzieningen":0,
+          "onderhoudstoestand":9
+        }]
+    },
+    {
+      "id":37,
+      "gebruiksdoel":"industrie",
+      "oppervlakte":96,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"56591",
+      "huisnummer":"56751",
+      "straatnaam":"Harley Passage",
+      "stad":"Schroederfort",
+      "lng":-175.34336,
+      "lat":79.254595,
+      "woz":[
+        {
+          "kwaliteit":2,
+          "voorzieningen":5,
+          "onderhoudstoestand":9
+        }]
+    },
+    {
+      "id":38,
+      "gebruiksdoel":"logies",
+      "oppervlakte":90,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"99606-5066",
+      "huisnummer":"722",
+      "straatnaam":"Schinner Drive",
+      "stad":"North Rosalyn",
+      "lng":24.458047,
+      "lat":-39.202615,
+      "woz":[
+        {
+          "kwaliteit":5,
+          "voorzieningen":7,
+          "onderhoudstoestand":0
+        }]
+    },
+    {
+      "id":39,
+      "gebruiksdoel":"woon",
+      "oppervlakte":168,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"90113-8521",
+      "huisnummer":"5545",
+      "straatnaam":"Bernhard Ways",
+      "stad":"East Ethanmouth",
+      "lng":23.732193,
+      "lat":20.037598,
+      "woz":[
+        {
+          "kwaliteit":4,
+          "voorzieningen":5,
+          "onderhoudstoestand":0
+        }]
+    },
+    {
+      "id":40,
+      "gebruiksdoel":"gezondheidszorg",
+      "oppervlakte":70,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"71875",
+      "huisnummer":"92098",
+      "straatnaam":"Koelpin Shoals",
+      "stad":"West Darbyville",
+      "lng":-20.991128,
+      "lat":51.572093,
+      "woz":[
+        {
+          "kwaliteit":5,
+          "voorzieningen":5,
+          "onderhoudstoestand":6
+        }]
+    },
+    {
+      "id":41,
+      "gebruiksdoel":"overig",
+      "oppervlakte":163,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"47575-8342",
+      "huisnummer":"495",
+      "straatnaam":"Cierra Underpass",
+      "stad":"Kaylahberg",
+      "lng":85.585244,
+      "lat":58.666593,
+      "woz":[
+        {
+          "kwaliteit":7,
+          "voorzieningen":1,
+          "onderhoudstoestand":9
+        }]
+    },
+    {
+      "id":42,
+      "gebruiksdoel":"overig",
+      "oppervlakte":82,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"16996",
+      "huisnummer":"6319",
+      "straatnaam":"Altenwerth Spring",
+      "stad":"Connellyhaven",
+      "lng":-179.330974,
+      "lat":25.861742,
+      "woz":[
+        {
+          "kwaliteit":7,
+          "voorzieningen":2,
+          "onderhoudstoestand":2
+        }]
+    },
+    {
+      "id":43,
+      "gebruiksdoel":"kantoor",
+      "oppervlakte":128,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"72710",
+      "huisnummer":"13328",
+      "straatnaam":"Reynolds Walk",
+      "stad":"Lake Eriberto",
+      "lng":68.056258,
+      "lat":-86.906959,
+      "woz":[
+        {
+          "kwaliteit":3,
+          "voorzieningen":1,
+          "onderhoudstoestand":4
+        }]
+    },
+    {
+      "id":44,
+      "gebruiksdoel":"bijeenkomst",
+      "oppervlakte":126,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"73993-8594",
+      "huisnummer":"45802",
+      "straatnaam":"Jerde Loop",
+      "stad":"Alanland",
+      "lng":133.387431,
+      "lat":35.247289,
+      "woz":[
+        {
+          "kwaliteit":4,
+          "voorzieningen":0,
+          "onderhoudstoestand":1
+        }]
+    },
+    {
+      "id":45,
+      "gebruiksdoel":"industrie",
+      "oppervlakte":66,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"71513-7087",
+      "huisnummer":"2261",
+      "straatnaam":"Winston Plains",
+      "stad":"Delmershire",
+      "lng":-164.207263,
+      "lat":82.86528,
+      "woz":[
+        {
+          "kwaliteit":1,
+          "voorzieningen":0,
+          "onderhoudstoestand":5
+        }]
+    },
+    {
+      "id":46,
+      "gebruiksdoel":"sport",
+      "oppervlakte":122,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"62575-8901",
+      "huisnummer":"41217",
+      "straatnaam":"Wayne Row",
+      "stad":"Emiliatown",
+      "lng":-173.05098,
+      "lat":-41.685617,
+      "woz":[
+        {
+          "kwaliteit":6,
+          "voorzieningen":6,
+          "onderhoudstoestand":7
+        }]
+    },
+    {
+      "id":47,
+      "gebruiksdoel":"kantoor",
+      "oppervlakte":71,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"86340-8316",
+      "huisnummer":"175",
+      "straatnaam":"Grady Loop",
+      "stad":"Lake Nealbury",
+      "lng":179.917035,
+      "lat":40.103034,
+      "woz":[
+        {
+          "kwaliteit":6,
+          "voorzieningen":1,
+          "onderhoudstoestand":5
+        }]
+    },
+    {
+      "id":48,
+      "gebruiksdoel":"winkel",
+      "oppervlakte":156,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"92028-5661",
+      "huisnummer":"2881",
+      "straatnaam":"Thalia Ramp",
+      "stad":"Lake Eunaland",
+      "lng":6.365343,
+      "lat":-27.492924,
+      "woz":[
+        {
+          "kwaliteit":3,
+          "voorzieningen":0,
+          "onderhoudstoestand":6
+        }]
+    },
+    {
+      "id":49,
+      "gebruiksdoel":"onderwijs",
+      "oppervlakte":176,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"37070-5484",
+      "huisnummer":"3817",
+      "straatnaam":"Lyda Meadows",
+      "stad":"Deckowview",
+      "lng":176.857968,
+      "lat":-59.519856,
+      "woz":[
+        {
+          "kwaliteit":2,
+          "voorzieningen":1,
+          "onderhoudstoestand":3
+        }]
+    },
+    {
+      "id":50,
+      "gebruiksdoel":"winkel",
+      "oppervlakte":170,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"42704",
+      "huisnummer":"22504",
+      "straatnaam":"Roob Throughway",
+      "stad":"Ivyville",
+      "lng":-17.556143,
+      "lat":-26.251235,
+      "woz":[
+        {
+          "kwaliteit":7,
+          "voorzieningen":8,
+          "onderhoudstoestand":6
+        }]
+    },
+    {
+      "id":51,
+      "gebruiksdoel":"winkel",
+      "oppervlakte":93,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"54633",
+      "huisnummer":"665",
+      "straatnaam":"Cory Camp",
+      "stad":"Raleighfort",
+      "lng":-53.161124,
+      "lat":-85.199612,
+      "woz":[
+        {
+          "kwaliteit":6,
+          "voorzieningen":9,
+          "onderhoudstoestand":2
+        }]
+    },
+    {
+      "id":52,
+      "gebruiksdoel":"gezondheidszorg",
+      "oppervlakte":102,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"66445",
+      "huisnummer":"26992",
+      "straatnaam":"Kevin Path",
+      "stad":"Nicolasville",
+      "lng":-152.80327,
+      "lat":-27.183716,
+      "woz":[
+        {
+          "kwaliteit":7,
+          "voorzieningen":1,
+          "onderhoudstoestand":2
+        }]
+    },
+    {
+      "id":53,
+      "gebruiksdoel":"winkel",
+      "oppervlakte":56,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"89831",
+      "huisnummer":"78804",
+      "straatnaam":"Runte Springs",
+      "stad":"Luluport",
+      "lng":-101.012674,
+      "lat":-63.943819,
+      "woz":[
+        {
+          "kwaliteit":3,
+          "voorzieningen":5,
+          "onderhoudstoestand":6
+        }]
+    },
+    {
+      "id":54,
+      "gebruiksdoel":"onderwijs",
+      "oppervlakte":175,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"97836",
+      "huisnummer":"87773",
+      "straatnaam":"Jacobson Knoll",
+      "stad":"Ernserburgh",
+      "lng":179.942897,
+      "lat":-63.46002,
+      "woz":[
+        {
+          "kwaliteit":0,
+          "voorzieningen":1,
+          "onderhoudstoestand":1
+        }]
+    },
+    {
+      "id":55,
+      "gebruiksdoel":"logies",
+      "oppervlakte":72,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"40124-1756",
+      "huisnummer":"679",
+      "straatnaam":"Elton Haven",
+      "stad":"Rethaville",
+      "lng":-114.560803,
+      "lat":52.91415,
+      "woz":[
+        {
+          "kwaliteit":5,
+          "voorzieningen":5,
+          "onderhoudstoestand":9
+        }]
+    },
+    {
+      "id":56,
+      "gebruiksdoel":"cel",
+      "oppervlakte":136,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"70655-3763",
+      "huisnummer":"147",
+      "straatnaam":"Carlie Spur",
+      "stad":"Trishafurt",
+      "lng":144.756719,
+      "lat":66.507775,
+      "woz":[
+        {
+          "kwaliteit":5,
+          "voorzieningen":3,
+          "onderhoudstoestand":2
+        }]
+    },
+    {
+      "id":57,
+      "gebruiksdoel":"kantoor",
+      "oppervlakte":64,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"21824-0141",
+      "huisnummer":"7878",
+      "straatnaam":"Jillian Villages",
+      "stad":"Barbaraborough",
+      "lng":30.245763,
+      "lat":53.49864,
+      "woz":[
+        {
+          "kwaliteit":9,
+          "voorzieningen":7,
+          "onderhoudstoestand":5
+        }]
+    },
+    {
+      "id":58,
+      "gebruiksdoel":"industrie",
+      "oppervlakte":166,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"11516-2465",
+      "huisnummer":"7554",
+      "straatnaam":"Bruen Villages",
+      "stad":"Evangelinemouth",
+      "lng":-102.565815,
+      "lat":-56.981167,
+      "woz":[
+        {
+          "kwaliteit":8,
+          "voorzieningen":5,
+          "onderhoudstoestand":6
+        }]
+    },
+    {
+      "id":59,
+      "gebruiksdoel":"onderwijs",
+      "oppervlakte":169,
+      "status":"verblijfsobject in gebruik",
+      "postcode":"31045-7563",
+      "huisnummer":"9621",
+      "straatnaam":"Aiden Radial",
+      "stad":"East Marquiseville",
+      "lng":-79.930008,
+      "lat":70.522888,
+      "woz":[
+        {
+          "kwaliteit":9,
+          "voorzieningen":3,
+          "onderhoudstoestand":6
+        }]
+    },
+    {
+      "id":60,
+      "gebruiksdoel":"kantoor",
+      "oppervlakte":140,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"14789-8861",
+      "huisnummer":"926",
+      "straatnaam":"Bette Ports",
+      "stad":"New Eldridge",
+      "lng":-25.551232,
+      "lat":3.125683,
+      "woz":[
+        {
+          "kwaliteit":2,
+          "voorzieningen":8,
+          "onderhoudstoestand":4
+        }]
+    },
+    {
+      "id":61,
+      "gebruiksdoel":"kantoor",
+      "oppervlakte":126,
+      "status":"verblijfsobject niet in gebruik",
+      "postcode":"11115-5298",
+      "huisnummer":"512",
+      "straatnaam":"Will Corners",
+      "stad":"New Amiyastad",
+      "lng":106.371307,
+      "lat":-68.887415,
+      "woz":[
+        {
+          "kwaliteit":3,
+          "voorzieningen":3,
+          "onderhoudstoestand":9
+        }]
+    }],
+  "woz":[
+    {
+      "waarde":178866,
+      "type":"2^1 dak"
+    }],
+  "geometrie":[
+    [
+      52.163485294634,
+      4.4836127758026],
+    [
+      52.163537944048,
+      4.4837683439255],
+    [
+      52.163511619349,
+      4.4837844371796],
+    [
+      52.163630080373,
+      4.4841331243515],
+    [
+      52.163564268732,
+      4.4842028617859],
+    [
+      52.163560978147,
+      4.4842565059662],
+    [
+      52.163518200525,
+      4.4843101501465],
+    [
+      52.163501747583,
+      4.4842833280563],
+    [
+      52.163268115143,
+      4.4836288690567],
+    [
+      52.163307602402,
+      4.4836020469666],
+    [
+      52.163350380226,
+      4.4837200641632]
+  ]
+}

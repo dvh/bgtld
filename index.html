@@ -13,6 +13,7 @@
     <title>BGTLD</title>
     <link rel="stylesheet" href="assets/components/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="assets/icon-font/css/fontello.css" />
+    <link rel="stylesheet" href="assets/icon-font/css/animation.css" />
     <link rel="stylesheet" href="assets/components/leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="assets/components/leaflet.markercluster/dist/MarkerCluster.Default.css" />
 
@@ -20,11 +21,18 @@
     <script type="text/javascript" src="assets/components/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="assets/components/leaflet/dist/leaflet.js"></script>
     <script type="text/javascript" src="assets/components/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <script type="text/javascript" src="assets/components/mustache/mustache.js"></script>
     <script type="text/javascript" src="assets/build/js/app.js"></script>
     <link rel="shortcut icon" href="/favicon.ico" />
 </head>
 <body>
-<div class="js-map" id="map"></div>
+<div class="sidebar js-sidebar">
+    <canvas class="building-map js-building-map" width="280" height="200"></canvas>
+    <div class="building-details js-building-details">
+        
+    </div>
+</div>
+<div class="js-map" id="map" data-query-url="assets/data/panden.json" data-detail-url="assets/data/detail.json?id="></div>
 <div class="filter js-filter">
     <span class="btn btn-text">Ik zoek een pand </span>
     <span class="filter-query js-query">
@@ -77,5 +85,20 @@
         </div>
     </div>
 </div>
+<div class="js-loader loader"></div>
+<script class="js-building-template" type="x-tmpl-mustache">
+    <div class="building-info">
+        <dl>
+            <dt>Bouwjaar</dt>
+            <dd>{{ bouwjaar }}</dd>
+            <dt>Status</dt>
+            <dd>{{ status }}</dd>
+            <dt>Erfdienstbaarheid</dt>
+            <dd>{{ erfdienstbaarheid }}</dd>
+            <dt>Cultureelerfgoed</dt>
+            <dd>{{ cultureelerfgoed }}</dd>
+        </dl>
+    </div>
+</script>
 </body>
 </html>

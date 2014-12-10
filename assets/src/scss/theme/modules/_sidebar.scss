@@ -1,0 +1,22 @@
+.sidebar {
+	position: fixed;
+	top: 0;
+	right: -320px;
+	bottom: 0;
+	width: 300px;
+	background: #ffffff;
+	z-index: 101;
+	padding: 10px;
+
+	@include transition(right 0.3s linear);
+
+	&.is-active {
+		right: 0;
+	}
+}
+
+	.building-map {
+		width: 280px;
+		height: 200px;
+		background: #ccc;
+	}

@@ -1,0 +1,26 @@
+.loader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	display: none;
+
+	&.is-loading {
+		display: block;
+		background: rgba(0, 0, 0, 0.3);
+	}
+
+	&:before {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		color: #fff;
+		font-size: 100px;
+		content: '\e810';
+		font-family: 'fontello';
+		margin: -50px 0 0 -50px;
+		@include animation(spin 1s infinite linear);
+	}
+}
