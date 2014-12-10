@@ -3,8 +3,8 @@
  */
 
 $text-color:					#333!default;
-$brand-primary:					blue!default;
-$brand-secondary:				red!default;
+$brand-primary:					#17ba8e!default;
+$brand-secondary:				#30abdf!default;
 $link-color:					$brand-primary!default;
 
 /*
@@ -32,6 +32,7 @@ $headings-line-height:			1.25!default;
  * Components
  */
 
+$border-color:					#ccc!default;
 $border-radius-base:			3px!default;
 
 
@@ -51,7 +52,7 @@ $btn-default-color:				$text-color!default;
 $btn-default-bg:				#fff!default;
 $btn-default-border:			$text-color!default;
 $btn-primary-color:				#fff!default;
-$btn-primary-bg:				$brand-secondary!default;
+$btn-primary-bg:				$brand-primary!default;
 $btn-primary-border:			transparent!default;
 $btn-link-disabled-color:		#999!default;
 

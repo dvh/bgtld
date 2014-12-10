@@ -1,12 +1,90 @@
 $(document).on('ready', function() {
+	var links = {
+		init: function() {
+			$(document).on('click', '.js-add-filter', function(e) {
+				e.preventDefault();
+
+				console.log('as');
+
+				$('.js-filters').fadeIn();
+				$('.filters-list').removeClass('is-active');
+				$('.js-filters-all').addClass('is-active');
+			});
+
+			$(document).on('click', '.js-show-children', function(e) {
+				e.preventDefault();
+
+				var $el = $(this),
+					elData = $el.data(),
+					$target = $(elData.target);
+
+				$('.js-filters-all').removeClass('is-active');
+				$target.addClass('is-active');
+			});
+
+			$(document).on('click', '.js-set-choice', function(e) {
+				e.preventDefault();
+
+				var $el = $(this),
+					elData = $el.data(),
+					$target = $('.js-choice-' + elData.category);
+
+				query.choices[elData.category] = {
+					value: elData.value,
+					text: elData.text
+				}
+
+				query.refreshChoices();
+				$('.js-filters').fadeOut();
+				$('.js-filter').addClass('is-filled');
+			});
+		}
+	};
+
+	var query = {
+		choices: {
+			'year': null,
+			'woz': null,
+			'used': null,
+			'housing': null
+		},
+		$holder: $('.js-query'),
+
+		refreshChoices: function() {
+			var self = this,
+			choicesLength = Object.keys(self.choices).length;
+			var choices = 0;
+
+			self.$holder.empty();
+
+			for(category in self.choices) {
+				var choice = self.choices[category];
+
+				if(choice) {
+					choices++;
+					var $choice = $('<button class="query-item btn js-filter js-choice-' + category + '">' + choice.text + '</button>').appendTo(self.$holder);
+				}
+			}
+
+			if(choices > 1) {
+				$choice.before(' en ');
+			}
+
+			if(choices < 4) {
+				$(' <button class="js-add-filter btn btn-primary"><i class="icon-plus"></i></button>').appendTo(self.$holder);
+			}
+		}
+	};
+
 	var maps = {
 		iconBase: L.Icon.extend({
 			options: {
-				shadowUrl: 'leaf-shadow.png',
-				iconSize:     [38, 95],
-				shadowSize:   [50, 64],
-				iconAnchor:   [22, 94],
-				shadowAnchor: [4, 62],
+				iconUrl:      'assets/images/marker.png',
+				iconSize:     [26, 42],
+				iconAnchor:   [13, 40],
+				shadowUrl:    'assets/images/marker-shade.png',
+				shadowSize:   [42, 31],
+				shadowAnchor: [7, 25],
 				popupAnchor:  [-3, -76]
 			}
 		}),
@@ -15,22 +93,39 @@ $(document).on('ready', function() {
 		init: function() {
 			var self = this;
 
-			self.map = L.map('map').setView([52.23, 5.6], 7);
+			self.map = L.map('map', {
+				zoomControl:false
+			}).setView([52.23, 5.6], 7);	
 			L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-			    maxZoom: 18
+			    maxZoom: 18,
+			    boxZoom: false
 			}).addTo(self.map);
 
-			self.results = self.getResults();
-			self.setMarkers();
+			self.getResults();
 		},
 
 		getResults: function() {
-			return [{
-				id: 1,
-				lat: 52.23,
-				lon: 5.6
-			}];
+			var self = this;
+
+			$.ajax({
+				url: 'assets/data/panden.json',
+				dataType: 'json',
+				success: function(response) {
+					self.results = response;
+					self.setMarkers();
+				}
+			});
+			// return [{
+			//     "type": "Feature",
+			//     "properties": {
+			//     	"id": "1"
+			//     },
+			//     "geometry": {
+			//         "type": "Point",
+			//         "coordinates": [5.6, 52.23]
+			//     }
+			// }];
 		},
 
 		setMarkers: function() {
@@ -38,31 +133,19 @@ $(document).on('ready', function() {
 
 			self.amountOfMarkers = self.results.length;
 
+			var baseIcon = new self.iconBase();
+
 			for(var i = self.amountOfMarkers;i; i--){
 				var markerData = self.results[i - 1];
-
-				var marker = L.marker([markerData.lat, markerData.lon]).addTo(self.map);
-				marker.bindPopup(markerData.id);
-
-				self.markers.push(marker);
+				// L.marker([markerData.lat,markerData.lon], {
+				// 	pointToLayer: function (feature, latlng) {
+				// 		return L.marker(latlng, {icon: baseIcon});
+				// 	}
+				// }).addTo(self.map);
 			}
-
-			var greenIcon = new self.iconBase({iconUrl: 'leaf-green.png'}),
-				redIcon = new self.iconBase({iconUrl: 'leaf-red.png'}),
-				orangeIcon = new self.iconBase({iconUrl: 'leaf-orange.png'});
-
-			L.icon({
-			    iconUrl: 'assets/images/leaf-green.png',
-			    shadowUrl: 'assets/images/leaf-shadow.png',
-
-			    iconSize:     [38, 95], // size of the icon
-			    shadowSize:   [50, 64], // size of the shadow
-			    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-			    shadowAnchor: [4, 62],  // the same for the shadow
-			    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-			})
 		}
 	};
 
+	links.init();
 	maps.init();
 });

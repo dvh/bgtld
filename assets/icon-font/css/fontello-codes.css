@@ -1,0 +1,17 @@
+
+.icon-ellipsis:before { content: '\e800'; } /* '' */
+.icon-plus:before { content: '\e801'; } /* '' */
+.icon-minus:before { content: '\e802'; } /* '' */
+.icon-woon:before { content: '\e803'; } /* '' */
+.icon-cel:before { content: '\e804'; } /* '' */
+.icon-gezondheidszorg:before { content: '\e805'; } /* '' */
+.icon-industrie:before { content: '\e806'; } /* '' */
+.icon-kantoor:before { content: '\e807'; } /* '' */
+.icon-logies:before { content: '\e808'; } /* '' */
+.icon-onderwijs:before { content: '\e809'; } /* '' */
+.icon-overige:before { content: '\e80a'; } /* '' */
+.icon-winkel:before { content: '\e80b'; } /* '' */
+.icon-bijeenkomst:before { content: '\e80c'; } /* '' */
+.icon-sport:before { content: '\e80d'; } /* '' */
+.icon-left-open:before { content: '\e80e'; } /* '' */
+.icon-right-open:before { content: '\e80f'; } /* '' */

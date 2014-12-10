@@ -12,13 +12,70 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>BGTLD</title>
     <link rel="stylesheet" href="assets/components/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="assets/icon-font/css/fontello.css" />
+    <link rel="stylesheet" href="assets/components/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="assets/components/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+
     <link rel="stylesheet" href="assets/build/css/app.css" />
     <script type="text/javascript" src="assets/components/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="assets/components/leaflet/dist/leaflet.js"></script>
+    <script type="text/javascript" src="assets/components/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     <script type="text/javascript" src="assets/build/js/app.js"></script>
     <link rel="shortcut icon" href="/favicon.ico" />
 </head>
 <body>
 <div class="js-map" id="map"></div>
+<div class="filter js-filter">
+    <span class="btn btn-text">Ik zoek een pand </span>
+    <span class="filter-query js-query">
+        <button class="js-add-filter btn btn-primary"><i class="icon-ellipsis"></i></button>
+    </span>
+</div>
+<div class="filters js-filters">
+    <div class="filters-content">
+        <div class="filters-list filters-all js-filters-all">
+            <ul>
+                <li><button class="filters-choice filters-choice-parent js-show-children" data-target=".js-filters-year">met een bouwjaar ...</button></li>
+                <li><button class="filters-choice filters-choice-parent js-show-children" data-target=".js-filters-woz">met een WOZ-waarde van ...</button></li>
+                <li><button class="filters-choice filters-choice-parent js-show-children" data-target=".js-filters-used">wat ... gebruikt wordt</button></li>
+                <li><button class="filters-choice filters-choice-parent js-show-children" data-target=".js-filters-housing">wat gebruikt wordt door ...</button></li>
+            </ul>
+        </div>
+        <div class="filters-list filters-list-children js-filters-year">
+            <button class="filters-choice filters-choice-choosen js-add-filter"><i class="icon-left-open"></i> met een bouwjaar ...</button>
+            <ul>
+                <li><button class="filters-choice js-set-choice" data-category="year" data-text="met een bouwjaar voor 1906" data-value="0">voor 1906</button></li>
+                <li><button class="filters-choice js-set-choice" data-category="year" data-text="met een bouwjaar van 1906 tot 1930" data-value="0">van 1906 tot 1930</button></li>
+                <li><button class="filters-choice js-set-choice" data-category="year" data-text="met een bouwjaar van 1930 tot 1980" data-value="0">van 1930 tot 1980</button></li>
+                <li><button class="filters-choice js-set-choice" data-category="year" data-text="met een bouwjaar van 1980 tot 1990" data-value="0">van 1980 tot 1990</button></li>
+                <li><button class="filters-choice js-set-choice" data-category="year" data-text="met een bouwjaar van 1990 tot 2000" data-value="0">van 1990 tot 2000</button></li>
+                <li><button class="filters-choice js-set-choice" data-category="year" data-text="met een bouwjaar van 2000 tot 2010" data-value="0">van 2000 tot 2010</button></li>
+                <li><button class="filters-choice js-set-choice" data-category="year" data-text="met een bouwjaar vanaf 2010" data-value="0">vanaf 2010</button></li>
+            </ul>
+        </div>
+        <div class="filters-list filters-list-children js-filters-woz">
+            <button class="filters-choice filters-choice-choosen js-add-filter"><i class="icon-left-open"></i> met een WOZ-waarde van ...</button>
+            <ul>
+                <li><button class="filters-choice js-set-choice" data-category="woz" data-text="met een WOZ-waarde van € 0,- en € 100.00,-" data-value="0">€ 0,- en € 100.000,-</button></li>
+                <li><button class="filters-choice js-set-choice" data-text="met een WOZ-waarde van € 100.000,- en € 150.00,-" data-value="1">€ 100.000,- en € 150.000,-</button></li>
+                <li><button class="filters-choice js-set-choice" data-text="met een WOZ-waarde van € 150.000,- en € 200.00,-" data-value="2">€ 150.000,- en € 200.000,-</button></li>
+                <li><button class="filters-choice js-set-choice" data-text="met een WOZ-waarde van € 200.000,- en € 300.00,-" data-value="3">€ 200.000,- en € 300.000,-</button></li>
+                <li><button class="filters-choice js-set-choice" data-text="met een WOZ-waarde van € 300.000,- en € 500.00,-" data-value="4">€ 300.000,- en € 500.000,-</button></li>
+                <li><button class="filters-choice js-set-choice" data-text="met een WOZ-waarde van € 500.000,- en meer" data-value="5">€ 500.000,- en meer</button></li>
+            </ul>
+        </div>
+        <div class="filters-list filters-list-children js-filters-used">
+            <button class="filters-choice filters-choice-choosen js-add-filter"><i class="icon-left-open"></i> wat ... gebruikt wordt</button>
+            <ul>
+                <li><button class="filters-choice js-set-choice" data-category="used" data-text="wat niet in gebruik is" data-value="0">niet</button></li>
+                <li><button class="filters-choice js-set-choice" data-category="used" data-text="wat in gebruik is" data-value="1">wel</button></li>
+            </ul>
+        </div>
+        <div class="filters-list filters-list-children js-filters-housing">
+            <button class="filters-choice filters-choice-choosen js-add-filter"><i class="icon-left-open"></i> gebruikt wordt door ...</button>
+            <input type="text" />
+        </div>
+    </div>
+</div>
 </body>
 </html>

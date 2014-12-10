@@ -430,12 +430,12 @@ textarea {
 
 /* line 48, ../../components/bootstrap/_scaffolding.scss */
 a {
-  color: blue;
+  color: #17ba8e;
   text-decoration: none;
 }
 /* line 52, ../../components/bootstrap/_scaffolding.scss */
 a:hover, a:focus {
-  color: #0000b3;
+  color: #0f765a;
   text-decoration: underline;
 }
 /* line 58, ../../components/bootstrap/_scaffolding.scss */
@@ -694,12 +694,12 @@ mark,
 
 /* line 5, ../../components/bootstrap/mixins/_text-emphasis.scss */
 .text-primary {
-  color: blue;
+  color: #17ba8e;
 }
 
 /* line 8, ../../components/bootstrap/mixins/_text-emphasis.scss */
 a.text-primary:hover {
-  color: #0000cc;
+  color: #118d6b;
 }
 
 /* line 5, ../../components/bootstrap/mixins/_text-emphasis.scss */
@@ -749,12 +749,12 @@ a.text-danger:hover {
 
 /* line 5, ../../components/bootstrap/mixins/_background-variant.scss */
 .bg-primary {
-  background-color: blue;
+  background-color: #17ba8e;
 }
 
 /* line 8, ../../components/bootstrap/mixins/_background-variant.scss */
 a.bg-primary:hover {
-  background-color: #0000cc;
+  background-color: #118d6b;
 }
 
 /* line 5, ../../components/bootstrap/mixins/_background-variant.scss */
@@ -3100,13 +3100,13 @@ select[multiple].input-lg,
 /* line 63, ../../components/bootstrap/_buttons.scss */
 .btn-primary {
   color: white;
-  background-color: red;
+  background-color: #17ba8e;
   border-color: transparent;
 }
 /* line 11, ../../components/bootstrap/mixins/_buttons.scss */
 .btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
   color: white;
-  background-color: #cc0000;
+  background-color: #118d6b;
   border-color: transparent;
 }
 /* line 21, ../../components/bootstrap/mixins/_buttons.scss */
@@ -3115,12 +3115,12 @@ select[multiple].input-lg,
 }
 /* line 29, ../../components/bootstrap/mixins/_buttons.scss */
 .btn-primary.disabled, .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled.focus, .btn-primary.disabled:active, .btn-primary.disabled.active, .btn-primary[disabled], .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled].focus, .btn-primary[disabled]:active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary.active {
-  background-color: red;
+  background-color: #17ba8e;
   border-color: transparent;
 }
 /* line 40, ../../components/bootstrap/mixins/_buttons.scss */
 .btn-primary .badge {
-  color: red;
+  color: #17ba8e;
   background-color: white;
 }
 
@@ -3234,7 +3234,7 @@ select[multiple].input-lg,
 
 /* line 88, ../../components/bootstrap/_buttons.scss */
 .btn-link {
-  color: blue;
+  color: #17ba8e;
   font-weight: normal;
   border-radius: 0;
 }
@@ -3250,7 +3250,7 @@ select[multiple].input-lg,
 }
 /* line 107, ../../components/bootstrap/_buttons.scss */
 .btn-link:hover, .btn-link:focus {
-  color: #0000b3;
+  color: #0f765a;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -3427,7 +3427,7 @@ tbody.collapse.in {
   color: white;
   text-decoration: none;
   outline: 0;
-  background-color: blue;
+  background-color: #17ba8e;
 }
 
 /* line 101, ../../components/bootstrap/_dropdowns.scss */
@@ -3945,7 +3945,7 @@ tbody.collapse.in {
 /* line 46, ../../components/bootstrap/_navs.scss */
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
   background-color: #eeeeee;
-  border-color: blue;
+  border-color: #17ba8e;
 }
 /* line 59, ../../components/bootstrap/_navs.scss */
 .nav .nav-divider {
@@ -4003,7 +4003,7 @@ tbody.collapse.in {
 /* line 131, ../../components/bootstrap/_navs.scss */
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
   color: white;
-  background-color: blue;
+  background-color: #17ba8e;
 }
 
 /* line 144, ../../components/bootstrap/_navs.scss */
@@ -4777,9 +4777,9 @@ tbody.collapse.in {
   padding: 6px 12px;
   line-height: 1.5;
   text-decoration: none;
-  color: blue;
+  color: #17ba8e;
   background-color: white;
-  border: 1px solid blue;
+  border: 1px solid #17ba8e;
   margin-left: -1px;
 }
 /* line 25, ../../components/bootstrap/_pagination.scss */
@@ -4810,7 +4810,7 @@ tbody.collapse.in {
 .pagination > .active > span:focus {
   z-index: 2;
   color: white;
-  background-color: blue;
+  background-color: #17ba8e;
   border-color: transparent;
   cursor: default;
 }
@@ -4891,7 +4891,7 @@ tbody.collapse.in {
   display: inline-block;
   padding: 5px 14px;
   background-color: white;
-  border: 1px solid blue;
+  border: 1px solid #17ba8e;
   border-radius: 15px;
 }
 /* line 23, ../../components/bootstrap/_pager.scss */
@@ -4961,11 +4961,11 @@ a.label:hover, a.label:focus {
 
 /* line 48, ../../components/bootstrap/_labels.scss */
 .label-primary {
-  background-color: blue;
+  background-color: #17ba8e;
 }
 /* line 7, ../../components/bootstrap/mixins/_labels.scss */
 .label-primary[href]:hover, .label-primary[href]:focus {
-  background-color: #0000cc;
+  background-color: #118d6b;
 }
 
 /* line 52, ../../components/bootstrap/_labels.scss */
@@ -5035,7 +5035,7 @@ a.label:hover, a.label:focus {
 }
 /* line 39, ../../components/bootstrap/_badges.scss */
 .list-group-item.active > .badge, .nav-pills > .active > a > .badge {
-  color: blue;
+  color: #17ba8e;
   background-color: white;
 }
 /* line 44, ../../components/bootstrap/_badges.scss */
@@ -5137,7 +5137,7 @@ a.badge:hover, a.badge:focus {
 a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {
-  border-color: blue;
+  border-color: #17ba8e;
 }
 
 /* line 9, ../../components/bootstrap/_alerts.scss */
@@ -5282,7 +5282,7 @@ a.thumbnail.active {
   line-height: 24px;
   color: white;
   text-align: center;
-  background-color: blue;
+  background-color: #17ba8e;
   -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   -webkit-transition: width 0.6s ease;
@@ -5462,8 +5462,8 @@ a.list-group-item:hover, a.list-group-item:focus {
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
   z-index: 2;
   color: white;
-  background-color: blue;
-  border-color: blue;
+  background-color: #17ba8e;
+  border-color: #17ba8e;
 }
 /* line 90, ../../components/bootstrap/_list-group.scss */
 .list-group-item.active .list-group-item-heading,
@@ -5477,7 +5477,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 }
 /* line 95, ../../components/bootstrap/_list-group.scss */
 .list-group-item.active .list-group-item-text, .list-group-item.active:hover .list-group-item-text, .list-group-item.active:focus .list-group-item-text {
-  color: #ccccff;
+  color: #a9f4e0;
 }
 
 /* line 4, ../../components/bootstrap/mixins/_list-group.scss */
@@ -5906,26 +5906,26 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 
 /* line 247, ../../components/bootstrap/_panels.scss */
 .panel-primary {
-  border-color: blue;
+  border-color: #17ba8e;
 }
 /* line 6, ../../components/bootstrap/mixins/_panels.scss */
 .panel-primary > .panel-heading {
   color: white;
-  background-color: blue;
-  border-color: blue;
+  background-color: #17ba8e;
+  border-color: #17ba8e;
 }
 /* line 11, ../../components/bootstrap/mixins/_panels.scss */
 .panel-primary > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: blue;
+  border-top-color: #17ba8e;
 }
 /* line 14, ../../components/bootstrap/mixins/_panels.scss */
 .panel-primary > .panel-heading .badge {
-  color: blue;
+  color: #17ba8e;
   background-color: white;
 }
 /* line 20, ../../components/bootstrap/mixins/_panels.scss */
 .panel-primary > .panel-footer + .panel-collapse > .panel-body {
-  border-bottom-color: blue;
+  border-bottom-color: #17ba8e;
 }
 
 /* line 250, ../../components/bootstrap/_panels.scss */
@@ -7151,8 +7151,207 @@ button.close {
     display: none !important;
   }
 }
+/* line 1, ../../src/scss/theme/base/_toplevel.scss */
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+/* line 5, ../../src/scss/theme/modules/_btn.scss */
+.btn-text {
+  background: none;
+  cursor: default;
+}
+/* line 9, ../../src/scss/theme/modules/_btn.scss */
+.btn-text:focus, .btn-text:active {
+  outline: none;
+  background-image: none;
+  box-shadow: none;
+}
+
 /* line 1, ../../src/scss/theme/modules/_map.scss */
 .js-map {
   width: 100%;
-  height: 600px;
+  height: 100%;
+}
+/* line 5, ../../src/scss/theme/modules/_map.scss */
+.js-map:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  content: '';
+  background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+  background-image: -o-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+  z-index: 100;
+}
+
+/* line 1, ../../src/scss/theme/modules/_filter.scss */
+.filter {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: 101;
+  background: #fff;
+  padding: 40px;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  -webkit-transition: all 0.4s linear;
+  -o-transition: all 0.4s linear;
+  transition: all 0.4s linear;
+}
+/* line 14, ../../src/scss/theme/modules/_filter.scss */
+.filter .btn {
+  margin-bottom: 0.5em;
+  white-space: inherit;
+  text-align: left;
+}
+/* line 20, ../../src/scss/theme/modules/_filter.scss */
+.filter.is-filled {
+  top: 0;
+  right: 320px;
+  padding: 20px 2% 0 2%;
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  box-shadow: none;
+  background: none;
+}
+
+/* line 30, ../../src/scss/theme/modules/_filter.scss */
+.filter-query {
+  display: inline;
+}
+
+/* line 34, ../../src/scss/theme/modules/_filter.scss */
+.query-item {
+  background: #fff;
+  color: #333333;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+/* line 40, ../../src/scss/theme/modules/_filter.scss */
+.query-item:hover {
+  background: #17ba8e;
+  color: #fff;
+}
+
+/* line 46, ../../src/scss/theme/modules/_filter.scss */
+.filters {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 200;
+  display: none;
+}
+/* line 56, ../../src/scss/theme/modules/_filter.scss */
+.filters.is-active {
+  display: block;
+}
+
+/* line 61, ../../src/scss/theme/modules/_filter.scss */
+.filters-content {
+  background: #ffffff;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  width: 90%;
+  max-width: 600px;
+  height: 500px;
+  overflow: hidden;
+}
+
+/* line 74, ../../src/scss/theme/modules/_filter.scss */
+.filters-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: left 0.3s linear;
+  -o-transition: left 0.3s linear;
+  transition: left 0.3s linear;
+}
+/* line 83, ../../src/scss/theme/modules/_filter.scss */
+.filters-list ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* line 94, ../../src/scss/theme/modules/_filter.scss */
+.filters-all {
+  left: -100%;
+}
+/* line 97, ../../src/scss/theme/modules/_filter.scss */
+.filters-all.is-active {
+  left: 0;
+}
+
+/* line 102, ../../src/scss/theme/modules/_filter.scss */
+.filters-list-children {
+  left: 100%;
+}
+/* line 105, ../../src/scss/theme/modules/_filter.scss */
+.filters-list-children.is-active {
+  left: 0;
+}
+
+/* line 110, ../../src/scss/theme/modules/_filter.scss */
+.filters-choice {
+  position: relative;
+  border: none;
+  border-bottom: 1px solid #cccccc;
+  width: 100%;
+  background: none;
+  text-align: left;
+  padding: 10px 15px;
+}
+/* line 119, ../../src/scss/theme/modules/_filter.scss */
+.filters-choice:hover {
+  background: #30abdf;
+  color: #fff;
+}
+/* line 124, ../../src/scss/theme/modules/_filter.scss */
+.filters-choice:focus, .filters-choice:active {
+  outline: none;
+  background-image: none;
+  box-shadow: none;
+}
+
+/* line 132, ../../src/scss/theme/modules/_filter.scss */
+.filters-choice-choosen {
+  color: #30abdf;
+}
+/* line 135, ../../src/scss/theme/modules/_filter.scss */
+.filters-choice-choosen:hover {
+  color: #fff;
+}
+
+/* line 141, ../../src/scss/theme/modules/_filter.scss */
+.filters-choice-parent:after {
+  content: '\e80f';
+  font-family: 'fontello';
+  position: absolute;
+  right: 15px;
 }

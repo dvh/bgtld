@@ -1,0 +1,134 @@
+{
+  "name": "",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "5e440549de66c9500213fd17f29f38cc",
+      "css": "btn-arrow",
+      "code": 59408,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "M500 47.3C749.6 47.3 952.7 250.4 952.7 500S749.6 952.7 500 952.7 47.3 749.6 47.3 500 250.4 47.3 500 47.3M500 0C224 0 0 224 0 500S224 1000 500 1000 1000 776 1000 500 776 0 500 0L500 0ZM585 291L551.7 324.4 703.5 476.3H204.4V523.5H707.1L555.2 675.4 588.5 708.8 795.6 501.7 585 291Z",
+        "width": 1000
+      },
+      "search": [
+        "btn-arrow"
+      ]
+    },
+    {
+      "uid": "64004cf7a6c86d5362d868fa901b0ed2",
+      "css": "hand",
+      "code": 59409,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "M729.3 153.8C697.6 153.8 671.7 179.7 671.7 211.4V461.6C671.7 472.1 663 480.7 652.5 480.7 641.8 480.7 633.1 472.1 633.1 461.6V96.1C633.1 64.2 607.4 38.5 575.5 38.5 543.8 38.5 517.9 64.2 517.9 96.1V423.1C517.9 433.6 509.2 442.2 498.7 442.2 488 442.2 479.4 433.6 479.4 423.1V57.6C479.4 25.9 453.6 0 421.7 0 389.8 0 364.1 25.9 364.1 57.6V423.1C364.1 433.6 355.4 442.2 344.7 442.2 334.2 442.2 325.6 433.6 325.6 423.1V134.7C325.6 102.7 299.6 77 267.9 77 236 77 210.3 102.7 210.3 134.7V615.4L132.3 508.7C109.2 473.2 64.1 461.2 31.1 481.7-1.8 502.5-9.9 548 12.9 583.5 12.9 583.5 138.5 773.5 192.1 854.8 245.6 936.3 332.3 1000 494.6 1000 763.1 1000 787.2 792.7 787.2 730.7V211.4C787.2 179.7 761.2 153.8 729.3 153.8",
+        "width": 787
+      },
+      "search": [
+        "hand"
+      ]
+    },
+    {
+      "uid": "44e04715aecbca7f266a17d5a7863c68",
+      "css": "plus",
+      "code": 59393,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "861ab06e455e2de3232ebef67d60d708",
+      "css": "minus",
+      "code": 59394,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "d870630ff8f81e6de3958ecaeac532f2",
+      "css": "left-open",
+      "code": 59406,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "399ef63b1e23ab1b761dfbb5591fa4da",
+      "css": "right-open",
+      "code": 59407,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "107ce08c7231097c7447d8f4d059b55f",
+      "css": "ellipsis",
+      "code": 59392,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "w3nzesrlbezu6f30q7ytyq919p6gdlb6",
+      "css": "woon",
+      "code": 59395,
+      "src": "typicons"
+    },
+    {
+      "uid": "020dbfb0a5a4a25775bc751e5891e161",
+      "css": "onderwijs",
+      "code": 59401,
+      "src": "maki"
+    },
+    {
+      "uid": "fc455b9530e0b37facc289f42a120fdd",
+      "css": "kantoor",
+      "code": 59399,
+      "src": "maki"
+    },
+    {
+      "uid": "00341f8df1496285c31db5988db1d8b5",
+      "css": "winkel",
+      "code": 59403,
+      "src": "maki"
+    },
+    {
+      "uid": "f43389fa3f5a5b152ed0231fe7bb18a7",
+      "css": "gezondheidszorg",
+      "code": 59397,
+      "src": "maki"
+    },
+    {
+      "uid": "134184de1e4f1dc3d40e0d93bb1ef15e",
+      "css": "industrie",
+      "code": 59398,
+      "src": "maki"
+    },
+    {
+      "uid": "de3978220965d0d1b1cbe671a5a57f9a",
+      "css": "logies",
+      "code": 59400,
+      "src": "maki"
+    },
+    {
+      "uid": "5040789d726273a910ac5b59e9d8227a",
+      "css": "sport",
+      "code": 59405,
+      "src": "maki"
+    },
+    {
+      "uid": "0151454c6a8abec62b1b8810aca0af6a",
+      "css": "cel",
+      "code": 59396,
+      "src": "maki"
+    },
+    {
+      "uid": "bc6ef9c6531c54e927e9dc18e45524b2",
+      "css": "overige",
+      "code": 59402,
+      "src": "maki"
+    },
+    {
+      "uid": "326b529aa8b8913d3bc4a632f3dcec69",
+      "css": "bijeenkomst",
+      "code": 59404,
+      "src": "elusive"
+    }
+  ]
+}

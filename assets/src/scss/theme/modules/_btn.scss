@@ -1,0 +1,15 @@
+.btn {
+	
+}
+
+	.btn-text {
+		background: none;
+		cursor: default;
+
+		&:focus,
+		&:active {
+			outline: none;
+			background-image: none;
+			box-shadow: none;
+		}
+	}
