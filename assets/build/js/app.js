@@ -1,43 +1,98 @@
 var building = [];
 
+Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
+
+    switch (operator) {
+        case '==':
+            return (v1 == v2) ? options.fn(this) : options.inverse(this);
+        case '===':
+            return (v1 === v2) ? options.fn(this) : options.inverse(this);
+        case '<':
+            return (v1 < v2) ? options.fn(this) : options.inverse(this);
+        case '<=':
+            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+        case '>':
+            return (v1 > v2) ? options.fn(this) : options.inverse(this);
+        case '>=':
+            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+        case '&&':
+            return (v1 && v2) ? options.fn(this) : options.inverse(this);
+        case '||':
+            return (v1 || v2) ? options.fn(this) : options.inverse(this);
+        default:
+            return options.inverse(this);
+    }
+});
+
 $(document).on('ready', function() {
 	var links = {
 		init: function() {
-			$(document).on('click', '.js-add-filter', function(e) {
-				e.preventDefault();
+			$(document)
+				.on('click', '.js-add-filter', function(e) {
+					e.preventDefault();
 
-				$('.js-filters').fadeIn();
-				$('.filters-list').removeClass('is-active');
-				$('.js-filters-all').addClass('is-active');
-			});
+					$('.js-filters').fadeIn();
+					$('.filters-list').removeClass('is-active');
+					$('.js-filters-all').addClass('is-active');
+				})
+				.on('click', '.js-show-children', function(e) {
+					e.preventDefault();
 
-			$(document).on('click', '.js-show-children', function(e) {
-				e.preventDefault();
+					var $el = $(this),
+						elData = $el.data(),
+						$target = $(elData.target);
 
-				var $el = $(this),
-					elData = $el.data(),
-					$target = $(elData.target);
+					$('.js-filters-all').removeClass('is-active');
+					$target.addClass('is-active');
+				})
+				.on('click', '.js-set-choice', function(e) {
+					e.preventDefault();
 
-				$('.js-filters-all').removeClass('is-active');
-				$target.addClass('is-active');
-			});
+					var $el = $(this),
+						elData = $el.data(),
+						$target = $('.js-choice-' + elData.category);
 
-			$(document).on('click', '.js-set-choice', function(e) {
-				e.preventDefault();
+					query.choices[elData.category] = {
+						value: elData.value,
+						text: elData.text
+					}
 
-				var $el = $(this),
-					elData = $el.data(),
-					$target = $('.js-choice-' + elData.category);
+					query.refreshChoices();
+					$('.js-filters').fadeOut();
+					$('.js-filter').addClass('is-filled');
+				})
+				.on('click', '.js-show-organizations', function(e) {
+					e.preventDefault();
 
-				query.choices[elData.category] = {
-					value: elData.value,
-					text: elData.text
-				}
+					ui.$sidebarContent.addClass('is-showing-organizations');
+				})
+				.on('click', '.js-show-building', function(e) {
+					e.preventDefault();
 
-				query.refreshChoices();
-				$('.js-filters').fadeOut();
-				$('.js-filter').addClass('is-filled');
-			});
+					ui.$sidebarContent.removeClass('is-showing-organizations');
+				})
+				.on('click', '.js-show-organization', function(e) {
+					e.preventDefault();
+
+					var $el = $(this),
+						elData = $el.data(),
+						$target = $el.next('.js-company-details');
+
+					if($target.length) {
+						$el.toggleClass('is-showing-details');
+					} else {
+						$target = $('<div class="company-details js-company-details"></div>').insertAfter($el);
+						$.ajax({
+							url: elData.detailUrl,
+							dataType: 'json',
+							success: function(response) {
+								$el.addClass('is-showing-details');
+								var rendered = ui.companyTemplate(response);
+								$target.html(rendered);
+							}
+						});
+					}
+				});
 		}
 	};
 
@@ -98,12 +153,24 @@ $(document).on('ready', function() {
 
 	var ui = {
 		$sidebar: $('.js-sidebar'),
+		$sidebarContent: $('.js-building-details'),
 
 		init: function() {
 			var self = this;
 			
-			self.detailTemplate = $('.js-building-template').eq(0).html();
-			Mustache.parse(self.detailTemplate);
+			var detailTemplateSource = $('.js-building-template').eq(0).html();
+			self.detailTemplate = Handlebars.compile(detailTemplateSource);
+
+			var companyTemplateSource = $('.js-company-template').eq(0).html();
+			self.companyTemplate = Handlebars.compile(companyTemplateSource);
+		},
+
+		showDetails: function(object) {
+			var self = this;
+
+			self.$sidebar.addClass('is-active');
+			var rendered = self.detailTemplate(object);
+			self.$sidebarContent.html(rendered);
 
 			var $canvas = $('.js-building-map');
 			var c = $('.js-building-map').get(0);
@@ -111,14 +178,6 @@ $(document).on('ready', function() {
 
 			self.ctx = c.getContext('2d');
 			self.ctx.scale(0.75,1);
-		},
-
-		showDetails: function(object) {
-			var self = this;
-
-			self.$sidebar.addClass('is-active');
-			var rendered = Mustache.render(self.detailTemplate, object);
-			self.$sidebar.find('.js-building-details').html(rendered);
 
 			self.drawBuilding(object.geometrie);
 		},
@@ -218,7 +277,7 @@ $(document).on('ready', function() {
 
 			self.map = L.map('map', {
 				zoomControl:false
-			}).setView([52.23, 5.6], 8);	
+			}).setView([52.23, 4.4836127758026], 10);	
 			var zoomControl = new L.Control.Zoom({ position: 'bottomleft'} );
             zoomControl.addTo(self.map);
 			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -226,6 +285,10 @@ $(document).on('ready', function() {
 			    maxZoom: 18,
 			    boxZoom: false
 			}).addTo(self.map);
+
+			self.map.on('click', function(e) {
+				building.push([e.latlng.lat, e.latlng.lng]);
+			});
 		},
 
 		getResults: function() {
@@ -263,7 +326,7 @@ $(document).on('ready', function() {
 			self.markers = new L.MarkerClusterGroup({
 				spiderfyOnMaxZoom: false,
 				showCoverageOnHover: false,
-				disableClusteringAtZoom: 1
+				disableClusteringAtZoom: 15
 			});
 
 			for(var i = self.amountOfMarkers;i; i--){
@@ -285,6 +348,7 @@ $(document).on('ready', function() {
 					url: self.apiUrls.detailUrl + e.layer.options.id,
 					dataType: 'json',
 					success: function(response) {
+						ui.$sidebarContent.removeClass('is-showing-organizations');
 						ui.showDetails(response);
 					}
 				});

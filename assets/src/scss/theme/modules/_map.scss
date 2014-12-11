@@ -1,20 +1,20 @@
-.js-map {
+.map {
 	height: 100%;
 
 	@include transition(width 0.3s linear, margin-right 0.3s linear);
 
-	&:before {
+	.sidebar.is-active + & {
+		margin-right: 400px;
+	}
+
+	.filter.is-filled + &:before {
 		position: absolute;
 		top: 0;
 		left: 0;
 		right: 0;
-		height: 30px;
+		height: 90px;
 		content: '';
-		@include background-image(linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)));
+		@include background-image(linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)));
 		z-index: 100;
-	}
-
-	.sidebar.is-active + & {
-		margin-right: 400px;
 	}
 }

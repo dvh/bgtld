@@ -6,7 +6,6 @@
 	width: 400px;
 	background: #ffffff;
 	z-index: 101;
-	padding: 10px;
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
 	overflow-scrolling: touch;
@@ -18,6 +17,25 @@
 		right: 0;
 	}
 }
+
+	.sidebar-content {
+		width: 400px;
+		overflow: hidden;
+	}
+
+	.building-details {
+		width: 800px;
+
+		@include transition(margin-left 0.3s linear);
+
+		&.is-showing-organizations {
+			margin-left: -400px;
+		}
+	}
+
+	.building-details-content {
+		padding: 10px;
+	}
 
 	.building-map {
 		width: 380px;

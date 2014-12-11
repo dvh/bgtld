@@ -7176,6 +7176,33 @@ body {
   box-shadow: none;
 }
 
+/* line 17, ../../src/scss/theme/modules/_btn.scss */
+.btn-secondary {
+  background: #30abdf;
+  color: #fff;
+}
+/* line 21, ../../src/scss/theme/modules/_btn.scss */
+.btn-secondary:hover {
+  background: #1d8fbf;
+  color: #fff;
+}
+
+/* line 4, ../../src/scss/theme/modules/_link.scss */
+.link-show-organization {
+  position: relative;
+  display: block;
+}
+/* line 8, ../../src/scss/theme/modules/_link.scss */
+.link-show-organization:after {
+  float: right;
+  content: '\e812';
+  font-family: 'fontello';
+}
+/* line 15, ../../src/scss/theme/modules/_link.scss */
+.link-show-organization.is-showing-details:after {
+  content: '\e813';
+}
+
 /* line 1, ../../src/scss/theme/modules/_list.scss */
 .list {
   padding: 0;
@@ -7209,7 +7236,6 @@ dl dd {
   width: 400px;
   background: #ffffff;
   z-index: 101;
-  padding: 10px;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   overflow-scrolling: touch;
@@ -7218,12 +7244,35 @@ dl dd {
   -o-transition: right 0.3s linear;
   transition: right 0.3s linear;
 }
-/* line 17, ../../src/scss/theme/modules/_sidebar.scss */
+/* line 16, ../../src/scss/theme/modules/_sidebar.scss */
 .sidebar.is-active {
   right: 0;
 }
 
-/* line 22, ../../src/scss/theme/modules/_sidebar.scss */
+/* line 21, ../../src/scss/theme/modules/_sidebar.scss */
+.sidebar-content {
+  width: 400px;
+  overflow: hidden;
+}
+
+/* line 26, ../../src/scss/theme/modules/_sidebar.scss */
+.building-details {
+  width: 800px;
+  -webkit-transition: margin-left 0.3s linear;
+  -o-transition: margin-left 0.3s linear;
+  transition: margin-left 0.3s linear;
+}
+/* line 31, ../../src/scss/theme/modules/_sidebar.scss */
+.building-details.is-showing-organizations {
+  margin-left: -400px;
+}
+
+/* line 36, ../../src/scss/theme/modules/_sidebar.scss */
+.building-details-content {
+  padding: 10px;
+}
+
+/* line 40, ../../src/scss/theme/modules/_sidebar.scss */
 .building-map {
   width: 380px;
   height: 200px;
@@ -7232,29 +7281,29 @@ dl dd {
 }
 
 /* line 1, ../../src/scss/theme/modules/_map.scss */
-.js-map {
+.map {
   height: 100%;
   -webkit-transition: width 0.3s linear, margin-right 0.3s linear;
   -o-transition: width 0.3s linear, margin-right 0.3s linear;
   transition: width 0.3s linear, margin-right 0.3s linear;
 }
 /* line 6, ../../src/scss/theme/modules/_map.scss */
-.js-map:before {
+.sidebar.is-active + .map {
+  margin-right: 400px;
+}
+/* line 10, ../../src/scss/theme/modules/_map.scss */
+.filter.is-filled + .map:before {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 30px;
+  height: 90px;
   content: '';
-  background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
-  background-image: -o-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
-  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+  background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  background-image: -o-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
   z-index: 100;
-}
-/* line 17, ../../src/scss/theme/modules/_map.scss */
-.sidebar.is-active + .js-map {
-  margin-right: 400px;
 }
 
 /* line 1, ../../src/scss/theme/modules/_filter.scss */
@@ -7285,7 +7334,7 @@ dl dd {
 /* line 20, ../../src/scss/theme/modules/_filter.scss */
 .filter.is-filled {
   top: 0;
-  right: 320px;
+  right: 400px;
   padding: 20px 2% 0 2%;
   -moz-transform: translateY(0);
   -ms-transform: translateY(0);
@@ -7296,25 +7345,30 @@ dl dd {
   background: none;
 }
 
-/* line 30, ../../src/scss/theme/modules/_filter.scss */
+/* line 31, ../../src/scss/theme/modules/_filter.scss */
+.is-filled .filter-text {
+  color: #fff;
+}
+
+/* line 36, ../../src/scss/theme/modules/_filter.scss */
 .filter-query {
   display: inline;
 }
 
-/* line 34, ../../src/scss/theme/modules/_filter.scss */
+/* line 40, ../../src/scss/theme/modules/_filter.scss */
 .query-item {
   background: #fff;
   color: #333333;
   margin-right: 5px;
   margin-left: 5px;
 }
-/* line 40, ../../src/scss/theme/modules/_filter.scss */
+/* line 46, ../../src/scss/theme/modules/_filter.scss */
 .query-item:hover {
   background: #17ba8e;
   color: #fff;
 }
 
-/* line 46, ../../src/scss/theme/modules/_filter.scss */
+/* line 52, ../../src/scss/theme/modules/_filter.scss */
 .filters {
   position: absolute;
   top: 0;
@@ -7325,12 +7379,12 @@ dl dd {
   z-index: 200;
   display: none;
 }
-/* line 56, ../../src/scss/theme/modules/_filter.scss */
+/* line 62, ../../src/scss/theme/modules/_filter.scss */
 .filters.is-active {
   display: block;
 }
 
-/* line 61, ../../src/scss/theme/modules/_filter.scss */
+/* line 67, ../../src/scss/theme/modules/_filter.scss */
 .filters-content {
   background: #ffffff;
   border-radius: 10px;
@@ -7348,7 +7402,7 @@ dl dd {
   overflow: hidden;
 }
 
-/* line 74, ../../src/scss/theme/modules/_filter.scss */
+/* line 80, ../../src/scss/theme/modules/_filter.scss */
 .filters-list {
   position: absolute;
   top: 0;
@@ -7359,32 +7413,32 @@ dl dd {
   -o-transition: left 0.3s linear;
   transition: left 0.3s linear;
 }
-/* line 83, ../../src/scss/theme/modules/_filter.scss */
+/* line 89, ../../src/scss/theme/modules/_filter.scss */
 .filters-list ul {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-/* line 94, ../../src/scss/theme/modules/_filter.scss */
+/* line 100, ../../src/scss/theme/modules/_filter.scss */
 .filters-all {
   left: -100%;
 }
-/* line 97, ../../src/scss/theme/modules/_filter.scss */
+/* line 103, ../../src/scss/theme/modules/_filter.scss */
 .filters-all.is-active {
   left: 0;
 }
 
-/* line 102, ../../src/scss/theme/modules/_filter.scss */
+/* line 108, ../../src/scss/theme/modules/_filter.scss */
 .filters-list-children {
   left: 100%;
 }
-/* line 105, ../../src/scss/theme/modules/_filter.scss */
+/* line 111, ../../src/scss/theme/modules/_filter.scss */
 .filters-list-children.is-active {
   left: 0;
 }
 
-/* line 110, ../../src/scss/theme/modules/_filter.scss */
+/* line 116, ../../src/scss/theme/modules/_filter.scss */
 .filters-choice {
   position: relative;
   border: none;
@@ -7394,28 +7448,28 @@ dl dd {
   text-align: left;
   padding: 10px 15px;
 }
-/* line 119, ../../src/scss/theme/modules/_filter.scss */
+/* line 125, ../../src/scss/theme/modules/_filter.scss */
 .filters-choice:hover {
   background: #30abdf;
   color: #fff;
 }
-/* line 124, ../../src/scss/theme/modules/_filter.scss */
+/* line 130, ../../src/scss/theme/modules/_filter.scss */
 .filters-choice:focus, .filters-choice:active {
   outline: none;
   background-image: none;
   box-shadow: none;
 }
 
-/* line 132, ../../src/scss/theme/modules/_filter.scss */
+/* line 138, ../../src/scss/theme/modules/_filter.scss */
 .filters-choice-choosen {
   color: #30abdf;
 }
-/* line 135, ../../src/scss/theme/modules/_filter.scss */
+/* line 141, ../../src/scss/theme/modules/_filter.scss */
 .filters-choice-choosen:hover {
   color: #fff;
 }
 
-/* line 141, ../../src/scss/theme/modules/_filter.scss */
+/* line 147, ../../src/scss/theme/modules/_filter.scss */
 .filters-choice-parent:after {
   content: '\e80f';
   font-family: 'fontello';
@@ -7450,4 +7504,47 @@ dl dd {
   -webkit-animation: spin 1s infinite linear;
   -o-animation: spin 1s infinite linear;
   animation: spin 1s infinite linear;
+}
+
+/* line 1, ../../src/scss/theme/modules/_company.scss */
+.company-details {
+  margin: 20px 0;
+  padding: 0 0 20px 0;
+  border-bottom: 1px solid #ccc;
+  display: none;
+  font-size: 14px;
+}
+/* line 8, ../../src/scss/theme/modules/_company.scss */
+.link-show-organization.is-showing-details + .company-details {
+  display: block;
+}
+
+/* line 13, ../../src/scss/theme/modules/_company.scss */
+.company-description {
+  margin: 0 0 10px 0;
+  font-size: 12px;
+}
+
+/* line 18, ../../src/scss/theme/modules/_company.scss */
+.company-website {
+  display: block;
+  margin: 0 0 10px 0;
+}
+
+/* line 26, ../../src/scss/theme/modules/_company.scss */
+.company-leader-image {
+  float: left;
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+}
+
+/* line 33, ../../src/scss/theme/modules/_company.scss */
+.company-leader-details {
+  margin: 0 0 0 120px;
+}
+
+/* line 37, ../../src/scss/theme/modules/_company.scss */
+.company-leader-name {
+  font-weight: bold;
 }

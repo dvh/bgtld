@@ -19,13 +19,19 @@
 
 	&.is-filled {
 		top: 0;
-		right: 320px;
+		right: 400px;
 		padding: 20px 2% 0 2%;
 		@include transform(translateY(0));
 		box-shadow: none;
 		background: none;
 	}
 }
+	
+	.filter-text {
+		.is-filled & {
+			color: #fff;
+		}
+	}
 
 	.filter-query {
 		display: inline;
