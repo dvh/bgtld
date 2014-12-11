@@ -5,7 +5,8 @@ ini_set("display_errors", 1);
 
 require_once 'RestInterface.php';
 require_once 'model/Freebase.php';
-require_once 'model/PandRepository.php';
+require_once 'model/MongoRepository.php';
+
 /**
  * Api
  *
@@ -16,6 +17,33 @@ class Api extends RestInterface
     public function __construct($request)
     {
         parent::__construct($request);
+    }
+
+    protected function panden()
+    {
+        if ($this->method == 'GET') {
+
+            if (isset($this->args[0])) {
+                $url = 'http://dennis.dev.freshheads.local/api-toolkit/web/app_debug.php/mock/bgtld/panden/' . $this->args[0];
+            } else {
+                $url = 'http://dennis.dev.freshheads.local/api-toolkit/web/app_debug.php/mock/bgtld/panden';
+            }
+
+            return json_decode(file_get_contents($url), true);
+
+
+        } else {
+            return "Only accepts GET requests";
+        }
+    }
+
+    protected function vestigingen()
+    {
+        if ($this->method == 'GET') {
+            return "Success";
+        } else {
+            return "Only accepts GET requests";
+        }
     }
 
     /**
@@ -36,16 +64,9 @@ class Api extends RestInterface
     protected function freebase()
     {
         $freebase = new Freebase();
-        $result = $freebase->search($this->resource);
-
-        $test = $freebase->image("/m/021z5y");
-
-        $result = json_encode($result);
-
-        echo $test;
 
         if ($this->method == 'GET') {
-            return;
+            return $freebase->searchCompany($this->resource);
         } else {
             return "Only accepts GET requests";
         }
@@ -56,10 +77,9 @@ class Api extends RestInterface
      */
     protected function mongo()
     {
-        $pand = new PandRepository();
-        var_dump($pand->get());
+        $mongo = new MongoRepository('markers');
+
+        return $mongo->get();
     }
-
-
 
 }

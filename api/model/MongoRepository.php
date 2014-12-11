@@ -25,7 +25,7 @@ class MongoRepository
     function __construct($collection)
     {
         $this->client = new \MongoClient();
-        $this->$db = $this->client->selectDB('bgtld');
+        $this->db = $this->client->selectDB('bgtld');
         $this->collection = $collection;
     }
 
@@ -34,7 +34,7 @@ class MongoRepository
 
     }
 
-    public function get($query = null)
+    public function get($query = [])
     {
         try {
             $mongoCollection = $this->db->selectCollection($this->collection);

@@ -25,14 +25,14 @@ abstract class RestInterface
      * Resource
      * The resource requested in the URI
      */
-    protected $resource = '';
+    protected $resource = null;
 
     /**
      * Args
      * Additional arguments added to the URI
      * @var array
      */
-    protected $args = Array();
+    protected $args = [];
 
     /**
      * File
