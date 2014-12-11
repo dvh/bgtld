@@ -1,8 +1,6 @@
 <?php
 
 /**
- * Freebase
- *
  * @author Dennis van Meel <dennis.van.meel@freshheads.com>
  */
 class Freebase
@@ -10,7 +8,7 @@ class Freebase
     /**
      * @var string
      */
-    private $api_key = "AIzaSyBkYwzDuYoap-Y4t6_cj3phG9RaVduJtM8";
+    private $apiKey = "AIzaSyBkYwzDuYoap-Y4t6_cj3phG9RaVduJtM8";
 
     public function searchCompany($name)
     {
@@ -96,32 +94,32 @@ class Freebase
         $url .= '&start=' . $start;
         $url .= '&limit=' . $limit;
         $url .= '&exact=' . $exact;
-        $url .= '&key=' . $this->api_key;
+        $url .= '&key=' . $this->apiKey;
 
-        $freebase_results = @file_get_contents($url);
+        $freebaseResults = @file_get_contents($url);
 
-        if (!empty($freebase_results)) {
-            $decoded = json_decode($freebase_results, true);
+        if (!empty($freebaseResults)) {
+            $decoded = json_decode($freebaseResults, true);
 
             return $decoded['result'];
         }
     }
 
-    public function image($entity_id, $max_width = 150, $max_height = 150)
+    public function image($entityId, $maxWidth = 150, $maxHeight = 150)
     {
-        $url = 'https://usercontent.googleapis.com/freebase/v1/image' . $entity_id;
-        $url .= '?maxwidth=' . $max_width;
-        $url .= '&maxheight=' . $max_height;
-        $url .= '&key=' . $this->api_key;
+        $url = 'https://usercontent.googleapis.com/freebase/v1/image' . $entityId;
+        $url .= '?maxwidth=' . $maxWidth;
+        $url .= '&maxheight=' . $maxHeight;
+        $url .= '&key=' . $this->apiKey;
 
         return $url;
     }
 
-    public function text($entity_id, $max_length = '0')
+    public function text($entityId, $maxLength = '0')
     {
-        $url = 'https://www.googleapis.com/freebase/v1/text/' . $entity_id;
-        $url .= '?maxlength=' . $max_length;
-        $url .= '&key=' . $this->api_key;
+        $url = 'https://www.googleapis.com/freebase/v1/text/' . $entityId;
+        $url .= '?maxlength=' . $maxLength;
+        $url .= '&key=' . $this->apiKey;
 
         $freebase_results = @file_get_contents($url);
 
@@ -132,9 +130,9 @@ class Freebase
         }
     }
 
-    public function topic($entity_id)
+    public function topic($entityId)
     {
-        $url = 'https://www.googleapis.com/freebase/v1/topic' . $entity_id;
+        $url = 'https://www.googleapis.com/freebase/v1/topic' . $entityId;
 
         $freebase_results = @file_get_contents($url);
 
