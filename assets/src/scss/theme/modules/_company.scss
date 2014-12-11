@@ -1,0 +1,39 @@
+.company-details {
+	margin: 20px 0;
+	padding: 0 0 20px 0;
+	border-bottom: 1px solid #ccc;
+	display: none;
+	font-size: 14px;
+
+	.link-show-organization.is-showing-details + & {
+		display: block;
+	}
+}
+
+	.company-description {
+		margin: 0 0 10px 0;
+		font-size: 12px;
+	}
+
+	.company-website {
+		display: block;
+		margin: 0 0 10px 0;
+	}
+
+	.company-leadership {
+	}
+
+		.company-leader-image {
+			float: left;
+			border-radius: 100%;
+			width: 100px;
+			height: 100px;
+		}
+
+		.company-leader-details {
+			margin: 0 0 0 120px;
+		}
+
+		.company-leader-name {
+			font-weight: bold;
+		}

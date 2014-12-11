@@ -1,0 +1,45 @@
+.sidebar {
+	position: fixed;
+	top: 0;
+	right: -800px;
+	bottom: 0;
+	width: 400px;
+	background: #ffffff;
+	z-index: 101;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+	@include transition(right 0.3s linear);
+
+	&.is-active {
+		right: 0;
+	}
+}
+
+	.sidebar-content {
+		width: 400px;
+		overflow: hidden;
+	}
+
+	.building-details {
+		width: 800px;
+
+		@include transition(margin-left 0.3s linear);
+
+		&.is-showing-organizations {
+			margin-left: -400px;
+		}
+	}
+
+	.building-details-content {
+		padding: 10px;
+	}
+
+	.building-map {
+		width: 380px;
+		height: 200px;
+		background: #ccc;
+		box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+	}

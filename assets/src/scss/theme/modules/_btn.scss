@@ -1,0 +1,25 @@
+.btn {
+	
+}
+
+	.btn-text {
+		background: none;
+		cursor: default;
+
+		&:focus,
+		&:active {
+			outline: none;
+			background-image: none;
+			box-shadow: none;
+		}
+	}
+
+	.btn-secondary {
+		background: $brand-secondary;
+		color: #fff;
+
+		&:hover {
+			background: darken($brand-secondary, 10%);
+			color: #fff;
+		}
+	}

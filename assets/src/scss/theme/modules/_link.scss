@@ -1,0 +1,19 @@
+.link {
+}
+
+	.link-show-organization {
+		position: relative;
+		display: block;
+
+		&:after {
+			float: right;
+			content: '\e812';
+			font-family: 'fontello';
+		}
+
+		&.is-showing-details {
+			&:after {
+				content: '\e813';
+			}
+		}
+	}
