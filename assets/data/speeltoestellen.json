@@ -1,0 +1,28 @@
+{
+  "results": [
+    {
+      "categorie": "speeltoestel",
+      "toesteltype": "Schommel",
+      "leeftijdscategorie": "2 - 6 jaar",
+      "aanlegjaar": 2004,
+      "lat": 52.16342606396884,
+      "lng": 4.48339819908142
+    },
+    {
+      "categorie": "speeltoestel",
+      "toesteltype": "Kabelbaan",
+      "leeftijdscategorie": "3 - 12 jaar",
+      "aanlegjaar": 2014,
+      "lat": 52.16262644227141,
+      "lng": 4.482046365737915
+    },
+    {
+      "categorie": "speeltoestel",
+      "toesteltype": "Olifant",
+      "leeftijdscategorie": "3 - 8 jaar",
+      "aanlegjaar": 2004,
+      "lat": 52.16239609590703,
+      "lng": 4.4824111461639395
+    }
+  ]
+}

@@ -7164,6 +7164,45 @@ body {
   color: #666;
 }
 
+/* line 12, ../../src/scss/theme/base/_toplevel.scss */
+.row-borderless {
+  margin-left: 0;
+  margin-right: 0;
+}
+/* line 16, ../../src/scss/theme/base/_toplevel.scss */
+.row-borderless .col-xs-1, .row-borderless .col-sm-1, .row-borderless .col-md-1, .row-borderless .col-lg-1, .row-borderless .col-xs-2, .row-borderless .col-sm-2, .row-borderless .col-md-2, .row-borderless .col-lg-2, .row-borderless .col-xs-3, .row-borderless .col-sm-3, .row-borderless .col-md-3, .row-borderless .col-lg-3, .row-borderless .col-xs-4, .row-borderless .col-sm-4, .row-borderless .col-md-4, .row-borderless .col-lg-4, .row-borderless .col-xs-5, .row-borderless .col-sm-5, .row-borderless .col-md-5, .row-borderless .col-lg-5, .row-borderless .col-xs-6, .row-borderless .col-sm-6, .row-borderless .col-md-6, .row-borderless .col-lg-6, .row-borderless .col-xs-7, .row-borderless .col-sm-7, .row-borderless .col-md-7, .row-borderless .col-lg-7, .row-borderless .col-xs-8, .row-borderless .col-sm-8, .row-borderless .col-md-8, .row-borderless .col-lg-8, .row-borderless .col-xs-9, .row-borderless .col-sm-9, .row-borderless .col-md-9, .row-borderless .col-lg-9, .row-borderless .col-xs-10, .row-borderless .col-sm-10, .row-borderless .col-md-10, .row-borderless .col-lg-10, .row-borderless .col-xs-11, .row-borderless .col-sm-11, .row-borderless .col-md-11, .row-borderless .col-lg-11, .row-borderless .col-xs-12, .row-borderless .col-sm-12, .row-borderless .col-md-12, .row-borderless .col-lg-12 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* line 22, ../../src/scss/theme/base/_toplevel.scss */
+.item {
+  width: 330px;
+}
+
+/* line 26, ../../src/scss/theme/base/_toplevel.scss */
+.item-tree {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* line 31, ../../src/scss/theme/base/_toplevel.scss */
+.item-image {
+  width: 100px;
+  float: left;
+}
+
+/* line 37, ../../src/scss/theme/base/_toplevel.scss */
+.item-image + .item-details {
+  margin: 0 0 0 120px;
+}
+
+/* line 42, ../../src/scss/theme/base/_toplevel.scss */
+.item-name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
 /* line 5, ../../src/scss/theme/modules/_btn.scss */
 .btn-text {
   background: none;
@@ -7221,8 +7260,9 @@ dl {
 /* line 14, ../../src/scss/theme/modules/_list.scss */
 dl dt {
   float: left;
+  width: 160px;
 }
-/* line 18, ../../src/scss/theme/modules/_list.scss */
+/* line 19, ../../src/scss/theme/modules/_list.scss */
 dl dd {
   margin: 0 0 0 170px;
 }
@@ -7274,10 +7314,10 @@ dl dd {
 
 /* line 40, ../../src/scss/theme/modules/_sidebar.scss */
 .building-map {
-  width: 380px;
+  width: 400px;
   height: 200px;
-  background: #ccc;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+  margin: -10px -10px 0 -10px;
+  background: #17ba8e;
 }
 
 /* line 1, ../../src/scss/theme/modules/_map.scss */
@@ -7321,17 +7361,19 @@ dl dd {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
   -webkit-transition: all 0.4s linear;
   -o-transition: all 0.4s linear;
   transition: all 0.4s linear;
 }
-/* line 14, ../../src/scss/theme/modules/_filter.scss */
+/* line 15, ../../src/scss/theme/modules/_filter.scss */
 .filter .btn {
   margin-bottom: 0.5em;
   white-space: inherit;
   text-align: left;
+  font-size: 24px;
 }
-/* line 20, ../../src/scss/theme/modules/_filter.scss */
+/* line 22, ../../src/scss/theme/modules/_filter.scss */
 .filter.is-filled {
   top: 0;
   right: 400px;
@@ -7343,32 +7385,38 @@ dl dd {
   transform: translateY(0);
   box-shadow: none;
   background: none;
+  text-align: left;
+  color: #fff;
+}
+/* line 32, ../../src/scss/theme/modules/_filter.scss */
+.filter.is-filled .btn {
+  font-size: 16px;
 }
 
-/* line 31, ../../src/scss/theme/modules/_filter.scss */
+/* line 39, ../../src/scss/theme/modules/_filter.scss */
 .is-filled .filter-text {
   color: #fff;
 }
 
-/* line 36, ../../src/scss/theme/modules/_filter.scss */
+/* line 44, ../../src/scss/theme/modules/_filter.scss */
 .filter-query {
   display: inline;
 }
 
-/* line 40, ../../src/scss/theme/modules/_filter.scss */
+/* line 48, ../../src/scss/theme/modules/_filter.scss */
 .query-item {
   background: #fff;
   color: #333333;
   margin-right: 5px;
   margin-left: 5px;
 }
-/* line 46, ../../src/scss/theme/modules/_filter.scss */
+/* line 54, ../../src/scss/theme/modules/_filter.scss */
 .query-item:hover {
   background: #17ba8e;
   color: #fff;
 }
 
-/* line 52, ../../src/scss/theme/modules/_filter.scss */
+/* line 60, ../../src/scss/theme/modules/_filter.scss */
 .filters {
   position: absolute;
   top: 0;
@@ -7379,13 +7427,16 @@ dl dd {
   z-index: 200;
   display: none;
 }
-/* line 62, ../../src/scss/theme/modules/_filter.scss */
+/* line 70, ../../src/scss/theme/modules/_filter.scss */
 .filters.is-active {
   display: block;
 }
 
-/* line 67, ../../src/scss/theme/modules/_filter.scss */
+/* line 75, ../../src/scss/theme/modules/_filter.scss */
 .filters-content {
+  width: 90%;
+  max-width: 600px;
+  overflow: hidden;
   background: #ffffff;
   border-radius: 10px;
   position: absolute;
@@ -7396,49 +7447,43 @@ dl dd {
   -o-transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
-  width: 90%;
-  max-width: 600px;
-  height: 370px;
-  overflow: hidden;
 }
 
-/* line 80, ../../src/scss/theme/modules/_filter.scss */
-.filters-list {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  -webkit-transition: left 0.3s linear;
-  -o-transition: left 0.3s linear;
-  transition: left 0.3s linear;
+/* line 87, ../../src/scss/theme/modules/_filter.scss */
+.filters-holder {
+  width: 200%;
+  height: 360px;
+  overflow: scroll;
+  -webkit-transition: margin-left 0.3s linear;
+  -o-transition: margin-left 0.3s linear;
+  transition: margin-left 0.3s linear;
 }
-/* line 89, ../../src/scss/theme/modules/_filter.scss */
+/* line 94, ../../src/scss/theme/modules/_filter.scss */
+.filters-holder.children-shown {
+  margin-left: -100%;
+}
+
+/* line 99, ../../src/scss/theme/modules/_filter.scss */
+.filters-list {
+  position: relative;
+}
+/* line 102, ../../src/scss/theme/modules/_filter.scss */
 .filters-list ul {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-/* line 100, ../../src/scss/theme/modules/_filter.scss */
-.filters-all {
-  left: -100%;
-}
-/* line 103, ../../src/scss/theme/modules/_filter.scss */
-.filters-all.is-active {
-  left: 0;
-}
-
-/* line 108, ../../src/scss/theme/modules/_filter.scss */
+/* line 113, ../../src/scss/theme/modules/_filter.scss */
 .filters-list-children {
-  left: 100%;
+  display: none;
 }
-/* line 111, ../../src/scss/theme/modules/_filter.scss */
+/* line 116, ../../src/scss/theme/modules/_filter.scss */
 .filters-list-children.is-active {
-  left: 0;
+  display: block;
 }
 
-/* line 116, ../../src/scss/theme/modules/_filter.scss */
+/* line 121, ../../src/scss/theme/modules/_filter.scss */
 .filters-choice {
   position: relative;
   border: none;
@@ -7448,28 +7493,28 @@ dl dd {
   text-align: left;
   padding: 10px 15px;
 }
-/* line 125, ../../src/scss/theme/modules/_filter.scss */
+/* line 130, ../../src/scss/theme/modules/_filter.scss */
 .filters-choice:hover {
   background: #30abdf;
   color: #fff;
 }
-/* line 130, ../../src/scss/theme/modules/_filter.scss */
+/* line 135, ../../src/scss/theme/modules/_filter.scss */
 .filters-choice:focus, .filters-choice:active {
   outline: none;
   background-image: none;
   box-shadow: none;
 }
 
-/* line 138, ../../src/scss/theme/modules/_filter.scss */
+/* line 143, ../../src/scss/theme/modules/_filter.scss */
 .filters-choice-choosen {
   color: #30abdf;
 }
-/* line 141, ../../src/scss/theme/modules/_filter.scss */
+/* line 146, ../../src/scss/theme/modules/_filter.scss */
 .filters-choice-choosen:hover {
   color: #fff;
 }
 
-/* line 147, ../../src/scss/theme/modules/_filter.scss */
+/* line 152, ../../src/scss/theme/modules/_filter.scss */
 .filters-choice-parent:after {
   content: '\e80f';
   font-family: 'fontello';

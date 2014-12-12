@@ -63,8 +63,20 @@
     },
   "woz":[
     {
-      "waarde":"9.178.866",
-      "type":"Appartementen complex"
+      "waarde":"€ 1.965.000,-",
+      "type":"Basisschool"
+    },
+    {
+      "waarde":"€ 14.000,-",
+      "type":"Trafo"
+    },
+    {
+      "waarde":"€ 3.060.000,- / € 3.357.000,-",
+      "type":"Algemeen voorgezet onderwijs"
+    },
+    {
+      "waarde":"€ 443.000,-",
+      "type":"Gymnastiekzaal"
     }],
   "geometrie":[
   [
