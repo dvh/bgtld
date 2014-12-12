@@ -9,12 +9,11 @@ $data = json_decode(file_get_contents($url), true);
 $collection = [];
 foreacH ($data['features'] as $location) {
     $object = new stdClass();
-    $object->id = str_replace('pandcentroids.', '', $location['id']);;
+    $object->id = $location['properties']['bagpandidentifier'];
     $object->lng = $location['geometry']['coordinates'][0];
     $object->lat = $location['geometry']['coordinates'][1];
 
     $collection[] = $object;
-
 }
 
 $markers = new MongoRepository('markers');
