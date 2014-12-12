@@ -41,6 +41,18 @@
       "src": "fontelico"
     },
     {
+      "uid": "474656633f79ea2f1dad59ff63f6bf07",
+      "css": "star",
+      "code": 59414,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "d17030afaecc1e1c22349b99f3c4992a",
+      "css": "star-empty",
+      "code": 59415,
+      "src": "fontawesome"
+    },
+    {
       "uid": "44e04715aecbca7f266a17d5a7863c68",
       "css": "plus",
       "code": 59393,
@@ -89,10 +101,22 @@
       "src": "fontawesome"
     },
     {
+      "uid": "89eb512cb82a1c3fe83cb16134f9876c",
+      "css": "back-in-time",
+      "code": 59412,
+      "src": "entypo"
+    },
+    {
       "uid": "w3nzesrlbezu6f30q7ytyq919p6gdlb6",
       "css": "woon",
       "code": 59395,
       "src": "typicons"
+    },
+    {
+      "uid": "fhpup8jff2yw9kmuwavhyqxogczcbbhj",
+      "css": "dollar",
+      "code": 59413,
+      "src": "modernpics"
     },
     {
       "uid": "020dbfb0a5a4a25775bc751e5891e161",

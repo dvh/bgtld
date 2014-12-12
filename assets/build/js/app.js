@@ -25,6 +25,15 @@ Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
 });
 
 $(document).on('ready', function() {
+	$.ajax({
+		url: 'http://dennis.dev.freshheads.local/bgtld/api/v1/panden',
+		success: function(response) {
+			console.log(response);
+		},
+		error: function(response) {
+			console.log(response);
+		}
+	});
 	var links = {
 		init: function() {
 			$(document)
@@ -33,7 +42,7 @@ $(document).on('ready', function() {
 
 					$('.js-filters').fadeIn();
 					$('.filters-list').removeClass('is-active');
-					$('.js-filters-all').addClass('is-active');
+					$('.js-filter-holder').removeClass('children-shown');
 				})
 				.on('click', '.js-show-children', function(e) {
 					e.preventDefault();
@@ -42,15 +51,16 @@ $(document).on('ready', function() {
 						elData = $el.data(),
 						$target = $(elData.target);
 
-					$('.js-filters-all').removeClass('is-active');
+					$('.js-filters').fadeIn();
+					$('.filters-list').removeClass('is-active');
+					$('.js-filter-holder').addClass('children-shown');
 					$target.addClass('is-active');
 				})
 				.on('click', '.js-set-choice', function(e) {
 					e.preventDefault();
 
 					var $el = $(this),
-						elData = $el.data(),
-						$target = $('.js-choice-' + elData.category);
+						elData = $el.data();
 
 					query.choices[elData.category] = {
 						value: elData.value,
@@ -101,7 +111,7 @@ $(document).on('ready', function() {
 			year: null,
 			woz: null,
 			used: null,
-			housing: null
+			functie: null
 		},
 		$holder: $('.js-query'),
 
@@ -117,7 +127,7 @@ $(document).on('ready', function() {
 
 				if(choice) {
 					choices++;
-					var $choice = $('<button class="query-item btn js-filter js-choice-' + category + '">' + choice.text + '</button>').appendTo(self.$holder);
+					var $choice = $('<button class="query-item btn js-filter js-show-children" data-target=".js-filters-' + category + '">' + choice.text + '</button>').appendTo(self.$holder);
 				}
 			}
 
@@ -174,7 +184,7 @@ $(document).on('ready', function() {
 
 			var $canvas = $('.js-building-map');
 			var c = $('.js-building-map').get(0);
-			c.width = 380;
+			c.width = 400;
 
 			self.ctx = c.getContext('2d');
 			self.ctx.scale(0.75,1);
@@ -186,11 +196,11 @@ $(document).on('ready', function() {
 			var self = this;
 			var ctx = self.ctx;
 
-			ctx.clearRect(0, 0, 380, 200);
+			ctx.clearRect(0, 0, 400, 200);
 
 			var bounds = [0, 0, 0, 0];
 
-			ctx.fillStyle = '#333';
+			ctx.fillStyle = '#fff';
 			ctx.beginPath();
 
 			var buildingCoordinates = JSON.parse(JSON.stringify(geometry));;
@@ -224,11 +234,11 @@ $(document).on('ready', function() {
 			if(ratio < 1) {
 				// vertical building
 				var scale = 180 / distanceY;
-				var appendX = (380 - distanceX * scale) / 2 + 70;
+				var appendX = (400 - distanceX * scale) / 2 + 70;
 				var appendY = 10;
 			} else {
 				// horizontal building
-				var scale = 360 / distanceX;
+				var scale = 380 / distanceX;
 				var appendX = 80;
 				var appendY = (200 - distanceY * scale) / 2;
 			}
@@ -252,7 +262,15 @@ $(document).on('ready', function() {
       		ctx.translate(0,-200);
 			ctx.restore();
 
-			var building = L.polygon(geometry).addTo(maps.map);
+			if(self.currentBuilding) {
+				self.map.removeLayer(self.currentBuilding);
+			}
+
+			self.currentBuilding = L.polygon(geometry, {
+				color: '#17ba8e',
+				fillColor: '#17ba8e',
+				fillOpacity: 0.5
+			}).addTo(maps.map);
 		}
 	}
 
@@ -271,6 +289,8 @@ $(document).on('ready', function() {
 			}
 		}),
 		markers: [],
+		trees: [],
+		playsets: [],
 
 		init: function() {
 			var self = this;
@@ -286,9 +306,9 @@ $(document).on('ready', function() {
 			    boxZoom: false
 			}).addTo(self.map);
 
-			self.map.on('click', function(e) {
-				building.push([e.latlng.lat, e.latlng.lng]);
-			});
+			// self.map.on('click', function(e) {
+			// 	building.push([e.latlng.lat,e.latlng.lng]);
+			// });
 		},
 
 		getResults: function() {
@@ -298,11 +318,12 @@ $(document).on('ready', function() {
 
 			$.ajax({
 				url: self.apiUrls.queryUrl,
+				crossDomain: true,
 				data: {
 					year: (query.choices.year ? query.choices.year.value : null),
 					woz: (query.choices.woz ? query.choices.woz.value : null),
 					used: (query.choices.used ? query.choices.used.value : null),
-					housing: (query.choices.housing ? query.choices.housing.value : null)
+					functie: (query.choices.functie ? query.choices.functie.value : null)
 				},
 				dataType: 'json',
 				success: function(response) {
@@ -350,12 +371,82 @@ $(document).on('ready', function() {
 					success: function(response) {
 						ui.$sidebarContent.removeClass('is-showing-organizations');
 						ui.showDetails(response);
+
+						$.ajax({
+							url: 'assets/data/bomen.json',
+							dataType: 'json',
+							success: function(response) {
+								maps.setTrees(response.results);
+							}
+						});
+
+						$.ajax({
+							url: 'assets/data/speeltoestellen.json',
+							dataType: 'json',
+							success: function(response) {
+								maps.setPlaysets(response.results);
+							}
+						});
 					}
 				});
 			});
 			self.map.addLayer(self.markers);
 
 			loader.removeLoader();
+		},
+
+		setTrees: function(trees) {
+			var self = this;
+			
+			for(var i = 0; i < self.trees.length; i++) {
+				self.map.removeLayer(self.trees[i]);
+			}
+
+			var treeTemplateSource = $('.js-tree-template').eq(0).html();
+			var treeTemplate = Handlebars.compile(treeTemplateSource);
+
+			for(var i = 0; i < trees.length; i++) {
+				var treeData = trees[i];
+
+				var tree = L.polygon(treeData.geometrie, {
+					color: false,
+					fillColor: '#40c019',
+					fillOpacity: 1
+				})
+					.addTo(self.map)
+					.bindPopup(treeTemplate(treeData), {
+						maxWidth: 600
+					});
+
+				self.trees.push(tree);
+			}
+		},
+
+		setPlaysets: function(playsets) {
+			var self = this;
+
+			for(var i = 0; i < self.playsets.length; i++) {
+				self.map.removeLayer(self.playsets[i]);
+			}
+
+			var playsetIcon = new self.iconBase({iconUrl: 'assets/images/marker-playground.png'});
+			
+			var playsetTemplateSource = $('.js-playset-template').eq(0).html();
+			var playsetTemplate = Handlebars.compile(playsetTemplateSource);
+
+			for(var i = 0; i < playsets.length; i++) {
+				var playsetData = playsets[i];
+
+				var playset = L.marker([playsetData.lat, playsetData.lng], {
+					icon: playsetIcon
+				})
+					.addTo(self.map)
+					.bindPopup(playsetTemplate(playsetData), {
+						maxWidth: 450
+					});
+
+				self.playsets.push(playset);
+			}
 		}
 	};
 

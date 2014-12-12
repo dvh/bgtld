@@ -1,0 +1,98 @@
+{
+  "results": [
+    {
+      "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Paardenkastanje2.jpg/421px-Paardenkastanje2.jpg",
+      "boomtype": "Straat- / laanboom",
+      "nedboomsoort": "Witte paardekastanje",
+      "description": "De witte paardenkastanje (Aesculus hippocastanum) is een snelgroeiende boom uit de zeepboomfamilie (Sapindaceae). De soort komt van nature voor in de Balkan. De soort wordt in andere gematigde streken van de wereld veel aangeplant vanwege de sierwaarde. Deze boom werd rond de 17e eeuw ingevoerd in Noordwest-Europa. Omdat de boom goed bestand is tegen luchtvervuiling wordt de paardenkastanje veel toegepast in openbaar groen. Hij kan 30 m hoog worden, maar is meestal korter. De boom groeit goed op kleigrond of leemhoudende grond, maar hij gedijt ook in andere grondsoorten. De witte paardenkastanje kan tot 250 jaar oud worden.",
+      "latboomsoort": "Aesculus hippocastanum",
+      "diameter": 40,
+      "boomhoogte": "12-15 meter",
+      "aanlegjaar": 1975,
+      "risicoklasse": "Verhoogd risico",
+      "boomconditie": "matig",
+      "geometrie": [
+  [
+    52.16223814342521,
+    4.481407999992371
+  ],
+  [
+    52.16334379902513,
+    4.48092520236969
+  ],
+  [
+    52.16351161934896,
+    4.481037855148315
+  ],
+  [
+    52.16365640500213,
+    4.481306076049805
+  ],
+  [
+    52.16368931076673,
+    4.481483101844788
+  ],
+  [
+    52.163702473065726,
+    4.481617212295532
+  ],
+  [
+    52.16379789961718,
+    4.483339190483093
+  ],
+  [
+    52.164038110375294,
+    4.484100937843323
+  ],
+  [
+    52.164028238725855,
+    4.48415994644165
+  ],
+  [
+    52.16398875210618,
+    4.4841814041137695
+  ],
+  [
+    52.16398875210618,
+    4.484122395515442
+  ],
+  [
+    52.16378802791446,
+    4.4834840297698975
+  ],
+  [
+    52.16375512222289,
+    4.4832587242126465
+  ],
+  [
+    52.16365311442435,
+    4.481579661369324
+  ],
+  [
+    52.163610336890855,
+    4.481391906738281
+  ],
+  [
+    52.16351161934896,
+    4.481225609779358
+  ],
+  [
+    52.16337012382368,
+    4.481118321418762
+  ],
+  [
+    52.16324179028375,
+    4.481080770492554
+  ],
+  [
+    52.163087131423424,
+    4.481123685836792
+  ],
+  [
+    52.1621887831597,
+    4.481493830680847
+  ]
+]
+    }
+  ]
+}
