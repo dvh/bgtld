@@ -1,0 +1,18 @@
+<p><a href="{{url}}" target="_blank">Freebase link <i class="icon-link-ext"></i></a></p>
+<p class="company-description">{{description}}</p>
+<a href="{{website}}" target="_blank" class="company-website">{{website}}</a>
+{{#if leadership }}
+    <div class="company-leadership">
+        <p><strong>Onder leiding van:</strong></p>
+        <div class="company-leader clearfix">
+            <img src="{{leadership.image}}" alt="" class="company-leader-image" />
+            <div class="company-leader-details">
+                <p class="company-leader-name">
+                    {{leadership.name}}<br/>
+                    <span class="meta">{{leadership.role}}</span>
+                </p>
+                <a href="{{leadership.url}}" target="_blank">Freebase link <i class="icon-link-ext"></i></a>
+            </div>
+        </div>
+    </div>
+{{/if}}

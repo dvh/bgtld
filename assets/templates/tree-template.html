@@ -1,0 +1,39 @@
+<div class="item item-tree">
+    {{#if image}}
+        <img src="{{image}}" alt=""  class="item-image" />
+    {{/if}}
+    <div class="item-details">
+        <p class="item-name">{{boomtype}}</p>
+        <dl>
+            {{#if nedboomsoort}}
+                <dt>Nederlandse naam:</dt>
+                <dd>{{nedboomsoort}}</dt>
+            {{/if}}
+            {{#if latboomsoort}}
+                <dt>Latijnse naam:</dt>
+                <dd>{{latboomsoort}}</dt>
+            {{/if}}
+            {{#if diameter}}
+                <dt>Diameter</dt>
+                <dd>{{diameter}}</dd>
+            {{/if}}
+            {{#if boomhoogte}}
+                <dt>Boomhoogte</dt>
+                <dd>{{boomhoogte}}</dd>
+            {{/if}}
+            {{#if aanlegjaar}}
+                <dt>Aanlegjaar</dt>
+                <dd>{{aanlegjaar}}<dd>
+            {{/if}}
+            {{#if risicoklasse}}
+                <dt>Risicoklasse</dt>
+                <dd>{{risicoklasse}}</dd>
+            {{/if}}
+            {{#if boomconditie}}
+                <dt>Boomconditie</dt>
+                <dd>{{boomconditie}}</dd>
+            {{/if}}
+        </dl>
+        <p class="js-dbpedia-description"></p>
+    </div>
+</div>

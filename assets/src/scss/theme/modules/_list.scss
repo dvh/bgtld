@@ -13,9 +13,23 @@ dl {
 
 	dt {
 		float: left;
+		width: 160px;
 	}
 
 	dd {
 		margin: 0 0 0 170px;
+	}
+}
+
+table.dl {
+	width: 100%;
+	margin: 10px 0 20px 0;
+
+	th {
+		width: 45%;
+	}
+
+	dt {
+		width: 65%;
 	}
 }
