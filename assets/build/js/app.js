@@ -24,16 +24,13 @@ Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
     }
 });
 
+$.fn.digits = function(){ 
+    return this.each(function(){ 
+        $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") ); 
+    })
+};
+
 $(document).on('ready', function() {
-	$.ajax({
-		url: 'http://dennis.dev.freshheads.local/bgtld/api/v1/panden',
-		success: function(response) {
-			console.log(response);
-		},
-		error: function(response) {
-			console.log(response);
-		}
-	});
 	var links = {
 		init: function() {
 			$(document)
@@ -71,15 +68,22 @@ $(document).on('ready', function() {
 					$('.js-filters').fadeOut();
 					$('.js-filter').addClass('is-filled');
 				})
-				.on('click', '.js-show-organizations', function(e) {
+				.on('click', '.js-show-building-subitems', function(e) {
 					e.preventDefault();
 
-					ui.$sidebarContent.addClass('is-showing-organizations');
+					var $el = $(this),
+						elData = $el.data(),
+						$target = $(elData.target);
+
+					ui.$sidebarContent.addClass('is-showing-subitems');
+
+					$('.js-building-subitems').removeClass('is-active');
+					$target.addClass('is-active');
 				})
 				.on('click', '.js-show-building', function(e) {
 					e.preventDefault();
 
-					ui.$sidebarContent.removeClass('is-showing-organizations');
+					ui.$sidebarContent.removeClass('is-showing-subitems');
 				})
 				.on('click', '.js-show-organization', function(e) {
 					e.preventDefault();
@@ -97,8 +101,7 @@ $(document).on('ready', function() {
 							dataType: 'json',
 							success: function(response) {
 								$el.addClass('is-showing-details');
-								var rendered = ui.companyTemplate(response);
-								$target.html(rendered);
+								$target.html(ui.companyTemplate(response));
 							}
 						});
 					}
@@ -167,20 +170,56 @@ $(document).on('ready', function() {
 
 		init: function() {
 			var self = this;
-			
-			var detailTemplateSource = $('.js-building-template').eq(0).html();
-			self.detailTemplate = Handlebars.compile(detailTemplateSource);
 
-			var companyTemplateSource = $('.js-company-template').eq(0).html();
-			self.companyTemplate = Handlebars.compile(companyTemplateSource);
+			self.getTemplates();
+		},
+
+		getTemplates: function() {
+			var self = this;
+
+			$.ajax({
+                url: 'assets/templates/building-template.html',
+                cache: true,
+                success: function (template) {
+					var templateSource = template;
+					self.detailTemplate = Handlebars.compile(templateSource);
+                }
+            });
+			$.ajax({
+                url: 'assets/templates/company-template.html',
+                cache: true,
+                success: function (template) {
+					var templateSource = template;
+					self.companyTemplate = Handlebars.compile(templateSource);
+                }
+            });
+			$.ajax({
+                url: 'assets/templates/tree-template.html',
+                cache: true,
+                success: function (template) {
+					var templateSource = template;
+					self.treeTemplate = Handlebars.compile(templateSource);
+                }
+            });
+			$.ajax({
+                url: 'assets/templates/playset-template.html',
+                cache: true,
+                success: function (template) {
+					var templateSource = template;
+					self.playsetTemplate = Handlebars.compile(templateSource);
+                }
+            });
+
+            self.dbpediaTemplate = Handlebars.compile('<strong>DBpedia omschrijving</strong> <a href="{{uri}}" target="_blank"><i class="icon-link-ext"></i></a><br/>{{description}}');
 		},
 
 		showDetails: function(object) {
 			var self = this;
 
 			self.$sidebar.addClass('is-active');
-			var rendered = self.detailTemplate(object);
-			self.$sidebarContent.html(rendered);
+			self.$sidebarContent.html(ui.detailTemplate(object));
+
+			self.$sidebarContent.find('.currency').digits();
 
 			var $canvas = $('.js-building-map');
 			var c = $('.js-building-map').get(0);
@@ -189,7 +228,9 @@ $(document).on('ready', function() {
 			self.ctx = c.getContext('2d');
 			self.ctx.scale(0.75,1);
 
-			self.drawBuilding(object.geometrie);
+			if(object.geometrie) {
+				self.drawBuilding(object.geometrie);
+			}
 		},
 
 		drawBuilding: function(geometry) {
@@ -200,36 +241,38 @@ $(document).on('ready', function() {
 
 			var bounds = [0, 0, 0, 0];
 
-			ctx.fillStyle = '#fff';
-			ctx.beginPath();
+			var buildingCoordinates = JSON.parse(JSON.stringify(geometry));
 
-			var buildingCoordinates = JSON.parse(JSON.stringify(geometry));;
+			ctx.scale(1,-1);
+      		ctx.translate(0,-200);
 
-			for(var i = 0; i < buildingCoordinates.length; i++) {
-				var point = buildingCoordinates[i];
+			for(var i = 0; i < buildingCoordinates[0].length; i++) {
+				var object = buildingCoordinates[0][i];
 
-				if(!bounds[0] || point[0] < bounds[0]) {
-					bounds[0] = point[0];
-				}
+				for(var j = 0; j < object.length; j++) {
+					var point = object[j];
 
-				if(!bounds[1] || point[1] < bounds[1]) {
-					bounds[1] = point[1];
-				}
+					if(!bounds[0] || point[0] < bounds[0]) {
+						bounds[0] = point[0];
+					}
 
-				if(!bounds[2] || point[0] > bounds[2]) {
-					bounds[2] = point[0];
-				}
+					if(!bounds[1] || point[1] < bounds[1]) {
+						bounds[1] = point[1];
+					}
 
-				if(!bounds[3] || point[1] > bounds[3]) {
-					bounds[3] = point[1];
+					if(!bounds[2] || point[0] > bounds[2]) {
+						bounds[2] = point[0];
+					}
+
+					if(!bounds[3] || point[1] > bounds[3]) {
+						bounds[3] = point[1];
+					}
 				}
 			}
 
 			var distanceY = (bounds[2] - bounds[0]);
 			var distanceX = (bounds[3] - bounds[1]);
 			var ratio = distanceX / distanceY;
-			ctx.scale(1,-1);
-      		ctx.translate(0,-200);
 
 			if(ratio < 1) {
 				// vertical building
@@ -243,34 +286,45 @@ $(document).on('ready', function() {
 				var appendY = (200 - distanceY * scale) / 2;
 			}
 
-			for(var i = 0; i < buildingCoordinates.length; i++) {
-				var point = buildingCoordinates[i];
+			var color = ['#fff', '#97c000', '#97c000', '#97c000'];
 
-				point[0] = (point[0] - bounds[0]) * scale;
-				point[1] = (point[1] - bounds[1]) * scale;
-				
-				if(i==0) {
-					ctx.lineTo(appendX + point[1], appendY + point[0]);
-				} else {
-					ctx.lineTo(appendX + point[1], appendY + point[0]);
+			for(var i = 0; i < buildingCoordinates[0].length; i++) {
+				var object = buildingCoordinates[0][i];
+
+				ctx.fillStyle = color[i];
+				ctx.beginPath();
+
+				for(var j = 0; j < object.length; j++) {
+					var point = object[j];
+
+					point[0] = (point[0] - bounds[0]) * scale;
+					point[1] = (point[1] - bounds[1]) * scale;
+					
+					if(j==0) {
+						ctx.lineTo(appendX + point[1], appendY + point[0]);
+					} else {
+						ctx.lineTo(appendX + point[1], appendY + point[0]);
+					}
 				}
-			}
 
-			ctx.closePath();
-			ctx.fill();
+				ctx.closePath();
+				ctx.fill();
+			}
 			ctx.scale(1,-1);
       		ctx.translate(0,-200);
 			ctx.restore();
 
 			if(self.currentBuilding) {
-				self.map.removeLayer(self.currentBuilding);
+				maps.map.removeLayer(self.currentBuilding);
 			}
 
-			self.currentBuilding = L.polygon(geometry, {
-				color: '#17ba8e',
-				fillColor: '#17ba8e',
-				fillOpacity: 0.5
-			}).addTo(maps.map);
+			if(geometry) {
+				self.currentBuilding = L.multiPolygon(geometry, {
+					stroke: false,
+					fillColor: '#97c000',
+					fillOpacity: 1
+				}).addTo(maps.map);
+			}
 		}
 	}
 
@@ -297,18 +351,15 @@ $(document).on('ready', function() {
 
 			self.map = L.map('map', {
 				zoomControl:false
-			}).setView([52.23, 4.4836127758026], 10);	
+			}).setView([52.15959828480465, 4.505670530026864], 10);	
 			var zoomControl = new L.Control.Zoom({ position: 'bottomleft'} );
             zoomControl.addTo(self.map);
+			//L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 			    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 			    maxZoom: 18,
 			    boxZoom: false
 			}).addTo(self.map);
-
-			// self.map.on('click', function(e) {
-			// 	building.push([e.latlng.lat,e.latlng.lng]);
-			// });
 		},
 
 		getResults: function() {
@@ -317,17 +368,15 @@ $(document).on('ready', function() {
 			loader.setLoader();
 
 			$.ajax({
-				url: self.apiUrls.queryUrl,
+				url: apiBase + 'panden' + '?' +
+					(query.choices.year ? query.choices.year.value + '&' : '') +
+					(query.choices.woz ? query.choices.woz.value + '&' : '') +
+					(query.choices.used ? query.choices.used.value + '&' : '') +
+					(query.choices.type ? query.choices.type.value + '&' : ''),
 				crossDomain: true,
-				data: {
-					year: (query.choices.year ? query.choices.year.value : null),
-					woz: (query.choices.woz ? query.choices.woz.value : null),
-					used: (query.choices.used ? query.choices.used.value : null),
-					functie: (query.choices.functie ? query.choices.functie.value : null)
-				},
 				dataType: 'json',
 				success: function(response) {
-					self.results = response.results;
+					self.results = response;
 					self.setMarkers();
 				}
 			});
@@ -346,37 +395,39 @@ $(document).on('ready', function() {
 
 			self.markers = new L.MarkerClusterGroup({
 				spiderfyOnMaxZoom: false,
-				showCoverageOnHover: false,
-				disableClusteringAtZoom: 15
+				showCoverageOnHover: true,
+				disableClusteringAtZoom: 17
 			});
 
 			for(var i = self.amountOfMarkers;i; i--){
 				var markerData = self.results[i - 1];
-				self.markers.addLayer(new L.Marker([markerData.lat,markerData.lng], {
-					icon: baseIcon,
-					id: markerData.id
-				}));
+				if(markerData.lat && markerData.lng) {
+					self.markers.addLayer(new L.Marker([markerData.lat,markerData.lng], {
+						icon: baseIcon,
+						id: markerData.id
+					}));
+				}
 			}
 
 			self.markers.on('click', function(e) {
 				setTimeout(function() {
 					self.map.invalidateSize();
 					self.map.panTo(e.latlng);
-					self.map.setZoom(17);
+					self.map.setZoom(18);
 				}, 300);
 
 				$.ajax({
-					url: self.apiUrls.detailUrl + e.layer.options.id,
+					url: apiBase + 'panden/' + e.layer.options.id,
 					dataType: 'json',
 					success: function(response) {
 						ui.$sidebarContent.removeClass('is-showing-organizations');
 						ui.showDetails(response);
 
 						$.ajax({
-							url: 'assets/data/bomen.json',
+							url: apiBase + 'bomen?lat=' + e.latlng.lat + '&lng=' + e.latlng.lng,
 							dataType: 'json',
 							success: function(response) {
-								maps.setTrees(response.results);
+								maps.setTrees(response);
 							}
 						});
 
@@ -398,28 +449,36 @@ $(document).on('ready', function() {
 		setTrees: function(trees) {
 			var self = this;
 			
-			for(var i = 0; i < self.trees.length; i++) {
-				self.map.removeLayer(self.trees[i]);
+			if(self.trees) {
+				self.map.removeLayer(self.trees);
 			}
 
-			var treeTemplateSource = $('.js-tree-template').eq(0).html();
-			var treeTemplate = Handlebars.compile(treeTemplateSource);
+			var treeIcon = new self.iconBase({
+				iconUrl: 'assets/images/marker-tree.png',
+				shadowUrl: 'assets/images/marker-shade-tree.png'
+			});
 
-			for(var i = 0; i < trees.length; i++) {
-				var treeData = trees[i];
-
-				var tree = L.polygon(treeData.geometrie, {
-					color: false,
-					fillColor: '#40c019',
-					fillOpacity: 1
-				})
-					.addTo(self.map)
-					.bindPopup(treeTemplate(treeData), {
-						maxWidth: 600
-					});
-
-				self.trees.push(tree);
-			}
+			self.trees = L.geoJson(trees, {
+			    onEachFeature: function (feature, layer) {
+			        layer
+			        	.setIcon(treeIcon)
+				        .bindPopup(ui.treeTemplate(feature.properties), {
+				 			maxWidth: 600
+				 		})
+				 		.on('click', function(e) {
+				 			$.ajax({
+				 				url: 'http://lookup.dbpedia.org/api/search.asmx/PrefixSearch?MaxHits=1&QueryClass=Species&QueryString=' + e.target.feature.properties.latboomsoort,
+				 				headers: { 'Accept': 'application/json' },
+				 				success: function(response) {
+				 					if(response.results.length) {
+				 						$('.js-dbpedia-description').html(ui.dbpediaTemplate(response.results[0]));
+				 						console.log(response.results[0]);
+				 					}
+				 				}
+				 			});
+				 		});
+			    }
+			}).addTo(maps.map);
 		},
 
 		setPlaysets: function(playsets) {
@@ -430,9 +489,6 @@ $(document).on('ready', function() {
 			}
 
 			var playsetIcon = new self.iconBase({iconUrl: 'assets/images/marker-playground.png'});
-			
-			var playsetTemplateSource = $('.js-playset-template').eq(0).html();
-			var playsetTemplate = Handlebars.compile(playsetTemplateSource);
 
 			for(var i = 0; i < playsets.length; i++) {
 				var playsetData = playsets[i];
@@ -441,7 +497,7 @@ $(document).on('ready', function() {
 					icon: playsetIcon
 				})
 					.addTo(self.map)
-					.bindPopup(playsetTemplate(playsetData), {
+					.bindPopup(ui.playsetTemplate(playsetData), {
 						maxWidth: 450
 					});
 

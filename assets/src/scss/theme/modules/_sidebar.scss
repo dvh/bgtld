@@ -28,7 +28,7 @@
 
 		@include transition(margin-left 0.3s linear);
 
-		&.is-showing-organizations {
+		&.is-showing-subitems {
 			margin-left: -400px;
 		}
 	}
@@ -42,4 +42,16 @@
 		height: 200px;
 		margin: -10px -10px 0 -10px;
 		background: $brand-primary;
+	}
+
+	.detail-block {
+		margin: 0 0 20px 0;
+	}
+
+	.js-building-subitems {
+		display: none;
+
+		&.is-active {
+			display: block;
+		}
 	}

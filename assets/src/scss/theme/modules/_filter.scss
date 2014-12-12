@@ -5,15 +5,15 @@
 	right: 0;
 	z-index: 101;
 	background: #fff;
-	padding: 40px;
+	padding: 20px;
 	@include transform(translateY(-50%));
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 	text-align: center;
 
 	@include transition(all 0.4s linear);
 
 	.btn {
-		margin-bottom: 0.5em;
+		margin-bottom: 0.25em;
+		margin-top: 0.25em;
 		white-space: inherit;
 		text-align: left;
 		font-size: 24px;
@@ -22,9 +22,8 @@
 	&.is-filled {
 		top: 0;
 		right: 400px;
-		padding: 20px 2% 0 2%;
+		padding: 20px 10px 0 180px;
 		@include transform(translateY(0));
-		box-shadow: none;
 		background: none;
 		text-align: left;
 		color: #fff;
@@ -34,10 +33,22 @@
 		}
 	}
 }
+
+	.logo {
+		position: absolute;
+		left: 10px;
+		top: 50%;
+		@include transform(translateY(-50%));
+
+		.is-filled & {
+			top: 15px;
+			@include transform(translateY(0));
+		}
+	}
 	
 	.filter-text {
 		.is-filled & {
-			color: #fff;
+			display: none;
 		}
 	}
 

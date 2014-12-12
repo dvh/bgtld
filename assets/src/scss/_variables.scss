@@ -2,19 +2,19 @@
  * Scaffolding
  */
 
-$text-color:					#333!default;
-$brand-primary:					#17ba8e!default;
-$brand-secondary:				#30abdf!default;
+$text-color:					#64686b!default;
+$brand-primary:					#97c000!default;
+$brand-secondary:				#0085c6!default;
 $link-color:					$brand-primary!default;
 
 /*
  * Typography
  */
 
-$font-size-base:				16px!default;
+$font-size-base:				12px!default;
 $line-height-base:				1.5!default;
 $line-height-computed:			floor($font-size-base * $line-height-base)!default;
-$font-family-sans-serif:		'Open Sans', 'Arial' !default;
+$font-family-sans-serif:		'Verdana', 'Arial' !default;
 
 $font-size-h1:					24px!default;
 $font-size-h2:					20px!default;
