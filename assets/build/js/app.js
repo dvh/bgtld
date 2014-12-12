@@ -201,14 +201,6 @@ $(document).on('ready', function() {
 					self.treeTemplate = Handlebars.compile(templateSource);
                 }
             });
-			$.ajax({
-                url: 'assets/templates/playset-template.html',
-                cache: true,
-                success: function (template) {
-					var templateSource = template;
-					self.playsetTemplate = Handlebars.compile(templateSource);
-                }
-            });
 
             self.dbpediaTemplate = Handlebars.compile('<strong>DBpedia omschrijving</strong> <a href="{{uri}}" target="_blank"><i class="icon-link-ext"></i></a><br/>{{description}}');
 		},
@@ -344,7 +336,6 @@ $(document).on('ready', function() {
 		}),
 		markers: [],
 		trees: [],
-		playsets: [],
 
 		init: function() {
 			var self = this;
@@ -354,7 +345,6 @@ $(document).on('ready', function() {
 			}).setView([52.15959828480465, 4.505670530026864], 10);	
 			var zoomControl = new L.Control.Zoom({ position: 'bottomleft'} );
             zoomControl.addTo(self.map);
-			//L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 			    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 			    maxZoom: 18,
@@ -391,6 +381,10 @@ $(document).on('ready', function() {
 
 			if(self.markers) {
 				self.map.removeLayer(self.markers);
+			}
+			
+			if(self.trees) {
+				self.map.removeLayer(self.trees);
 			}
 
 			self.markers = new L.MarkerClusterGroup({
@@ -430,14 +424,6 @@ $(document).on('ready', function() {
 								maps.setTrees(response);
 							}
 						});
-
-						$.ajax({
-							url: 'assets/data/speeltoestellen.json',
-							dataType: 'json',
-							success: function(response) {
-								maps.setPlaysets(response.results);
-							}
-						});
 					}
 				});
 			});
@@ -472,37 +458,12 @@ $(document).on('ready', function() {
 				 				success: function(response) {
 				 					if(response.results.length) {
 				 						$('.js-dbpedia-description').html(ui.dbpediaTemplate(response.results[0]));
-				 						console.log(response.results[0]);
 				 					}
 				 				}
 				 			});
 				 		});
 			    }
 			}).addTo(maps.map);
-		},
-
-		setPlaysets: function(playsets) {
-			var self = this;
-
-			for(var i = 0; i < self.playsets.length; i++) {
-				self.map.removeLayer(self.playsets[i]);
-			}
-
-			var playsetIcon = new self.iconBase({iconUrl: 'assets/images/marker-playground.png'});
-
-			for(var i = 0; i < playsets.length; i++) {
-				var playsetData = playsets[i];
-
-				var playset = L.marker([playsetData.lat, playsetData.lng], {
-					icon: playsetIcon
-				})
-					.addTo(self.map)
-					.bindPopup(ui.playsetTemplate(playsetData), {
-						maxWidth: 450
-					});
-
-				self.playsets.push(playset);
-			}
 		}
 	};
 

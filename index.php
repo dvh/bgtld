@@ -19,7 +19,7 @@
 
     <link rel="stylesheet" href="assets/build/css/app.css" />
     <script type="text/javascript">
-        apiBase = 'http://dimitri.dev.freshheads.local/bgtld/api/v1/';
+        apiBase = '/bgtld/api/v1/';
     </script>
     <script type="text/javascript" src="assets/components/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="assets/components/leaflet/dist/leaflet.js"></script>
@@ -41,7 +41,7 @@
             <button class="js-add-filter btn btn-primary"><i class="icon-right-open"></i></button>
         </span>
     </div>
-    <div class="js-map map" id="map" data-query-url="<?php echo $buildingsCall; ?>" data-detail-url="<?php echo $buildingDetailsCall; ?>"></div>
+    <div class="js-map map" id="map"></div>
     <div class="filters js-filters">
         <div class="filters-content">
             <div class="filters-holder js-filter-holder">
