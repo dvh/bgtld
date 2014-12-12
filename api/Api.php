@@ -93,8 +93,8 @@ class Api extends RestInterface
                 return $response;
 
             } else {
-                $url = 'http://bgtld-test.geostandaarden.nl/query/zoekpand.json?minwaarde=' . (isset($_GET['minwaarde']) ? $_GET['minwaarde'] : 0) . '&maxwaarde=' . (isset($_GET['maxwaarde']) ? $_GET['maxwaarde'] : 9999999999999999) . '&minbouwjaar=' . (isset($_GET['minbouwjaar']) ? $_GET['minbouwjaar'] : 0) . '&maxbouwjaar=' . (isset($_GET['maxbouwjaar']) ? $_GET['maxbouwjaar'] : 9999999999999999) . '&ingebruik=' . (isset($_GET['ingebruik']) ? $_GET['ingebruik'] : '') . '&type=' . (isset($_GET['type']) ? $_GET['type'] : '');
-
+                $url = 'http://bgtld-test.geostandaarden.nl/query/zoekpand.json?minwaarde=' . (isset($_GET['minwaarde']) ? $_GET['minwaarde'] : 0) . '&maxwaarde=' . (isset($_GET['maxwaarde']) ? $_GET['maxwaarde'] : 9999999999999999) . '&minbouwjaar=' . (isset($_GET['minbouwjaar']) ? $_GET['minbouwjaar'] : 0) . '&maxbouwjaar=' . (isset($_GET['maxbouwjaar']) ? $_GET['maxbouwjaar'] : 9999999999999999) . '&ingebruik=' . (isset($_GET['ingebruik']) ? urlencode($_GET['ingebruik']) : '') . '&type=' . (isset($_GET['type']) ? $_GET['type'] : '');
+                
                 if (file_exists('cache/' . md5($url))) {
                     return json_decode(file_get_contents('cache/' . md5($url)));
                 }

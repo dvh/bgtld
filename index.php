@@ -86,7 +86,7 @@
                             <button class="filters-choice filters-choice-choosen js-add-filter"><i class="icon-left-open"></i> wat ... gebruikt wordt</button>
                             <ul>
                                 <li><button class="filters-choice js-set-choice" data-category="used" data-text="<i class='icon-star-empty'></i> niet in gebruik" data-value="ingebruik=0">niet</button></li>
-                                <li><button class="filters-choice js-set-choice" data-category="used" data-text="<i class='icon-star'></i> in gebruik" data-value="ingebruik=1">wel</button></li>
+                                <li><button class="filters-choice js-set-choice" data-category="used" data-text="<i class='icon-star'></i> in gebruik" data-value="ingebruik=Pand in gebruik">wel</button></li>
                             </ul>
                         </div>
                         <div class="filters-list filters-list-children js-filters-type">
