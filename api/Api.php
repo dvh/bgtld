@@ -6,6 +6,7 @@ ini_set("display_errors", 1);
 require_once 'RestInterface.php';
 require_once 'model/Freebase.php';
 require_once 'model/MongoRepository.php';
+require_once 'model/PandenRepository.php';
 
 /**
  * Api
@@ -31,7 +32,6 @@ class Api extends RestInterface
 
             return json_decode(file_get_contents($url), true);
 
-
         } else {
             return "Only accepts GET requests";
         }
@@ -52,7 +52,9 @@ class Api extends RestInterface
     protected function test()
     {
         if ($this->method == 'GET') {
-            return "Success";
+            $repo = new PandenRepository();
+
+            return $repo->getSingle();
         } else {
             return "Only accepts GET requests";
         }
