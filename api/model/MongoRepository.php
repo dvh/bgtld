@@ -32,6 +32,21 @@ class MongoRepository
     public function post($data)
     {
 
+        $this->db->dropCollection($this->collection);
+        $this->db->createCollection($this->collection);
+        $collection = $this->db->selectCollection($this->collection);
+
+$totalItems = count($data);
+$batches = ceil($totalItems/1000);
+
+for ($offset = 0; $offset <= $batches; $offset ++) {    
+    $limit = 1000;
+   $insert = array_slice($data, 0, $limit);
+//var_dump(count($insert));
+    var_dump($collection->insert($insert));
+}
+        return true;
+
     }
 
     public function get($query = [])
