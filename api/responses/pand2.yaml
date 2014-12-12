@@ -1,0 +1,83 @@
+collection: panden
+dynamic: true
+data:
+    context:
+        type: foaf:person
+        label: id
+    id:
+        type: id
+    lng:
+        type: longitude
+    lat:
+        type: latitude
+    bouwjaar:
+        type: year
+    status:
+        type: randomElement
+        parameters: [[pand in gebruik, pand niet in gebruik]]
+    erfdienstbaarheid:
+        type: randomElement
+        parameters: [[Ja, Nee]]
+    cultureelerfgoed:
+        type: randomElement
+        parameters: [[Ja, Nee]]
+    vestigingen:
+        type: object
+        data:
+            id:
+                type: id
+            naam:
+                type: company
+        amount: [0, 10]
+    postcode:
+        type: postcode
+    huisnummer:
+        type: buildingNumber
+    straatnaam:
+        type: streetName
+    stad:
+        type: city
+    verblijfsobjecten:
+        type: object
+        data:
+            woon:
+                type: randomDigit
+            winkel:
+                type: randomDigit
+            cel:
+                type: randomDigit
+            kantoor:
+                type: randomDigit
+            gezondheidszorg:
+                type: randomDigit
+            sport:
+                type: randomDigit
+            logies:
+                type: randomDigit
+            industrie:
+                type: randomDigit
+            bijeenkomst:
+                type: randomDigit
+            onderwijs:
+                type: randomDigit
+            overig:
+                type: randomDigit
+        amount: 1
+    woz:
+        type: object
+        data:
+            waarde:
+                type: numberBetween
+                parameters: [50000, 300000]
+            type:
+                type: randomElement
+                parameters: [[2^1 dak, appartement]]
+        amount: 1
+    geometrie:
+        type: static
+        parameters: [[52.16348529463412,4.483612775802612],[52.1635379440482,4.483768343925476],[52.16351161934896,4.483784437179565],[52.16363008037296,4.4841331243515015],[52.16356426873189,4.484202861785889],[52.163560978147274,4.4842565059661865],[52.163518200525225,4.484310150146484],[52.1635017475827,4.4842833280563354],[52.16326811514263,4.483628869056702],[52.16330760240175,4.483602046966552],[52.16335038022623,4.483720064163208]]
+format:
+    resources:
+        result: [geometrie, woz, stad, verblijfsobjecten, straatnaam, postcode, huisnummer, vestigingen, cultureelerfgoed, status, erfdienstbaarheid, bouwjaar]
+    count: count
+amount: 1000
