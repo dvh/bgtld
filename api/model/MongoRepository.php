@@ -31,7 +31,12 @@ class MongoRepository
 
     public function post($data)
     {
+        $this->db->dropCollection($this->collection);
+        $this->db->createCollection($this->collection);
+        $collection = $this->db->selectCollection($this->collection);
+        $collection->insert($data);
 
+        return true;
     }
 
     public function get($query = [])
