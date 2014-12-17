@@ -409,6 +409,7 @@ $(document).on('ready', function() {
 					self.map.panTo(e.latlng);
 					self.map.setZoom(18);
 				}, 300);
+				ui.$sidebarContent.removeClass('is-showing-subitems');
 
 				$.ajax({
 					url: apiBase + 'panden/' + e.layer.options.id,
