@@ -21,21 +21,21 @@ class Api extends RestInterface
 
     protected function bomen()
     {
-       $lat = $_GET['lat'];
-       $lng = $_GET['lng'];
+        $lat = $_GET['lat'];
+        $lng = $_GET['lng'];
 
-       $url = 'http://nieuwsinkaart.nl/geoserver/bgt/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=bgt:bomenselectiegeo&outputformat=json&srsname=EPSG:4326&cql_filter=DWITHIN%28geometrie,POINT%28' . $lat . '%20' . $lng . '%29,0.0005,meters%29';
+        $url = 'http://nieuwsinkaart.nl/geoserver/bgt/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=bgt:bomenselectiegeo&outputformat=json&srsname=EPSG:4326&cql_filter=DWITHIN%28geometrie,POINT%28' . $lat . '%20' . $lng . '%29,0.0005,meters%29';
 
-       if (file_exists('cache/' . md5($url))) {
-           return json_decode(file_get_contents('cache/' . md5($url)));
-       }
-       
-       $response = json_decode(file_get_contents($url), true);
+        if (file_exists('cache/' . md5($url))) {
+            return json_decode(file_get_contents('cache/' . md5($url)));
+        }
 
-       file_put_contents('cache/' . md5($url), json_encode($response));
+        $response = json_decode(file_get_contents($url), true);
+
+        file_put_contents('cache/' . md5($url), json_encode($response));
 
 
-       return $response;
+        return $response;
     }
 
     protected function panden()
@@ -43,11 +43,11 @@ class Api extends RestInterface
         if ($this->method == 'GET') {
             if (isset($this->args[0])) {
                 $url = 'http://bgtld-test.geostandaarden.nl/query/detailinfopand.json?subject=http://bag.kadaster.nl/id/pand/' . $this->args[0];
-      
+
                 if (file_exists('cache/' . md5($url))) {
                     return json_decode(file_get_contents('cache/' . md5($url)));
                 }
-         
+
                 $data = json_decode(file_get_contents($url), true);
                 $data = $data['@graph'];
 
@@ -74,7 +74,7 @@ class Api extends RestInterface
                     if (isset($obj['bagdef:woonplaatsnaam'])) {
                         $response['stad'] = $obj['bagdef:woonplaatsnaam'];
                     }
-                 
+
                     $client = new \MongoClient();
                     $db = $client->selectDB('bgtld');
                     $markers = $client->selectCollection($db, 'geometrics');
@@ -87,14 +87,14 @@ class Api extends RestInterface
                 $response['verblijfsobjecten'] = $gebruiksdoelen;
                 $response['vestigingen'] = $vestigingen;
                 $response['woz'] = $wozzes;
-      
+
                 file_put_contents('cache/' . md5($url), json_encode($response));
 
                 return $response;
 
             } else {
                 $url = 'http://bgtld-test.geostandaarden.nl/query/zoekpand.json?minwaarde=' . (isset($_GET['minwaarde']) ? $_GET['minwaarde'] : 0) . '&maxwaarde=' . (isset($_GET['maxwaarde']) ? $_GET['maxwaarde'] : 9999999999999999) . '&minbouwjaar=' . (isset($_GET['minbouwjaar']) ? $_GET['minbouwjaar'] : 0) . '&maxbouwjaar=' . (isset($_GET['maxbouwjaar']) ? $_GET['maxbouwjaar'] : 9999999999999999) . '&ingebruik=' . (isset($_GET['ingebruik']) ? urlencode($_GET['ingebruik']) : '') . '&type=' . (isset($_GET['type']) ? $_GET['type'] : '');
-                
+
                 if (file_exists('cache/' . md5($url))) {
                     return json_decode(file_get_contents('cache/' . md5($url)));
                 }
@@ -142,7 +142,7 @@ class Api extends RestInterface
         $freebase = new Freebase();
 
         if ($this->method == 'GET') {
-            return $freebase->searchCompany($this->resource);
+            return $freebase->searchCompany(trim(str_ireplace([' leiden', ' shop'], ['', ''], $this->resource)));
         } else {
             return "Only accepts GET requests";
         }

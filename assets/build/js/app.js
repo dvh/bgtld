@@ -2,32 +2,32 @@ var building = [];
 
 Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
 
-    switch (operator) {
-        case '==':
-            return (v1 == v2) ? options.fn(this) : options.inverse(this);
-        case '===':
-            return (v1 === v2) ? options.fn(this) : options.inverse(this);
-        case '<':
-            return (v1 < v2) ? options.fn(this) : options.inverse(this);
-        case '<=':
-            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
-        case '>':
-            return (v1 > v2) ? options.fn(this) : options.inverse(this);
-        case '>=':
-            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
-        case '&&':
-            return (v1 && v2) ? options.fn(this) : options.inverse(this);
-        case '||':
-            return (v1 || v2) ? options.fn(this) : options.inverse(this);
-        default:
-            return options.inverse(this);
-    }
+	switch (operator) {
+		case '==':
+			return (v1 == v2) ? options.fn(this) : options.inverse(this);
+		case '===':
+			return (v1 === v2) ? options.fn(this) : options.inverse(this);
+		case '<':
+			return (v1 < v2) ? options.fn(this) : options.inverse(this);
+		case '<=':
+			return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+		case '>':
+			return (v1 > v2) ? options.fn(this) : options.inverse(this);
+		case '>=':
+			return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+		case '&&':
+			return (v1 && v2) ? options.fn(this) : options.inverse(this);
+		case '||':
+			return (v1 || v2) ? options.fn(this) : options.inverse(this);
+		default:
+			return options.inverse(this);
+	}
 });
 
-$.fn.digits = function(){ 
-    return this.each(function(){ 
-        $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") ); 
-    })
+$.fn.digits = function(){
+	return this.each(function(){
+		$(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") );
+	})
 };
 
 $(document).on('ready', function() {
@@ -120,7 +120,7 @@ $(document).on('ready', function() {
 
 		refreshChoices: function() {
 			var self = this,
-			choicesLength = Object.keys(self.choices).length;
+				choicesLength = Object.keys(self.choices).length;
 			var choices = 0;
 
 			self.$holder.empty();
@@ -178,31 +178,31 @@ $(document).on('ready', function() {
 			var self = this;
 
 			$.ajax({
-                url: 'assets/templates/building-template.html',
-                cache: true,
-                success: function (template) {
+				url: 'assets/templates/building-template.html',
+				cache: true,
+				success: function (template) {
 					var templateSource = template;
 					self.detailTemplate = Handlebars.compile(templateSource);
-                }
-            });
+				}
+			});
 			$.ajax({
-                url: 'assets/templates/company-template.html',
-                cache: true,
-                success: function (template) {
+				url: 'assets/templates/company-template.html',
+				cache: true,
+				success: function (template) {
 					var templateSource = template;
 					self.companyTemplate = Handlebars.compile(templateSource);
-                }
-            });
+				}
+			});
 			$.ajax({
-                url: 'assets/templates/tree-template.html',
-                cache: true,
-                success: function (template) {
+				url: 'assets/templates/tree-template.html',
+				cache: true,
+				success: function (template) {
 					var templateSource = template;
 					self.treeTemplate = Handlebars.compile(templateSource);
-                }
-            });
+				}
+			});
 
-            self.dbpediaTemplate = Handlebars.compile('<strong>DBpedia omschrijving</strong> <a href="{{uri}}" target="_blank"><i class="icon-link-ext"></i></a><br/>{{description}}');
+			self.dbpediaTemplate = Handlebars.compile('<strong>DBpedia omschrijving</strong> <a href="{{uri}}" target="_blank"><i class="icon-link-ext"></i></a><br/>{{description}}');
 		},
 
 		showDetails: function(object) {
@@ -236,7 +236,7 @@ $(document).on('ready', function() {
 			var buildingCoordinates = JSON.parse(JSON.stringify(geometry));
 
 			ctx.scale(1,-1);
-      		ctx.translate(0,-200);
+			ctx.translate(0,-200);
 
 			for(var i = 0; i < buildingCoordinates[0].length; i++) {
 				var object = buildingCoordinates[0][i];
@@ -291,7 +291,7 @@ $(document).on('ready', function() {
 
 					point[0] = (point[0] - bounds[0]) * scale;
 					point[1] = (point[1] - bounds[1]) * scale;
-					
+
 					if(j==0) {
 						ctx.lineTo(appendX + point[1], appendY + point[0]);
 					} else {
@@ -303,7 +303,7 @@ $(document).on('ready', function() {
 				ctx.fill();
 			}
 			ctx.scale(1,-1);
-      		ctx.translate(0,-200);
+			ctx.translate(0,-200);
 			ctx.restore();
 
 			if(self.currentBuilding) {
@@ -342,13 +342,13 @@ $(document).on('ready', function() {
 
 			self.map = L.map('map', {
 				zoomControl:false
-			}).setView([52.15959828480465, 4.505670530026864], 10);	
+			}).setView([52.15959828480465, 4.505670530026864], 10);
 			var zoomControl = new L.Control.Zoom({ position: 'bottomleft'} );
-            zoomControl.addTo(self.map);
+			zoomControl.addTo(self.map);
 			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-			    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-			    maxZoom: 18,
-			    boxZoom: false
+				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery Â© <a href="http://mapbox.com">Mapbox</a>',
+				maxZoom: 18,
+				boxZoom: false
 			}).addTo(self.map);
 		},
 
@@ -359,10 +359,10 @@ $(document).on('ready', function() {
 
 			$.ajax({
 				url: apiBase + 'panden' + '?' +
-					(query.choices.year ? query.choices.year.value + '&' : '') +
-					(query.choices.woz ? query.choices.woz.value + '&' : '') +
-					(query.choices.used ? query.choices.used.value + '&' : '') +
-					(query.choices.type ? query.choices.type.value + '&' : ''),
+				(query.choices.year ? query.choices.year.value + '&' : '') +
+				(query.choices.woz ? query.choices.woz.value + '&' : '') +
+				(query.choices.used ? query.choices.used.value + '&' : '') +
+				(query.choices.type ? query.choices.type.value + '&' : ''),
 				crossDomain: true,
 				dataType: 'json',
 				success: function(response) {
@@ -382,7 +382,7 @@ $(document).on('ready', function() {
 			if(self.markers) {
 				self.map.removeLayer(self.markers);
 			}
-			
+
 			if(self.trees) {
 				self.map.removeLayer(self.trees);
 			}
@@ -415,6 +415,7 @@ $(document).on('ready', function() {
 					dataType: 'json',
 					success: function(response) {
 						ui.$sidebarContent.removeClass('is-showing-organizations');
+						ui.$sidebarContent.removeClass('is-showing-subitems');
 						ui.showDetails(response);
 
 						$.ajax({
@@ -434,7 +435,7 @@ $(document).on('ready', function() {
 
 		setTrees: function(trees) {
 			var self = this;
-			
+
 			if(self.trees) {
 				self.map.removeLayer(self.trees);
 			}
@@ -445,24 +446,24 @@ $(document).on('ready', function() {
 			});
 
 			self.trees = L.geoJson(trees, {
-			    onEachFeature: function (feature, layer) {
-			        layer
-			        	.setIcon(treeIcon)
-				        .bindPopup(ui.treeTemplate(feature.properties), {
-				 			maxWidth: 600
-				 		})
-				 		.on('click', function(e) {
-				 			$.ajax({
-				 				url: 'http://lookup.dbpedia.org/api/search.asmx/PrefixSearch?MaxHits=1&QueryClass=Species&QueryString=' + e.target.feature.properties.latboomsoort,
-				 				headers: { 'Accept': 'application/json' },
-				 				success: function(response) {
-				 					if(response.results.length) {
-				 						$('.js-dbpedia-description').html(ui.dbpediaTemplate(response.results[0]));
-				 					}
-				 				}
-				 			});
-				 		});
-			    }
+				onEachFeature: function (feature, layer) {
+					layer
+						.setIcon(treeIcon)
+						.bindPopup(ui.treeTemplate(feature.properties), {
+							maxWidth: 600
+						})
+						.on('click', function(e) {
+							$.ajax({
+								url: 'http://lookup.dbpedia.org/api/search.asmx/PrefixSearch?MaxHits=1&QueryClass=Species&QueryString=' + e.target.feature.properties.latboomsoort,
+								headers: { 'Accept': 'application/json' },
+								success: function(response) {
+									if(response.results.length) {
+										$('.js-dbpedia-description').html(ui.dbpediaTemplate(response.results[0]));
+									}
+								}
+							});
+						});
+				}
 			}).addTo(maps.map);
 		}
 	};

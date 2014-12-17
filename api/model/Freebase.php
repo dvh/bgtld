@@ -30,8 +30,13 @@ class Freebase
                 if ($type['id'] == '/business/business_operation') {
                     $check = true;
                 }
+                if ($type['id'] == ' /dining/restaurant') {
+                    $check = true;
+                }
             }
         }
+
+        $check = true;
 
         if ($check == false) {
             return null;
@@ -49,6 +54,10 @@ class Freebase
             $description = null;
         }
 
+        $leadership = null;
+        if (!isset($result['property']['/organization/organization/leadership']['values'][0])) {
+            return null;
+        }
         if (isset($result['property']['/organization/organization/leadership']['values'][0])) {
             $leadership = $result['property']['/organization/organization/leadership']['values'][0];
 
@@ -78,11 +87,19 @@ class Freebase
         $object->description = $description;
         $object->image = $this->image($result['id']);
 
-        $object->leadership = new stdClass();
-        $object->leadership->url = $leadershipUrl;
-        $object->leadership->name = $leadershipName;
-        $object->leadership->role = $leadershipRole;
-        $object->leadership->image = $this->image($leadershipId);
+        if($leadership != null){
+            $object->leadership = new stdClass();
+            $object->leadership->url = $leadershipUrl;
+            $object->leadership->name = $leadershipName;
+            $object->leadership->role = $leadershipRole;
+            $object->leadership->image = $this->image($leadershipId);
+        }else{
+            $object->leadership = new stdClass();
+            $object->leadership->url = null;
+            $object->leadership->name = null;
+            $object->leadership->role = null;
+            $object->leadership->image = null;
+        }
 
         return $object;
     }
