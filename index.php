@@ -19,7 +19,7 @@
 
     <link rel="stylesheet" href="assets/build/css/app.css" />
     <script type="text/javascript">
-        var apiBase = '/bgtld/api/v1/';
+        var apiBase = '/api/v1/';
     </script>
     <script type="text/javascript" src="assets/build/js/responsivevoice.js"></script>
     <script type="text/javascript" src="assets/components/jquery/jquery.min.js"></script>
