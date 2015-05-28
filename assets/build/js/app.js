@@ -506,7 +506,7 @@ $(document).on('ready', function() {
   				developerConsole.setMessage('Succesfull request made', 'success');
   				developerConsole.setEmptyline();
   				developerConsole.setMessage('Found ' + response.results.length + ' items', 'log');
-  				developerConsole.setMessage(response.results.length + ' items gevonden', 'speak');
+  				developerConsole.setMessage(response.results.length + ' item' + (response.results.length == 1 ? '' : 's') + ' gevonden', 'speak');
   				developerConsole.setEmptyline();
   				developerConsole.setMessage('Sparql query used:');
   				developerConsole.setNewline();
@@ -591,7 +591,7 @@ $(document).on('ready', function() {
             developerConsole.setEmptyline();
             developerConsole.setEmptyline();
     				developerConsole.setMessage('Found "' + response.seperations.definition.label + '" **' + response.seperations.definition.id + '**:' + response.seperations.definition.source + ': ' + response.seperations.definition.text + ': ' + (response.seperations ? response.seperations.results.length : 0) + ' times', 'log');
-    				developerConsole.setMessage(response.seperations.results.length + ' keer ' + response.seperations.definition.label + ' gevonden', 'speak');
+    				developerConsole.setMessage(response.seperations.results.length + ' scheiding' + (response.seperations.results.length == 1 ? '' : 'en') + ' gevonden', 'speak');
     				developerConsole.setEmptyline();
     				developerConsole.setMessage('Sparql query used for "Scheiding":');
             developerConsole.setNewline();
@@ -599,8 +599,8 @@ $(document).on('ready', function() {
             developerConsole.setEmptyline();
             developerConsole.setEmptyline();
             developerConsole.stopLoading();
-            developerConsole.setMessage(response.vestigingen.length + ' vestigingen gevonden', 'speak');
-            developerConsole.setMessage(response.woz.length + ' WOZ-objecten gevonden', 'speak');
+            developerConsole.setMessage(response.vestigingen.length + ' vestiging' + (response.vestigingen.length == 1 ? '' : 'en') + ' gevonden', 'speak');
+            developerConsole.setMessage(response.woz.length + ' WOZ-object' + (response.woz.length == 1 ? '' : 'en') + ' gevonden', 'speak');
             
             for(i in response.vestigingen) {
               var vestiging = response.vestigingen[i];
@@ -702,11 +702,9 @@ $(document).on('ready', function() {
                   
 									if(response.results.length) {
             				developerConsole.setMessage('Found extra tree information resolving to: **' + response.results[0].uri + '**', 'log');
-            				developerConsole.setMessage('Extra informatie over de boom gevonden op dbpedia', 'speak');
 										$('.js-dbpedia-description').html(ui.dbpediaTemplate(response.results[0]));
 									} else {
             				developerConsole.setMessage('No extra tree information found', 'log');
-            				developerConsole.setMessage('Geen extra boom informatie gevonden', 'speak');
 									}
           				developerConsole.setEmptyline();
                   developerConsole.setEmptyline();
