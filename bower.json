@@ -8,8 +8,6 @@
     "leaflet.markercluster": "~0.4.0",
     "Leaflet.awesome-markers": "~2.0.2",
     "mustache": "~0.8.2",
-    "handlebars": "~2.0.0",
-    "proj4": "~2.3.6",
-    "proj4leaflet": "~0.7.1"
+    "handlebars": "~2.0.0"
   }
 }
