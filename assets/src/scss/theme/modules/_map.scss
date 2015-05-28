@@ -1,13 +1,29 @@
+.map-switcher {
+  position: absolute;
+  bottom: 10px;
+  left: 50px;
+  outline: none;
+  
+  .btn.is-active {
+    background: $brand-primary;
+    color: #fff;
+  }
+}
+
 .map {
-	height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 
-	@include transition(width 0.3s linear, margin-right 0.3s linear);
+	@include transition(right 0.3s linear);
 
-	.sidebar.is-active + & {
-		margin-right: 400px;
+	.sidebar.is-active ~ & {
+  	right: 400px;
 	}
 
-	.filter.is-filled + &:before {
+	.filter.is-filled ~ &:before {
 		position: absolute;
 		top: 0;
 		left: 0;

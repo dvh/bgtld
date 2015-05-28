@@ -8,6 +8,14 @@
 	}
 }
 
+  .list-organizations {
+    li {
+      border: 1px solid #ccc;
+      padding: 5px;
+      margin: 2px 0;
+    }
+  }
+
 dl {
 	font-size: 14px;
 
@@ -29,7 +37,17 @@ table.dl {
 		width: 45%;
 	}
 
-	dt {
+	td {
 		width: 65%;
+		text-align: right;
 	}
+}
+
+.scheiding {
+  cursor: pointer;
+  
+  &:hover,
+  &.is-active {
+    color: red;
+  }
 }

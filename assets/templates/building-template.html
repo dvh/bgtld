@@ -1,43 +1,101 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="building-details-content">
-            <canvas class="building-map js-building-map" height="200"></canvas>
             <div class="building-info">
-                <table class="dl">
-                    {{#if bouwjaar}}
-                        <tr>
-                            <th>Bouwjaar</th>
-                            <td>{{bouwjaar}}</td>
-                        </tr>
-                    {{/if}}
-                    {{#if gebruiksdoel}}
-                        <tr>
-                            <th>Gebruiksdoel</th>
-                            <td>{{gebruiksdoel}}</td>
-                        </tr>
-                    {{/if}}
-                    {{#if status}}
-                        <tr>
-                            <th>Status</th>
-                            <td>{{status}}</td>
-                        </tr>
-                    {{/if}}
-                </table>
+                <div class="detail-block">
+                  <span class="meta">Gegevens uit de <a href="https://www.kadaster.nl/bag" target="_blank">BAG</a></span>
+                  <table class="dl">
+                      {{#if straat}}
+                          <tr>
+                              <th>Adres</th>
+                              <td>{{straat}} {{huisnummer}}</td>
+                          </tr>
+                      {{/if}}
+                      {{#if postcode}}
+                          <tr>
+                              <th>Postcode</th>
+                              <td>{{postcode}}</td>
+                          </tr>
+                      {{/if}}
+                      {{#if stad}}
+                          <tr>
+                              <th>Stad</th>
+                              <td>{{stad}}</td>
+                          </tr>
+                      {{/if}}
+                      {{#if bouwjaar}}
+                          <tr>
+                              <th>Bouwjaar</th>
+                              <td>{{bouwjaar}}</td>
+                          </tr>
+                      {{/if}}
+                      {{#if gebruiksdoel}}
+                          <tr>
+                              <th>Gebruiksdoel</th>
+                              <td>{{gebruiksdoel}}</td>
+                          </tr>
+                      {{/if}}
+                      {{#if status}}
+                          <tr>
+                              <th>Status</th>
+                              <td>{{status}}</td>
+                          </tr>
+                      {{/if}}
+                  </table>
+  
+                  <div class="row row-borderless">
+                      {{#if verblijfsobjecten.woonfunctie }}
+                          <div class="col-sm-6"><i class="icon-woon"></i> Woning <span class="amount">({{ verblijfsobjecten.woonfunctie }})</span></div>
+                      {{/if}}
+                      {{#if verblijfsobjecten.winkelfunctie }}
+                          <div class="col-sm-6"><i class="icon-winkel"></i> Winkel <span class="amount">({{ verblijfsobjecten.winkelfunctie }})</span></div>
+                      {{/if}}
+                      {{#if verblijfsobjecten.celfunctie }}
+                          <div class="col-sm-6"><i class="icon-cel"></i> Cel <span class="amount">({{ verblijfsobjecten.celfunctie }})</span></div>
+                      {{/if}}
+                      {{#if verblijfsobjecten.kantoorfunctie }}
+                          <div class="col-sm-6"><i class="icon-kantoor"></i> Kantoor <span class="amount">({{ verblijfsobjecten.kantoorfunctie }})</span></div>
+                      {{/if}}
+                      {{#if verblijfsobjecten.gezondheidszorgfunctie }}
+                          <div class="col-sm-6"><i class="icon-gezondheidszorg"></i> Zorginstelling <span class="amount">({{ verblijfsobjecten.gezondheidszorgfunctie }})</span></div>
+                      {{/if}}
+                      {{#if verblijfsobjecten.sportfunctie }}
+                          <div class="col-sm-6"><i class="icon-sport"></i> Sport <span class="amount">({{ verblijfsobjecten.sportfunctie }})</span></div>
+                      {{/if}}
+                      {{#if verblijfsobjecten.logiesfunctie }}
+                          <div class="col-sm-6"><i class="icon-logies"></i> Logies <span class="amount">({{ verblijfsobjecten.logiesfunctie }})</span></div>
+                      {{/if}}
+                      {{#if verblijfsobjecten.industriefunctie }}
+                          <div class="col-sm-6"><i class="icon-industrie"></i> Industrie <span class="amount">({{ verblijfsobjecten.industriefunctie }})</span></div>
+                      {{/if}}
+                      {{#if verblijfsobjecten.bijeenkomstfunctie }}
+                          <div class="col-sm-6"><i class="icon-bijeenkomst"></i> Bijeenkomst <span class="amount">({{ verblijfsobjecten.bijeenkomstfunctie }})</span></div>
+                      {{/if}}
+                      {{#if verblijfsobjecten.onderwijsfunctie }}
+                          <div class="col-sm-6"><i class="icon-onderwijs"></i> Onderwijs <span class="amount">({{ verblijfsobjecten.onderwijsfunctie }})</span></div>
+                      {{/if}}
+                      {{#if verblijfsobjecten.overige_gebruiksfunctie }}
+                          <div class="col-sm-6"><i class="icon-overige"></i> Overig <span class="amount">({{ verblijfsobjecten.overige_gebruiksfunctie }})</span></div>
+                      {{/if}}
+                  </div>
+                </div>
 
                 <div class="detail-block">
+                    <span class="meta">Gegevens uit de <a href="http://www.digitaleoverheid.nl/onderwerpen/stelselinformatiepunt/stelsel-van-basisregistraties/1491-basisregistratie-waardering-onroerende-zaken-woz" target="_blank">Basisregistratie WOZ</a></span>
                     {{#if woz}}
-                        <p><strong>WOZ-objecten</strong> <a href="http://bgtld-test.geostandaarden.nl/woz/def" target="_blank"><i class="icon-link-ext"></i></a></p>
+                        <p><strong>WOZ-objecten</strong> <a href="http://bgtld-test.geostandaarden.nl/woz/def#waarde" class="show-popup" data-title="BGT: De kwaliteit van het betreffende WOZ (deel)object, uitgedrukt in een cijfer" target="_blank"><i class="icon-link-ext"></i></a></p>
                         {{#ifCond woz.length '>' 1}}
                             <button class="btn btn-primary btn-block js-show-building-subitems" data-target=".js-building-woz">In dit pand zijn {{woz.length}} WOZ-objecten geregistreerd <i class="icon-right-open"></i></button>
                         {{else}}
                             <button class="btn btn-primary btn-block js-show-building-subitems" data-target=".js-building-woz">In dit pand is 1 WOZ-object geregistreerd <i class="icon-right-open"></i></button>
                         {{/ifCond}}
                     {{else}}
-                        Er zijn in dit woz-objecten geregistreerd.
+                        Er zijn in dit pand geen woz-objecten geregistreerd.
                     {{/if}}
                 </div>
 
                 <div class="detail-block">
+                    <span class="meta">Gegevens uit het <a href="http://www.digitaleoverheid.nl/onderwerpen/stelselinformatiepunt/stelsel-van-basisregistraties/1486-handelsregister-nhr" target="_blank">Nationaal Handels Register</a></span>
                     {{#if vestigingen}}
                         <p><strong>Vestigingen</strong></p>
                         {{#ifCond vestigingen.length '>' 1}}
@@ -50,39 +108,17 @@
                     {{/if}}
                 </div>
 
-                <div class="row row-borderless">
-                    {{#if verblijfsobjecten.woonfunctie }}
-                        <div class="col-sm-6"><i class="icon-woon"></i> Woning <span class="meta">({{ verblijfsobjecten.woonfunctie }})</span></div>
-                    {{/if}}
-                    {{#if verblijfsobjecten.winkelfunctie }}
-                        <div class="col-sm-6"><i class="icon-winkel"></i> Winkel <span class="meta">({{ verblijfsobjecten.winkelfunctie }})</span></div>
-                    {{/if}}
-                    {{#if verblijfsobjecten.celfunctie }}
-                        <div class="col-sm-6"><i class="icon-cel"></i> Cel <span class="meta">({{ verblijfsobjecten.celfunctie }})</span></div>
-                    {{/if}}
-                    {{#if verblijfsobjecten.kantoorfunctie }}
-                        <div class="col-sm-6"><i class="icon-kantoor"></i> Kantoor <span class="meta">({{ verblijfsobjecten.kantoorfunctie }})</span></div>
-                    {{/if}}
-                    {{#if verblijfsobjecten.gezondheidszorgfunctie }}
-                        <div class="col-sm-6"><i class="icon-gezondheidszorg"></i> Zorginstelling <span class="meta">({{ verblijfsobjecten.gezondheidszorgfunctie }})</span></div>
-                    {{/if}}
-                    {{#if verblijfsobjecten.sportfunctie }}
-                        <div class="col-sm-6"><i class="icon-sport"></i> Sport <span class="meta">({{ verblijfsobjecten.sportfunctie }})</span></div>
-                    {{/if}}
-                    {{#if verblijfsobjecten.logiesfunctie }}
-                        <div class="col-sm-6"><i class="icon-logies"></i> Logies <span class="meta">({{ verblijfsobjecten.logiesfunctie }})</span></div>
-                    {{/if}}
-                    {{#if verblijfsobjecten.industriefunctie }}
-                        <div class="col-sm-6"><i class="icon-industrie"></i> Industrie <span class="meta">({{ verblijfsobjecten.industriefunctie }})</span></div>
-                    {{/if}}
-                    {{#if verblijfsobjecten.bijeenkomstfunctie }}
-                        <div class="col-sm-6"><i class="icon-bijeenkomst"></i> Bijeenkomst <span class="meta">({{ verblijfsobjecten.bijeenkomstfunctie }})</span></div>
-                    {{/if}}
-                    {{#if verblijfsobjecten.onderwijsfunctie }}
-                        <div class="col-sm-6"><i class="icon-onderwijs"></i> Onderwijs <span class="meta">({{ verblijfsobjecten.onderwijsfunctie }})</span></div>
-                    {{/if}}
-                    {{#if verblijfsobjecten.overige_gebruiksfunctie }}
-                        <div class="col-sm-6"><i class="icon-overige"></i> Overig <span class="meta">({{ verblijfsobjecten.overige_gebruiksfunctie }})</span></div>
+                <div class="detail-block">
+                    <span class="meta">Gegevens uit de <a href="http://www.digitaleoverheid.nl/onderwerpen/stelselinformatiepunt/stelsel-van-basisregistraties/1493-basisregistratie-grootschalige-topografie-bgt" target="_blank">BGT</a></span>
+                    {{#if seperations}}
+                        <p><strong>Scheidingen</strong></p>
+                        {{#ifCond seperations.results.length '>' 1}}
+                            <button class="btn btn-primary btn-block js-show-building-subitems" data-target=".js-building-seperations">Om dit pand zijn {{seperations.results.length}} scheidingen gevonden <i class="icon-right-open"></i></button>
+                        {{else}}
+                            <button class="btn btn-primary btn-block js-show-building-subitems" data-target=".js-building-seperations">Om dit pand is 1 scheiding gevonden <i class="icon-right-open"></i></button>
+                        {{/ifCond}}
+                    {{else}}
+                        Er zijn om dit pand geen scheidingen gevonden.
                     {{/if}}
                 </div>
             </div>
@@ -95,7 +131,29 @@
                 <ul class="list list-organizations">
                     {{#each vestigingen}}
                         <li>
-                            <a href="/bgtld/api/v1/freebase/{{naam}}" class="link link-show-organization js-show-organization" data-detail-url="/bgtld/api/v1/freebase/{{naam}}">{{naam}}</a>
+                            <a href="{{id}}" class="link">{{naam}}</a>
+                            {{#if nvwaControles}}
+                              {{#each nvwaControles.results}}
+                                <table class="dl">
+                                  <tr>                                    
+                                    <th>Grondslagoordeel</th>
+                                    <td>{{grondslagOordeel}}</td>
+                                  </tr>
+                                  <tr>                                    
+                                    <th>Datum</th>
+                                    <td>{{date}}</td>
+                                  </tr>
+                                  <tr>                                    
+                                    <th>Categorie</th>
+                                    <td>{{objectHoofdCategorie}}</td>
+                                  </tr>
+                                  <tr>                                    
+                                    <th>Oordeel</th>
+                                    <td>{{oordeel}}</td>
+                                  </tr>
+                                </table>
+                              {{/each}}
+                            {{/if}}
                         </li>
                     {{/each}}
                 </ul>
@@ -108,10 +166,20 @@
                     {{#each woz}}
                         <tr>
                             <th>{{type}}</th>
-                            <td>&euro; <span class="currency">{{waarde}}</span>,- <a href="http://bgtld-test.geostandaarden.nl/woz/def#waarde" target="_blank"><i class="icon-link-ext"></i></a></td>
+                            <td>&euro; <span class="currency">{{waarde}}</span>,-</td>
                         </tr>
                     {{/each}}
                 </table>
+            {{/if}}
+        </div>
+        <div class="building-details-content js-building-subitems js-building-seperations">
+            <p><button class="btn btn-secondary js-show-building"><i class="icon-left-open"></i> Terug naar pand overzicht</button></p>
+            {{#if seperations}}
+                {{#each seperations.results}}
+                  <a href="{{properties.id}}" class="js-scheiding scheiding" target="_blank" data-id="{{properties.id}}">
+                      {{properties.lokaalId}}
+                  </a>
+                {{/each}}
             {{/if}}
         </div>
     </div>

@@ -2,11 +2,20 @@ html,
 body {
 	position: relative;
 	height: 100%;
+	width: 100%;
+	overflow: hidden;
 }
 
 .meta {
-	font-size: 14px;
+  display: block;
+	font-size: 12px;
 	color: #666;
+	margin: 0 0 10px 0;
+}
+
+.amount {
+  font-size: 14px;
+  color: #666;
 }
 
 .row-borderless {
@@ -42,4 +51,75 @@ body {
 .item-name {
 	font-weight: bold;
 	font-size: 16px;
+}
+
+.ui {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 30px;
+  
+  .developer-mode.is-open + & {
+    bottom: 35%;
+  }
+}
+
+.has-popup:hover {
+  position: relative;
+  text-decoration: none;
+  
+  &:before {
+    position: absolute;
+    content: attr(data-title);
+    background: #fff;
+    bottom: 150%;
+    left: 50%;
+    color: #333;
+    transform: translateX(-50%);
+    width: 300px;
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 1000;
+    text-align: left;
+    
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+  
+  &:after {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: #fff;
+    border-bottom-width: 0;
+    bottom: 100%;
+    left: 50%;
+    margin: 0 0 0 -10px; 
+    z-index: 1000;     
+  }
+  
+  &.has-popup-left {
+    &:before {
+      left: auto;
+      right: 100%;
+      bottom: auto;
+      top: -10px;
+      margin: 0 10px 0 0;
+      transform: none;
+    }
+    
+    &:after {
+      border-top-color: transparent;
+      border-bottom-width: 10px;
+      border-left-color: #fff;
+      border-right-width: 0;
+      bottom: auto;
+      left: auto;
+      right: 100%;
+      top: 50%;
+      margin: -10px 0 0 0;
+    }
+  }
 }
