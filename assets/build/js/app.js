@@ -163,6 +163,8 @@ $(document).on('ready', function() {
 	}
 	
 	var developerConsole = {
+  	messages: [],
+  	
   	init: function() {
     	var self = this;
     	
@@ -185,6 +187,8 @@ $(document).on('ready', function() {
       	}
     	});
     	
+    	this.speak();
+    	
     	this.setMessage('Logging started');
     	this.setEmptyline();
   	},
@@ -197,22 +201,32 @@ $(document).on('ready', function() {
     	this.$loader.removeClass('is-loading');
   	},
   	
-		setMessage: function(message, type, speak) {  		
+		setMessage: function(message, type) {  		
   		if(!type) type = 'default';
   		
-  		message = message.replace(/</g, "&lt;");
-  		message = message.replace(/\*\*(.*)\*\*(:(.*):)/gi, '<a href="$1" class="has-popup" data-title="$3" target="_blank">&lt;$1&gt; <i class="icon-link-ext"></i></a>');
-  		message = message.replace(/\*\*(.*)\*\*/gi, '<a href="$1" target="_blank">$1 <i class="icon-link-ext"></i></a>');
-  		
-  		this.$code.append('<span class="is-' + type + '">' + message + '</span>');
-  		
-  		if(speak) {
+  		if(type == 'speak') {
     		message = message.replace(/([<a].*[\/a>])/g, "");
-    		console.log(message);
-//    		responsiveVoice.speak(message, 'UK English Female');
+    		this.messages.push(message);
+  		} else {
+    		message = message.replace(/</g, "&lt;");
+    		message = message.replace(/\*\*(.*)\*\*(:(.*):)/gi, '<a href="$1" class="has-popup" data-title="$3" target="_blank">&lt;$1&gt; <i class="icon-link-ext"></i></a>');
+    		message = message.replace(/\*\*(.*)\*\*/gi, '<a href="$1" target="_blank">$1 <i class="icon-link-ext"></i></a>');
+    		
+    		this.$code.append('<span class="is-' + type + '">' + message + '</span>');
   		}
   		
   		this.scrollToBottom();
+		},
+		
+		speak: function() {
+  		var self = this;
+  		
+  		setInterval(function() {
+    		var message = self.messages.shift();
+    		if(message) {
+      		responsiveVoice.speak(message, 'Dutch Female');
+    		}
+  		}, 3000);
 		},
 		
 		setNewline: function() {
@@ -491,7 +505,8 @@ $(document).on('ready', function() {
 					
   				developerConsole.setMessage('Succesfull request made', 'success');
   				developerConsole.setEmptyline();
-  				developerConsole.setMessage('Found ' + response.results.length + ' items', 'log', true);
+  				developerConsole.setMessage('Found ' + response.results.length + ' items', 'log');
+  				developerConsole.setMessage(response.results.length + ' items gevonden', 'speak');
   				developerConsole.setEmptyline();
   				developerConsole.setMessage('Sparql query used:');
   				developerConsole.setNewline();
@@ -567,14 +582,16 @@ $(document).on('ready', function() {
 					
     				developerConsole.setMessage('Succesfull request made', 'success');
             developerConsole.setEmptyline();
-    				developerConsole.setMessage('Found "' + response.definition.label + '" **' + response.definition.id + '**:' + response.definition.source + ': ' + response.definition.text + ': 1 time', 'log', true);
+    				developerConsole.setMessage('Found "' + response.definition.label + '" **' + response.definition.id + '**:' + response.definition.source + ': ' + response.definition.text + ': 1 time', 'log');
+    				developerConsole.setMessage(response.definition.label + ' gevonden', 'speak');
     				developerConsole.setEmptyline();
     				developerConsole.setMessage('Sparql query used for "Pand":');
             developerConsole.setNewline();
     				developerConsole.setMessage(response.sparql, 'data');
             developerConsole.setEmptyline();
             developerConsole.setEmptyline();
-    				developerConsole.setMessage('Found "' + response.seperations.definition.label + '" **' + response.seperations.definition.id + '**:' + response.seperations.definition.source + ': ' + response.seperations.definition.text + ': ' + (response.seperations ? response.seperations.results.length : 0) + ' times', 'log', true);
+    				developerConsole.setMessage('Found "' + response.seperations.definition.label + '" **' + response.seperations.definition.id + '**:' + response.seperations.definition.source + ': ' + response.seperations.definition.text + ': ' + (response.seperations ? response.seperations.results.length : 0) + ' times', 'log');
+    				developerConsole.setMessage(response.seperations.results.length + ' keer ' + response.seperations.definition.label + ' gevonden', 'speak');
     				developerConsole.setEmptyline();
     				developerConsole.setMessage('Sparql query used for "Scheiding":');
             developerConsole.setNewline();
@@ -582,12 +599,15 @@ $(document).on('ready', function() {
             developerConsole.setEmptyline();
             developerConsole.setEmptyline();
             developerConsole.stopLoading();
+            developerConsole.setMessage(response.vestigingen.length + ' vestigingen gevonden', 'speak');
+            developerConsole.setMessage(response.woz.length + ' WOZ-objecten gevonden', 'speak');
             
             for(i in response.vestigingen) {
               var vestiging = response.vestigingen[i];
               
               if(vestiging.nvwaControles.sparql) {
-                developerConsole.setMessage('Found "nvwacontrole" for "' + vestiging.naam + '"', 'log', true);
+                developerConsole.setMessage('Found "nvwacontrole" for "' + vestiging.naam + '"', 'log');
+                developerConsole.setMessage('nvwa controle gevonden voor ' + vestiging.naam, 'speak');
                 developerConsole.setEmptyline();
         				developerConsole.setMessage('Sparql query used for "nvwacontrole":');
                 developerConsole.setNewline();
@@ -622,7 +642,8 @@ $(document).on('ready', function() {
                 developerConsole.setEmptyline();
                 
                 if(response.features.length) {
-          				developerConsole.setMessage('Found "' + response.features.length + '" trees', 'log', true);
+          				developerConsole.setMessage('Found "' + response.features.length + '" trees', 'log');
+          				developerConsole.setMessage(response.features.length + ' ' + (response.features.length == 1 ? 'boom' : 'bomen') + ' gevonden', 'speak');
                 } else {
           				developerConsole.setMessage('Didn\'t find any trees in the buildings surroundings');
                 }
@@ -677,10 +698,12 @@ $(document).on('ready', function() {
           				developerConsole.setEmptyline();
                   
 									if(response.results.length) {
-            				developerConsole.setMessage('Found extra tree information resolving to: **' + response.results[0].uri + '**', 'log', true);
+            				developerConsole.setMessage('Found extra tree information resolving to: **' + response.results[0].uri + '**', 'log');
+            				developerConsole.setMessage('Extra informatie over de boom gevonden op dbpedia', 'speak');
 										$('.js-dbpedia-description').html(ui.dbpediaTemplate(response.results[0]));
 									} else {
-            				developerConsole.setMessage('No extra tree information found', true);
+            				developerConsole.setMessage('No extra tree information found', 'log');
+            				developerConsole.setMessage('Geen extra boom informatie gevonden', 'speak');
 									}
           				developerConsole.setEmptyline();
                   developerConsole.setEmptyline();
