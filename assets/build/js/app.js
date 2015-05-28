@@ -1,5 +1,3 @@
-var building = [];
-
 Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
 
 	switch (operator) {
@@ -141,7 +139,7 @@ $(document).on('ready', function() {
 			if(choices < 4) {
 				$(' <button class="js-add-filter btn btn-primary"><i class="icon-plus"></i></button>').appendTo(self.$holder);
 			}
-
+			
 			setTimeout(function() {
 				maps.getResults();
 			}, 500);
@@ -163,15 +161,111 @@ $(document).on('ready', function() {
 			self.$holder.removeClass('is-loading');
 		}
 	}
+	
+	var developerConsole = {
+  	messages: [],
+  	
+  	init: function() {
+    	var self = this;
+    	
+    	this.$code = $('.js-code');
+    	this.$holder = $('.developer-mode-console');
+    	this.$trigger = $('.js-developer-mode-trigger');
+    	this.$loader = $('.js-developer-mode-loader');
+    	
+    	this.$trigger.on('click', function() {
+      	var $developerMode = $('.developer-mode');
+      	
+      	$developerMode.toggleClass('is-open');
+    		
+    		maps.map.invalidateSize();
+      	
+      	if($developerMode.hasClass('is-open')) {
+        	self.$trigger.text(self.$trigger.data('opened'));
+      	} else {
+        	self.$trigger.text(self.$trigger.data('closed'));
+      	}
+    	});
+    	
+    	this.speak();
+    	
+    	this.setMessage('Logging started');
+    	this.setEmptyline();
+  	},
+  	
+  	startLoading: function() {
+    	this.$loader.addClass('is-loading');
+  	},
+  	
+  	stopLoading: function() {
+    	this.$loader.removeClass('is-loading');
+  	},
+  	
+		setMessage: function(message, type) {  		
+  		if(!type) type = 'default';
+  		
+  		if(type == 'speak') {
+    		message = message.replace(/([<a].*[\/a>])/g, "");
+    		this.messages.push(message);
+  		} else {
+    		message = message.replace(/</g, "&lt;");
+    		message = message.replace(/\*\*(.*)\*\*(:(.*):)/gi, '<a href="$1" class="has-popup" data-title="$3" target="_blank">&lt;$1&gt; <i class="icon-link-ext"></i></a>');
+    		message = message.replace(/\*\*(.*)\*\*/gi, '<a href="$1" target="_blank">$1 <i class="icon-link-ext"></i></a>');
+    		
+    		this.$code.append('<span class="is-' + type + '">' + message + '</span>');
+  		}
+  		
+  		this.scrollToBottom();
+		},
+		
+		speak: function() {
+  		var self = this;
+  		
+  		setInterval(function() {
+    		var message = self.messages.shift();
+    		if(message) {
+      		responsiveVoice.speak(message, 'Dutch Female');
+    		}
+  		}, 3000);
+		},
+		
+		setNewline: function() {
+  		this.$code.append('<span>---------------------------</span>');
+  		
+  		this.scrollToBottom();
+		},
+		
+		setEmptyline: function() {
+  		this.$code.append('<span>&nbsp;</span>');
+  		
+  		this.scrollToBottom();
+		},
+		
+		replaceLoader: function() {
+  		this.$code.append(this.$loader);
+		},
+		
+		scrollToBottom: function() {
+  		this.replaceLoader();
+  		
+      var holder = this.$holder.get(0);
+  		holder.scrollTop = holder.scrollHeight;
+		}
+	}
 
 	var ui = {
 		$sidebar: $('.js-sidebar'),
 		$sidebarContent: $('.js-building-details'),
+		$trigger: $('.js-sidebar-trigger'),
 
 		init: function() {
 			var self = this;
 
 			self.getTemplates();
+    	
+    	this.$trigger.on('click', function() {
+      	self.$sidebar.removeClass('is-active');
+      });
 		},
 
 		getTemplates: function() {
@@ -209,114 +303,36 @@ $(document).on('ready', function() {
 			var self = this;
 
 			self.$sidebar.addClass('is-active');
-			self.$sidebarContent.html(ui.detailTemplate(object));
+			self.$sidebarContent.html(ui.detailTemplate($.extend(object, {apibase: apiBase})));
 
 			self.$sidebarContent.find('.currency').digits();
 
 			var $canvas = $('.js-building-map');
 			var c = $('.js-building-map').get(0);
-			c.width = 400;
-
-			self.ctx = c.getContext('2d');
-			self.ctx.scale(0.75,1);
-
-			if(object.geometrie) {
-				self.drawBuilding(object.geometrie);
+			
+			if(object.geoJson) {
+				self.drawBuilding(object.geoJson);
+			}
+			
+			if(object.seperations) {
+  			if(object.seperations.results.length) {
+    			maps.setSeperations(object.seperations);
+  			}
 			}
 		},
 
-		drawBuilding: function(geometry) {
-			var self = this;
-			var ctx = self.ctx;
-
-			ctx.clearRect(0, 0, 400, 200);
-
-			var bounds = [0, 0, 0, 0];
-
-			var buildingCoordinates = JSON.parse(JSON.stringify(geometry));
-
-			ctx.scale(1,-1);
-			ctx.translate(0,-200);
-
-			for(var i = 0; i < buildingCoordinates[0].length; i++) {
-				var object = buildingCoordinates[0][i];
-
-				for(var j = 0; j < object.length; j++) {
-					var point = object[j];
-
-					if(!bounds[0] || point[0] < bounds[0]) {
-						bounds[0] = point[0];
-					}
-
-					if(!bounds[1] || point[1] < bounds[1]) {
-						bounds[1] = point[1];
-					}
-
-					if(!bounds[2] || point[0] > bounds[2]) {
-						bounds[2] = point[0];
-					}
-
-					if(!bounds[3] || point[1] > bounds[3]) {
-						bounds[3] = point[1];
-					}
-				}
-			}
-
-			var distanceY = (bounds[2] - bounds[0]);
-			var distanceX = (bounds[3] - bounds[1]);
-			var ratio = distanceX / distanceY;
-
-			if(ratio < 1) {
-				// vertical building
-				var scale = 180 / distanceY;
-				var appendX = (400 - distanceX * scale) / 2 + 70;
-				var appendY = 10;
-			} else {
-				// horizontal building
-				var scale = 380 / distanceX;
-				var appendX = 80;
-				var appendY = (200 - distanceY * scale) / 2;
-			}
-
-			var color = ['#fff', '#97c000', '#97c000', '#97c000'];
-
-			for(var i = 0; i < buildingCoordinates[0].length; i++) {
-				var object = buildingCoordinates[0][i];
-
-				ctx.fillStyle = color[i];
-				ctx.beginPath();
-
-				for(var j = 0; j < object.length; j++) {
-					var point = object[j];
-
-					point[0] = (point[0] - bounds[0]) * scale;
-					point[1] = (point[1] - bounds[1]) * scale;
-
-					if(j==0) {
-						ctx.lineTo(appendX + point[1], appendY + point[0]);
-					} else {
-						ctx.lineTo(appendX + point[1], appendY + point[0]);
-					}
-				}
-
-				ctx.closePath();
-				ctx.fill();
-			}
-			ctx.scale(1,-1);
-			ctx.translate(0,-200);
-			ctx.restore();
-
-			if(self.currentBuilding) {
-				maps.map.removeLayer(self.currentBuilding);
-			}
-
-			if(geometry) {
-				self.currentBuilding = L.multiPolygon(geometry, {
-					stroke: false,
-					fillColor: '#97c000',
-					fillOpacity: 1
-				}).addTo(maps.map);
-			}
+		drawBuilding: function(geoJson) {
+  		if(maps.building) {
+    		maps.map.removeLayer(maps.building);
+  		}
+  		maps.building = L.geoJson(geoJson, {
+        style: {
+            weight: 0,
+            color: '#666',
+            fillColor: '#97c000',
+            fillOpacity: 1
+        }
+      }).addTo(maps.map);
 		}
 	}
 
@@ -334,48 +350,192 @@ $(document).on('ready', function() {
 				popupAnchor:  [-3, -76]
 			}
 		}),
+		mapType: 'pdok',
+		crs: {
+  		pdok: new L.Proj.CRS.TMS(
+  	    'EPSG:28992',
+			  '+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +units=m +towgs84=565.2369,50.0087,465.658,-0.406857330322398,0.350732676542563,-1.8703473836068,4.0812 +no_defs',
+        [-285401.92,22598.08,595401.9199999999,903401.9199999999], {
+          resolutions: [3440.640, 1720.320, 860.160, 430.080, 215.040, 107.520, 53.760, 26.880, 13.440, 6.720, 3.360, 1.680, 0.840, 0.420, 0.210, 0.105]
+        }
+      ),
+			osm: L.CRS.EPSG3857
+		},
+		baseLayer: {
+  		pdok: new L.TileLayer('http://geodata.nationaalgeoregister.nl/tms/1.0.0/brtachtergrondkaart/{z}/{x}/{y}.png', {
+	        tms: true,
+	        minZoom: 3,
+	        maxZoom: 12,
+ 	        opacity: 0.3,
+	        attribution: 'Kaartgegevens: &copy; <a href="http://www.cbs.nl">CBS</a>, <a href="http://www.kadaster.nl">Kadaster</a>, <a href="http://openstreetmap.org">OpenStreetMap</a><span class="printhide">-auteurs (<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>).</span>',
+	        continuousWorld: true
+	    }),
+	    osm: L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery Â© <a href="http://mapbox.com">Mapbox</a>',
+				maxZoom: 18,
+        opacity: 0.3,
+				boxZoom: false
+			})
+		},
+		zoomDifference: 5,
 		markers: [],
 		trees: [],
 
 		init: function() {
 			var self = this;
-
-			self.map = L.map('map', {
-				zoomControl:false
-			}).setView([52.15959828480465, 4.505670530026864], 10);
-			var zoomControl = new L.Control.Zoom({ position: 'bottomleft'} );
-			zoomControl.addTo(self.map);
-			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery Â© <a href="http://mapbox.com">Mapbox</a>',
-				maxZoom: 18,
-				boxZoom: false
-			}).addTo(self.map);
+			
+			$('.js-map-switcher').on('click', function(e) {
+  			  e.preventDefault();
+  			  
+  			  $('.js-map-switcher').removeClass('is-active');
+  			  
+  			  var map = $(this).addClass('is-active').data('map');
+  			  
+  			  self.setMap(map);
+			}).filter('[data-map=' + self.mapType + ']').addClass('is-active');
+			
+			self.setMap(self.mapType);
+		},
+		
+		setMap: function(map) {
+			var self = this;
+      
+      if(!self.map) {
+        self.zoom = 9;
+        
+  			self.map = L.map('map', {
+  			  continuousWorld: true,
+  			  crs: self.crs[map],
+  			  zoomControl:false,
+  			  doubleClickZoom: false,
+  			  center: new L.LatLng(52.15959828480465, 4.505670530026864),
+  			  zoom: self.zoom
+  			});
+  			
+  			var zoomControl = new L.Control.Zoom({ position: 'bottomleft'} );
+  			zoomControl.addTo(self.map);
+    
+  			self.curMap = self.baseLayer[map];
+  			self.curMap.addTo(self.map);
+			
+  			switch(map) {
+    			case 'pdok':
+      			
+      			// Thijs: PDOK TMS layers: luchtfoto, BGT layers
+      
+      			var luchtfoto = new L.TileLayer('http://geodata1.nationaalgeoregister.nl/luchtfoto/tms/1.0.0/luchtfoto_jpeg/EPSG28992/{z}/{x}/{y}.jpeg', {
+      	        tms: true,
+      	        minZoom: 3,
+      	        maxZoom: 14,
+      	        opacity: 0.3,
+      	        attribution: 'Kaartgegevens: &copy; <a href="http://www.kadaster.nl">Kadaster</a></span>',
+      	        continuousWorld: true
+      	    });
+      
+      			var bgtachtergrond = new L.TileLayer('http://geodata.nationaalgeoregister.nl/tms/1.0.0/bgtachtergrond/{z}/{x}/{y}.png', {
+      	        tms: true,
+      	        minZoom: 3,
+      	        opacity: 0.3,
+      	        maxZoom: 15,
+      	        attribution: 'Kaartgegevens: &copy; <a href="http://www.cbs.nl">CBS</a>, <a href="http://www.kadaster.nl">Kadaster</a>, <a href="http://openstreetmap.org">OpenStreetMap</a><span class="printhide">-auteurs (<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>).</span>',
+      	        continuousWorld: true
+      	    });
+      			
+      			var bgtomtrekgericht = new L.TileLayer('http://geodata.nationaalgeoregister.nl/tms/1.0.0/bgtomtrekgericht/{z}/{x}/{y}.png', {
+      	        tms: true,
+      	        opacity: 0.1,
+      	        minZoom: 3,
+      	        maxZoom: 15,
+      	        attribution: 'Kaartgegevens: &copy; <a href="http://www.cbs.nl">CBS</a>, <a href="http://www.kadaster.nl">Kadaster</a>, <a href="http://openstreetmap.org">OpenStreetMap</a><span class="printhide">-auteurs (<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>).</span>',
+      	        continuousWorld: true
+      	    });
+      			
+      			self.map.addLayer(bgtachtergrond);
+      			self.map.addLayer(bgtomtrekgericht);
+      			
+      			var baseLayers = {"BRT Achtergrondkaart": self.baseLayer[map], "PDOK Luchtfoto": luchtfoto};
+      			var bgtlayers = {"BGT achtergrond" : bgtachtergrond, "BGT bgtomtrekgericht": bgtomtrekgericht};
+            
+            L.control.layers(baseLayers, bgtlayers).addTo(self.map);
+  
+    			break;
+  			}
+      } else {
+    		self.map.removeLayer(self.curMap);
+        var center = self.map.getCenter();
+        self.map.options.crs = self.crs[map];
+        self.map.setView(center); //we need this, because after changing crs the center is shifted (as mentioned above probably it's an issue to)
+        switch(self.mapType) {
+          case 'pdok':
+            var zoom = self.map.getZoom() + self.zoomDifference;
+          break;
+          case 'osm':
+            var zoom = self.map.getZoom() - self.zoomDifference;
+          break;
+        }
+        self.map._resetView(self.map.getCenter(), zoom, true); //we need this to redraw all layers (polygons, markers...) in the new projection.
+        
+  			self.curMap = self.baseLayer[map];
+        self.map.addLayer(self.curMap);
+      };
+			
+			self.mapType = map;
 		},
 
 		getResults: function() {
 			var self = this;
 
 			loader.setLoader();
-
-			$.ajax({
-				url: apiBase + 'panden' + '?' +
+			
+			var url = apiBase + 'panden' + '?' +
 				(query.choices.year ? query.choices.year.value + '&' : '') +
 				(query.choices.woz ? query.choices.woz.value + '&' : '') +
 				(query.choices.used ? query.choices.used.value + '&' : '') +
-				(query.choices.type ? query.choices.type.value + '&' : ''),
+				(query.choices.type ? query.choices.type.value + '&' : '');
+
+      developerConsole.startLoading();      
+			developerConsole.setMessage('Connecting to ' + url);
+			
+			$.ajax({
+				url: url,
 				crossDomain: true,
 				dataType: 'json',
 				success: function(response) {
-					self.results = response;
+					self.data = response;
+					
+  				developerConsole.setMessage('Succesfull request made', 'success');
+  				developerConsole.setEmptyline();
+  				developerConsole.setMessage('Found ' + response.results.length + ' items', 'log');
+  				developerConsole.setMessage(response.results.length + ' items gevonden', 'speak');
+  				developerConsole.setEmptyline();
+  				developerConsole.setMessage('Sparql query used:');
+  				developerConsole.setNewline();
+  				developerConsole.setMessage(response.sparql, 'data');
+  				developerConsole.setEmptyline();
+  				developerConsole.setEmptyline();
+					developerConsole.stopLoading();
 					self.setMarkers();
+				},
+				error: function(e) {
+  				developerConsole.setMessage('Failed getting a succesfull request from ' + url, 'error');
 				}
 			});
 		},
 
 		setMarkers: function() {
 			var self = this;
+			
+			if(maps.building) {
+    		maps.map.removeLayer(maps.building);
+  		}
+			if(maps.trees) {
+    		maps.map.removeLayer(maps.trees);
+  		}
+			if(maps.seperations) {
+    		maps.map.removeLayer(maps.seperations);
+  		}
 
-			self.amountOfMarkers = self.results.length;
+			self.amountOfMarkers = self.data.results.length;
 
 			var baseIcon = new self.iconBase();
 
@@ -392,36 +552,105 @@ $(document).on('ready', function() {
 				showCoverageOnHover: true,
 				disableClusteringAtZoom: 17
 			});
-
+			
 			for(var i = self.amountOfMarkers;i; i--){
-				var markerData = self.results[i - 1];
-				if(markerData.lat && markerData.lng) {
-					self.markers.addLayer(new L.Marker([markerData.lat,markerData.lng], {
-						icon: baseIcon,
-						id: markerData.id
-					}));
-				}
+				var markerData = self.data.results[i - 1];
+
+ 				self.markers.addLayer(new L.geoJson(markerData.geoJson, {
+   				style: {
+            weight: 0,
+            color: "#999",
+            opacity: 1,
+            fillColor: "#333",
+            fillOpacity: 0.8
+     			},   				
+   				id: markerData.id
+ 				}));
 			}
 
 			self.markers.on('click', function(e) {
-				setTimeout(function() {
-					self.map.invalidateSize();
-					self.map.panTo(e.latlng);
-					self.map.setZoom(18);
-				}, 300);
-
+  			
+  			var url = apiBase + 'panden/' + e.layer.options.id;
+        
+				developerConsole.startLoading();
+  			developerConsole.setMessage('Connecting to ' + url);
+  			
 				$.ajax({
-					url: apiBase + 'panden/' + e.layer.options.id,
+					url: url,
 					dataType: 'json',
 					success: function(response) {
+					
+    				developerConsole.setMessage('Succesfull request made', 'success');
+            developerConsole.setEmptyline();
+    				developerConsole.setMessage('Found "' + response.definition.label + '" **' + response.definition.id + '**:' + response.definition.source + ': ' + response.definition.text + ': 1 time', 'log');
+    				developerConsole.setMessage(response.definition.label + ' gevonden', 'speak');
+    				developerConsole.setEmptyline();
+    				developerConsole.setMessage('Sparql query used for "Pand":');
+            developerConsole.setNewline();
+    				developerConsole.setMessage(response.sparql, 'data');
+            developerConsole.setEmptyline();
+            developerConsole.setEmptyline();
+    				developerConsole.setMessage('Found "' + response.seperations.definition.label + '" **' + response.seperations.definition.id + '**:' + response.seperations.definition.source + ': ' + response.seperations.definition.text + ': ' + (response.seperations ? response.seperations.results.length : 0) + ' times', 'log');
+    				developerConsole.setMessage(response.seperations.results.length + ' keer ' + response.seperations.definition.label + ' gevonden', 'speak');
+    				developerConsole.setEmptyline();
+    				developerConsole.setMessage('Sparql query used for "Scheiding":');
+            developerConsole.setNewline();
+    				developerConsole.setMessage(response.seperations.sparql, 'data');
+            developerConsole.setEmptyline();
+            developerConsole.setEmptyline();
+            developerConsole.stopLoading();
+            developerConsole.setMessage(response.vestigingen.length + ' vestigingen gevonden', 'speak');
+            developerConsole.setMessage(response.woz.length + ' WOZ-objecten gevonden', 'speak');
+            
+            for(i in response.vestigingen) {
+              var vestiging = response.vestigingen[i];
+              
+              if(vestiging.nvwaControles.sparql) {
+                developerConsole.setMessage('Found "nvwacontrole" for "' + vestiging.naam + '"', 'log');
+                developerConsole.setMessage('nvwa controle gevonden voor ' + vestiging.naam, 'speak');
+                developerConsole.setEmptyline();
+        				developerConsole.setMessage('Sparql query used for "nvwacontrole":');
+                developerConsole.setNewline();
+        				developerConsole.setMessage(vestiging.nvwaControles.sparql, 'data');
+                developerConsole.setEmptyline();
+        				developerConsole.setEmptyline();
+              }
+            }
+    				
 						ui.$sidebarContent.removeClass('is-showing-organizations');
 						ui.$sidebarContent.removeClass('is-showing-subitems');
+    				
 						ui.showDetails(response);
+            
+            setTimeout(function() {
+    					self.map.invalidateSize();
+    					self.map.panTo(e.latlng);
+    					self.map.setZoom(13 + (self.mapType == 'pdok' ? 0 : self.zoomDifference));
+            }, 1000);
+            
+            var url = apiBase + 'bomen?lat=' + e.latlng.lat + '&lng=' + e.latlng.lng;
+            
+    				developerConsole.startLoading();
+      			developerConsole.setMessage('Connecting to ' + url);
 
 						$.ajax({
-							url: apiBase + 'bomen?lat=' + e.latlng.lat + '&lng=' + e.latlng.lng,
+							url: url,
 							dataType: 'json',
 							success: function(response) {
+					
+        				developerConsole.setMessage('Succesfull request made', 'success');
+                developerConsole.setEmptyline();
+                
+                if(response.features.length) {
+          				developerConsole.setMessage('Found "' + response.features.length + '" trees', 'log');
+          				developerConsole.setMessage(response.features.length + ' ' + (response.features.length == 1 ? 'boom' : 'bomen') + ' gevonden', 'speak');
+                } else {
+          				developerConsole.setMessage('Didn\'t find any trees in the buildings surroundings');
+                }
+        				developerConsole.setEmptyline();
+                developerConsole.setEmptyline();
+                developerConsole.stopLoading();
+                
 								maps.setTrees(response);
 							}
 						});
@@ -453,21 +682,89 @@ $(document).on('ready', function() {
 							maxWidth: 600
 						})
 						.on('click', function(e) {
+  						
+			
+        			var url = 'http://lookup.dbpedia.org/api/search.asmx/PrefixSearch?MaxHits=1&QueryClass=Species&QueryString=' + e.target.feature.properties.latboomsoort;
+              
+              developerConsole.startLoading();
+        			developerConsole.setMessage('Connecting to ' + url);
+              
 							$.ajax({
-								url: 'http://lookup.dbpedia.org/api/search.asmx/PrefixSearch?MaxHits=1&QueryClass=Species&QueryString=' + e.target.feature.properties.latboomsoort,
+								url: url,
 								headers: { 'Accept': 'application/json' },
 								success: function(response) {
+					
+          				developerConsole.setMessage('Succesfull request made', 'success');
+          				developerConsole.setEmptyline();
+                  
 									if(response.results.length) {
+            				developerConsole.setMessage('Found extra tree information resolving to: **' + response.results[0].uri + '**', 'log');
+            				developerConsole.setMessage('Extra informatie over de boom gevonden op dbpedia', 'speak');
 										$('.js-dbpedia-description').html(ui.dbpediaTemplate(response.results[0]));
+									} else {
+            				developerConsole.setMessage('No extra tree information found', 'log');
+            				developerConsole.setMessage('Geen extra boom informatie gevonden', 'speak');
 									}
+          				developerConsole.setEmptyline();
+                  developerConsole.setEmptyline();
+                  developerConsole.stopLoading();
 								}
 							});
 						});
 				}
 			}).addTo(maps.map);
+		},
+		
+		setSeperations: function(seperations) {
+			var self = this;
+
+			if(self.seperations) {
+				self.map.removeLayer(self.seperations);
+			}
+      
+      var stripes = new L.StripePattern();
+      stripes.addTo(self.map);
+      
+			self.seperations = L.geoJson(seperations.results, {
+  			style: {
+          weight: 4,
+          color: 'blue',
+          opacity: 1,
+          fillColor: '#333',
+          fillOpacity: 0
+  			},
+  			onEachFeature: function(feature, layer) {
+    			layer.on('click', function() {
+      			ui.$sidebarContent.addClass('is-showing-subitems');
+
+  					$('.js-building-subitems').removeClass('is-active');
+  					$('.js-building-seperations').addClass('is-active');
+      		}).on('mouseover', function() {
+      			layer.setStyle({
+        			color: 'red'
+      			});
+      			$('.js-scheiding[data-id="' + feature.properties.id + '"]').addClass('is-active');
+    			}).on('mouseout', function() {
+      			layer.setStyle({
+        			color: 'blue'
+      			});
+      			$('.js-scheiding[data-id="' + feature.properties.id + '"]').removeClass('is-active');
+      		});
+      		$('.js-scheiding[data-id="' + feature.properties.id + '"]').on('mouseover', function() {
+      			layer.setStyle({
+        			color: 'red'
+      			});
+      		}).on('mouseout', function() {
+      			layer.setStyle({
+        			color: 'blue'
+      			});
+          });
+  			}
+			}).addTo(self.map);
 		}
 	};
-
+  
+  developerConsole.init();
 	ui.init();
 	links.init();
 	maps.init();
