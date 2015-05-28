@@ -768,8 +768,4 @@ $(document).on('ready', function() {
 	ui.init();
 	links.init();
 	maps.init();
-	
-	
-	
-  console.log(window.location.hash);
 });
