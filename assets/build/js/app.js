@@ -654,7 +654,10 @@ $(document).on('ready', function() {
 								maps.setTrees(response);
 							}
 						});
-					}
+					},
+  				error: function(e) {
+    				developerConsole.setMessage('Failed getting a succesfull request from ' + url, 'error');
+  				}
 				});
 			});
 			self.map.addLayer(self.markers);
@@ -708,7 +711,10 @@ $(document).on('ready', function() {
           				developerConsole.setEmptyline();
                   developerConsole.setEmptyline();
                   developerConsole.stopLoading();
-								}
+								},
+        				error: function(e) {
+          				developerConsole.setMessage('Failed getting a succesfull request from ' + url, 'error');
+        				}
 							});
 						});
 				}
